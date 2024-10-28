@@ -13,6 +13,8 @@ model User {
   id  Int @id @default(autoincrement())
   journalItems JournalItem[]
   calendarItems CalendarItem[]
+  gardenMaps GardenMap[]
+  gardenProfileItems GardenProfileItem[]
 }
 
 model JournalItem {
@@ -31,4 +33,22 @@ model CalendarItem {
   details String
   user User? @relation(fields: [userId], references: [id])
   userId Int?
+}
+
+model GardenProfileItem {
+  id Int @id @default(autoincrement())
+  name String
+  createdDate DateTime @default(now())
+  details String
+  user User? @relation(fields: [userId], references: [id])
+  garden GardenMap? @relation(fields: [id], references: [id])
+  userId Int?
+}
+
+model GardenMap {
+  id Int @id @default(autoincrement())
+  name String
+  user User? @relation(fields: [userId], references: [id])
+  userId Int?
+  gardenProfileItems GardenProfileItem[]
 }

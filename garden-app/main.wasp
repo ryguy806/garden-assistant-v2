@@ -92,3 +92,13 @@ crud CalendarItems {
     }
   }
 }
+
+crud GardenMapItems {
+  entity: GardenMap,
+  operations: {
+    getAll: {},
+    create: {
+      overrideFn: import {createCalendarItem} from "@src/operations/actions/calendarActions",
+    }
+  }
+}

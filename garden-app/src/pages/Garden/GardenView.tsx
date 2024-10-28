@@ -34,6 +34,9 @@ const ListView = () => {
             </Link>
           );
         })}
+        <button className='border-2 p-2 bg-green-400 w-40 mt-3'>
+          Add Garden
+        </button>
       </div>
       <div className='flex flex-col'>
         <div className='text-lg font-bold underline'>Trees</div>
@@ -48,6 +51,9 @@ const ListView = () => {
             </Link>
           );
         })}
+        <button className='border-2 p-2 bg-green-400 w-40 mt-3'>
+          Add Tree
+        </button>
       </div>
     </div>
   );
@@ -82,7 +88,7 @@ const GardenView = () => {
               className='flex justify-end space-y-5'
               onClick={handleViewChange}
             >
-              <button className='border-2 w-32 px-5 mb-10'>
+              <button className='border-2 p-2 bg-green-400 w-40 mb-3'>
                 {view === "list" ? "Map View" : "List View"}
               </button>
             </div>
