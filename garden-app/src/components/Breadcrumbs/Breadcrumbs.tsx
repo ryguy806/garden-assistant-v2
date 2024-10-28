@@ -23,14 +23,14 @@ const Crumbs = (pathnames: string[]) =>
         ) : (
           <>
             <div>{">"}</div>
-            <li key={to}>{titleCase(decodeURI(pathname))}</li>
+            <li>{titleCase(decodeURI(pathname))}</li>
           </>
         )}
       </>
     ) : (
       <>
         <div>{">"}</div>
-        <li key={to}>
+        <li>
           <RouterLink to={to}>{titleCase(pathname)}</RouterLink>
         </li>
       </>

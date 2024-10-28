@@ -1,11 +1,11 @@
-import { getAllJournalItems, useQuery } from "wasp/client/operations";
 import JournalList from "./JournalList";
 import { AuthUser } from "wasp/auth";
 import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
-import { createJournalItem } from "wasp/client/operations";
+import { JournalItems } from "wasp/client/crud";
 
 const JournalView = ({ user }: { user: AuthUser }) => {
-  const { data: journalItems, isLoading, error } = useQuery(getAllJournalItems);
+  const { data, isLoading, error } = JournalItems.getAll.useQuery();
+  const journalItems = data?.filter((item) => item.userId === user.id);
 
   const [addEntry, setAddEntry] = useState(false);
   const handleAddEntry = () => setAddEntry(true);
@@ -46,7 +46,6 @@ interface JournalItemFormProps {
 
 export const toSentenceCase = (str: string): string => {
   const sentences = str.split(/([!.?]\W)/g);
-  console.log("Sentence array", sentences);
 
   let newEntry: string = "";
 
@@ -56,30 +55,37 @@ export const toSentenceCase = (str: string): string => {
     newEntry += firstLetter + restOfSentence;
 
     newEntry.replaceAll(" i ", " I ");
-
-    console.log("New Entry", newEntry);
   }
 
   return newEntry;
 };
 
 const JournalItemForm: FC<JournalItemFormProps> = ({ setAddEntry }) => {
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const createJournalItem = JournalItems.create.useAction();
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const target = event.target as HTMLFormElement;
-      const entry = toSentenceCase(target.entry.value);
+      const newEntry = target.entry.value;
+
       target.reset();
-      await createJournalItem({ entry });
-    } catch (e: any) {
-      window.alert("Error" + e.message);
+      await createJournalItem({
+        entry: newEntry,
+      });
+    } catch (err: any) {
+      window.alert("Error: " + err.message);
     }
     setAddEntry(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-row space-x-3'>
-      <textarea name='entry' placeholder='Entry' className='border-2' />
+    <form onSubmit={handleFormSubmit} className='flex flex-row space-x-3'>
+      <textarea
+        name='entry'
+        id='entry'
+        placeholder='Entry'
+        className='border-2'
+      />
       <button type='submit' className='border-2 bg-green-300 w-32 p-3'>
         Add Entry
       </button>

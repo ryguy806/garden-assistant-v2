@@ -69,17 +69,14 @@ page JournalPage {
   component: import JournalView  from "@src/pages/Journal/JournalView"
 }
 
-//Queries
-query getAllJournalItems {
-  fn: import {getAllJournalItems} from "@src/operations/queries/journalQueries",
-  entities: [JournalItem]
-}
-
-
-//Actions
-action createJournalItem {
-  fn: import {createJournalItem} from "@src/operations/actions/journalActions",
-  entities: [JournalItem]
+crud JournalItems {
+  entity: JournalItem,
+  operations: {
+    getAll: {},
+    create: {
+      overrideFn: import {createJournalItem} from "@src/operations/actions/journalActions",
+    }
+  }
 }
 
 
@@ -99,6 +96,7 @@ crud GardenMapItems {
     getAll: {},
     create: {
       overrideFn: import {createCalendarItem} from "@src/operations/actions/calendarActions",
-    }
+    },
+    update: {}
   }
 }

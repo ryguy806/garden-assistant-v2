@@ -1,17 +1,24 @@
 import { JournalItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
-import { CreateJournalItem } from "wasp/server/operations";
+import { JournalItems } from "wasp/server/crud/JournalItems.js";
 
-type CreateJournalItemPayload = Pick<JournalItem, "entry">;
+type CreateJournalInput = { entry: string };
 
-export const createJournalItem: CreateJournalItem<
-  CreateJournalItemPayload,
+export const createJournalItem: JournalItems.CreateAction<
+  CreateJournalInput,
   JournalItem
 > = async (args, context) => {
   if (!context.user) {
     throw new HttpError(401, "Access denied");
   }
-  return context.entities.JournalItem.create({
-    data: { entry: args.entry, user: { connect: { id: context.user.id } } },
+
+  const { entry } = args;
+  const { JournalItem } = context.entities;
+
+  return await JournalItem.create({
+    data: {
+      user: { connect: { id: context.user.id } },
+      entry: entry,
+    },
   });
 };
