@@ -6,11 +6,11 @@ import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs";
 const Layout = ({ children }: any) => {
   return (
     <div className='height-full'>
-      <div className='sticky top-0 w-full'>
+      <div className='sticky top-0 w-full flex-flex-col z-10'>
         <Header />
+        <Breadcrumbs />
       </div>
       <div className='flex flex-col size-auto'>
-        <Breadcrumbs />
         <div className='flex size-full'>
           <Outlet />
         </div>

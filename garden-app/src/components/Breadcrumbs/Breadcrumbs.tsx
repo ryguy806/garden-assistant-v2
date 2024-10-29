@@ -53,7 +53,7 @@ export const Breadcrumbs = () => {
     pathnames.length === 0 ? "Home" : pathnames[pathnames.length - 1];
 
   return (
-    <div className='px-2 pb-1 shadow-md'>
+    <div className='px-2 pb-1'>
       <div className='text-md breadcrumbs'>
         <ul className='flex flex-row space-x-3'>
           <li>

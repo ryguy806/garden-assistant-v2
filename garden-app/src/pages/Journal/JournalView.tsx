@@ -14,7 +14,7 @@ const JournalView = ({ user }: { user: AuthUser }) => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className='mt-24 w-[90vw]'>
+    <div className='mx-24 w-[90vw]'>
       <div className='flex items-center m-5 justify-center'>
         <h1 className='font-bold text-xl'>Garden Journal</h1>
       </div>
