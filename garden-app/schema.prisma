@@ -15,6 +15,7 @@ model User {
   calendarItems CalendarItem[]
   gardenMaps GardenMap[]
   gardenProfileItems GardenProfileItem[]
+  treeProfileItems TreeProfileItem[]
 }
 
 model JournalItem {
@@ -51,4 +52,13 @@ model GardenMap {
   user User? @relation(fields: [userId], references: [id])
   userId Int?
   gardenProfileItems GardenProfileItem[]
+}
+
+model TreeProfileItem {
+  id Int @id @default(autoincrement())
+  name String
+  createdDate DateTime @default(now())
+  details String
+  user User? @relation(fields: [userId], references: [id])
+  userId Int?
 }

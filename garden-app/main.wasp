@@ -120,7 +120,7 @@ crud GardenMapItems {
 }
 
 crud TreeItems {
-  entity: GardenProfileItem,
+  entity: TreeProfileItem,
   operations: {
     getAll: {},
     create: {
