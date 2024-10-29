@@ -5,10 +5,6 @@ import { CalendarItems } from "wasp/client/crud";
 const CalendarNewEvent = () => {
   const createCalendarItem = CalendarItems.create.useAction();
 
-  const { day } = useParams<"day">();
-
-  const dayAsDate = new Date(day!).toISOString().substring(0, 10);
-
   const navigate = useNavigate();
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,7 +53,6 @@ const CalendarNewEvent = () => {
             id='date'
             name='date'
             className='border-2 w-8/12'
-            defaultValue={day ? dayAsDate : ""}
           />
         </label>
 
