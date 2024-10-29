@@ -39,7 +39,10 @@ const ListView = () => {
             </Link>
           );
         })}
-        <Link to='/garden/new' className='border-2 p-2 bg-green-400 w-40 mt-3'>
+        <Link
+          to='/garden/new-garden'
+          className='border-2 p-2 bg-green-400 w-40 mt-3'
+        >
           Add Garden
         </Link>
       </div>
@@ -57,9 +60,12 @@ const ListView = () => {
             </Link>
           );
         })}
-        <button className='border-2 p-2 bg-green-400 w-40 mt-3'>
+        <Link
+          to='/garden/new-tree'
+          className='border-2 p-2 bg-green-400 w-40 mt-3'
+        >
           Add Tree
-        </button>
+        </Link>
       </div>
     </div>
   );

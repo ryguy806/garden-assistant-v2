@@ -63,10 +63,16 @@ page GardenPage {
   component: import GardenView  from "@src/pages/Garden/GardenView"
 }
 
-route NewGardenRoute { path: "/garden/new", to: AddGardenPage }
+route NewGardenRoute { path: "/garden/new-garden", to: AddGardenPage }
 page AddGardenPage {
   authRequired: true,
   component: import AddGarden  from "@src/pages/Garden/AddGarden"
+}
+
+route NewTreeRoute { path: "/garden/new-tree", to: AddTreePage }
+page AddTreePage {
+  authRequired: true,
+  component: import AddTree  from "@src/pages/Garden/AddTree"
 }
 
 route GardenMapRoute { path: "/garden/:garden", to: GardenMapPage }
@@ -104,6 +110,17 @@ crud CalendarItems {
 
 crud GardenMapItems {
   entity: GardenMap,
+  operations: {
+    getAll: {},
+    create: {
+      overrideFn: import {createGardenItem} from "@src/operations/actions/gardenActions",
+    },
+    update: {}
+  }
+}
+
+crud TreeItems {
+  entity: GardenProfileItem,
   operations: {
     getAll: {},
     create: {
