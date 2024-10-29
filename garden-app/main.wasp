@@ -63,6 +63,12 @@ page GardenPage {
   component: import GardenView  from "@src/pages/Garden/GardenView"
 }
 
+route NewGardenRoute { path: "/garden/new", to: AddGardenPage }
+page AddGardenPage {
+  authRequired: true,
+  component: import AddGarden  from "@src/pages/Garden/AddGarden"
+}
+
 route GardenMapRoute { path: "/garden/:garden", to: GardenMapPage }
 page GardenMapPage {
   authRequired: true,
@@ -101,7 +107,7 @@ crud GardenMapItems {
   operations: {
     getAll: {},
     create: {
-      overrideFn: import {createCalendarItem} from "@src/operations/actions/calendarActions",
+      overrideFn: import {createGardenItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
   }

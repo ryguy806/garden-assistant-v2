@@ -39,9 +39,9 @@ const ListView = () => {
             </Link>
           );
         })}
-        <button className='border-2 p-2 bg-green-400 w-40 mt-3'>
+        <Link to='/garden/new' className='border-2 p-2 bg-green-400 w-40 mt-3'>
           Add Garden
-        </button>
+        </Link>
       </div>
       <div className='flex flex-col'>
         <div className='text-lg font-bold underline'>Trees</div>
