@@ -21,15 +21,15 @@ const Crumbs = (pathnames: string[]) =>
         {pathname === "login" || pathname === "signup" ? (
           <></>
         ) : (
-          <li key={index}>
-            <div>{">"}</div>
+          <li key={index} className='flex flex-row'>
+            <div className='mr-3'>{">"}</div>
             {titleCase(decodeURI(pathname))}
           </li>
         )}
       </>
     ) : (
-      <li key={index}>
-        <div>{">"}</div>
+      <li key={index} className='flex flex-row'>
+        <div className='mr-3'>{">"}</div>
         <RouterLink to={to}>{titleCase(decodeURI(pathname))}</RouterLink>
       </li>
     );
