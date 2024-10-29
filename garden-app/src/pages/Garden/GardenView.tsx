@@ -29,7 +29,12 @@ const ListView = () => {
         <div className='text-lg font-bold underline'>Gardens</div>
         {gardenNames.map((garden) => {
           return (
-            <Link className='my-3' to={`/garden/:garden`} params={{ garden }}>
+            <Link
+              className='my-3'
+              to={`/garden/:garden`}
+              params={{ garden }}
+              key={garden}
+            >
               {titleCase(garden)}
             </Link>
           );
@@ -46,6 +51,7 @@ const ListView = () => {
               className='my-3'
               to={`/garden/:garden`}
               params={{ garden: tree }}
+              key={tree}
             >
               {titleCase(tree)}
             </Link>

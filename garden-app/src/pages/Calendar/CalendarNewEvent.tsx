@@ -1,9 +1,46 @@
 import { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CalendarItems } from "wasp/client/crud";
+
+const convertStringToMonth = (month: string) => {
+  let monthNum = 1;
+  if (month === "Jan") monthNum = 1;
+  if (month === "Feb") monthNum = 2;
+  if (month === "Mar") monthNum = 3;
+  if (month === "Apr") monthNum = 4;
+  if (month === "May") monthNum = 5;
+  if (month === "Jun") monthNum = 6;
+  if (month === "Jul") monthNum = 7;
+  if (month === "Aug") monthNum = 8;
+  if (month === "Sep") monthNum = 9;
+  if (month === "Oct") monthNum = 10;
+  if (month === "Nov") monthNum = 11;
+  if (month === "Dec") monthNum = 12;
+  return monthNum;
+};
+
+const convertURLtoDate = (dayAsParam: string) => {
+  const newDate = new Date();
+
+  const year = parseInt(dayAsParam.substring(-4));
+  const month = convertStringToMonth(dayAsParam.substring(6, 8));
+  const day = parseInt(dayAsParam.substring(10, 12));
+
+  newDate.setFullYear(year);
+  newDate.setMonth(month);
+  newDate.setDate(day);
+
+  return newDate;
+};
 
 const CalendarNewEvent = () => {
   const createCalendarItem = CalendarItems.create.useAction();
+
+  const { day } = useParams<"day">();
+  // console.log(day);
+
+  // if (day) console.log(convertURLtoDate(day.toString()));
+
   const navigate = useNavigate();
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,6 +89,7 @@ const CalendarNewEvent = () => {
             id='date'
             name='date'
             className='border-2 w-8/12'
+            defaultValue={day ? day : ""}
           />
         </label>
 

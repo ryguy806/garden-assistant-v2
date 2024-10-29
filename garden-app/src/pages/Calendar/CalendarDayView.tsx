@@ -37,7 +37,12 @@ const CalendarDayView = () => {
       )}
       <div className='ml-24 mt-10'>
         <div className='border-2 p-2 bg-green-400 w-40 mt-3'>
-          <Link to='/calendar/new'>Add New Event</Link>
+          <Link
+            to='/calendar/:day/new'
+            params={{ day: pathname.substring(10) }}
+          >
+            Add New Event
+          </Link>
         </div>
       </div>
     </div>

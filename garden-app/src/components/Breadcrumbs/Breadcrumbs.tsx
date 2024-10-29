@@ -31,7 +31,7 @@ const Crumbs = (pathnames: string[]) =>
       <>
         <div>{">"}</div>
         <li>
-          <RouterLink to={to}>{titleCase(pathname)}</RouterLink>
+          <RouterLink to={to}>{titleCase(decodeURI(pathname))}</RouterLink>
         </li>
       </>
     );
