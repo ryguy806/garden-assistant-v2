@@ -9,11 +9,11 @@ const AddTree = () => {
     event.preventDefault();
 
     const target = event.target as HTMLFormElement;
-    const TreeName = target.TreeName.value;
+    const treeName = target.TreeName.value;
 
     target.reset();
-    await createTreeItem({ name: TreeName });
-    navigate(`/Tree/${TreeName}`);
+    await createTreeItem({ name: treeName });
+    navigate(`/garden/${treeName}`);
   };
 
   return (
