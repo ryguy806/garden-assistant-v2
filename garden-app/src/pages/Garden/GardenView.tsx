@@ -1,6 +1,8 @@
 import { Link } from "wasp/client/router";
 import { titleCase } from "../../components/Breadcrumbs/Breadcrumbs";
 import { useState } from "react";
+import { GardenMapItems, TreeItems } from "wasp/client/crud";
+import { GardenMap, TreeProfileItem } from "wasp/entities";
 
 const gardenNames = [
   "vegetable-garden",
@@ -22,20 +24,27 @@ const treeNames = [
   "triangle-oaks",
 ];
 
-const ListView = () => {
+type ListViewProps = {
+  data: any[];
+};
+
+const ListView = ({ data }: ListViewProps) => {
+  const gardenData = data[0];
+  const treeData = data[1];
+
   return (
     <div className='flex flex-row justify-between'>
       <div className='flex flex-col'>
         <div className='text-lg font-bold underline'>Gardens</div>
-        {gardenNames.map((garden) => {
+        {gardenData.data.map((garden: GardenMap) => {
           return (
             <Link
               className='my-3'
               to={`/garden/:garden`}
-              params={{ garden }}
-              key={garden}
+              params={{ garden: garden.name }}
+              key={garden.id}
             >
-              {titleCase(garden)}
+              {titleCase(garden.name)}
             </Link>
           );
         })}
@@ -48,15 +57,15 @@ const ListView = () => {
       </div>
       <div className='flex flex-col'>
         <div className='text-lg font-bold underline'>Trees</div>
-        {treeNames.map((tree: string) => {
+        {treeData.data.map((tree: TreeProfileItem) => {
           return (
             <Link
               className='my-3'
               to={`/garden/:garden`}
-              params={{ garden: tree }}
-              key={tree}
+              params={{ garden: tree.name }}
+              key={tree.id}
             >
-              {titleCase(tree)}
+              {titleCase(tree.name)}
             </Link>
           );
         })}
@@ -81,10 +90,20 @@ const MapView = () => {
 
 const GardenView = () => {
   const [view, setView] = useState("list");
+  const getAllData = () => {
+    const gardenData = GardenMapItems.getAll.useQuery();
+    const treeData = TreeItems.getAll.useQuery();
+
+    return [gardenData, treeData];
+  };
+
+  const data = getAllData();
 
   const handleViewChange = () => {
     setView(view === "list" ? "map" : "list");
   };
+
+  if (data[0].isLoading || data[1].isLoading) return <div>Loading...</div>;
   return (
     <div className='container mx-auto -mt-16'>
       <div className='flex flex-col items-start space-y-10'>
@@ -104,7 +123,7 @@ const GardenView = () => {
                 {view === "list" ? "Map View" : "List View"}
               </button>
             </div>
-            {view === "list" ? <ListView /> : <MapView />}
+            {view === "list" ? <ListView data={data} /> : <MapView />}
           </div>
         </div>
       </div>

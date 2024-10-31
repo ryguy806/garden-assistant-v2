@@ -19,7 +19,7 @@ const Crumbs = (pathnames: string[]) =>
     return last ? (
       <>
         {pathname === "login" || pathname === "signup" ? (
-          <></>
+          <span key={index}></span>
         ) : (
           <li key={index} className='flex flex-row'>
             <div className='mr-3'>{">"}</div>

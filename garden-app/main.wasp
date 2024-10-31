@@ -124,7 +124,7 @@ crud TreeItems {
   operations: {
     getAll: {},
     create: {
-      overrideFn: import {createGardenItem} from "@src/operations/actions/gardenActions",
+      overrideFn: import {createTreeItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
   }
