@@ -57,28 +57,10 @@ page CalendarNewEventDayPage {
   component: import CalendarNewDayEvent from "@src/pages/Calendar/CalendarNewDayEvent"
 }
 
-route GardenRoute { path: "/garden", to: GardenPage }
-page GardenPage {
+route PlantProfileRoute { path: "/garden/:garden", to: PlantProfilePage }
+page PlantProfilePage {
   authRequired: true,
-  component: import GardenView  from "@src/pages/Garden/GardenView"
-}
-
-route NewGardenRoute { path: "/garden/new-garden", to: AddGardenPage }
-page AddGardenPage {
-  authRequired: true,
-  component: import AddGarden  from "@src/pages/Garden/AddGarden"
-}
-
-route NewTreeRoute { path: "/garden/new-tree", to: AddTreePage }
-page AddTreePage {
-  authRequired: true,
-  component: import AddTree  from "@src/pages/Garden/AddTree"
-}
-
-route GardenMapRoute { path: "/garden/:garden", to: GardenMapPage }
-page GardenMapPage {
-  authRequired: true,
-  component: import Garden  from "@src/pages/Garden/Garden"
+  component: import PlantProfile  from "@src/pages/Garden/PlantProfile"
 }
 
 route JournalRoute { path: "/journal", to: JournalPage }
@@ -108,24 +90,13 @@ crud CalendarItems {
   }
 }
 
-crud GardenMapItems {
-  entity: GardenMap,
+crud PlantProfileItems {
+  entity: PlantProfileItem,
   operations: {
     getAll: {},
+    get: {},
     create: {
-      overrideFn: import {createGardenItem} from "@src/operations/actions/gardenActions",
-    },
-    update: {}
-  }
-}
-
-crud TreeItems {
-  entity: TreeProfileItem,
-  operations: {
-    getAll: {},
-    create: {
-      overrideFn: import {createTreeItem} from "@src/operations/actions/gardenActions",
-    },
-    update: {}
+      overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
+    }
   }
 }

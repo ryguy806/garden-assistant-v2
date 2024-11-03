@@ -1,46 +1,53 @@
-import { GardenMap, TreeProfileItem } from "wasp/entities";
+import { GardenMap, PlantProfileItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
-import { GardenMapItems } from "wasp/server/crud/GardenMapItems.js";
-import { TreeItems } from "wasp/server/crud/TreeItems.js";
+import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems.js";
 
-type CreateGardenInput = { name: string };
-type CreateTreeInput = { name: string };
-
-export const createGardenItem: GardenMapItems.CreateAction<
-  CreateGardenInput,
-  GardenMap
-> = async (args, context) => {
-  if (!context.user) {
-    throw new HttpError(401, "Access denied");
-  }
-
-  const { name } = args;
-  const { GardenMap } = context.entities;
-
-  return await GardenMap.create({
-    data: {
-      user: { connect: { id: context.user.id } },
-      name: name,
-    },
-  });
+type CreatePlantProfileInput = {
+  name: string;
+  plantedDate: Date;
+  details: string;
+  notes: string;
+  imageURL: string;
+  type: string;
+  group: string;
+  fertilizerNeeds: string;
+  garden: string;
 };
 
-export const createTreeItem: TreeItems.CreateAction<
-  CreateTreeInput,
-  TreeProfileItem
+export const createPlantProfileItem: PlantProfileItems.CreateAction<
+  CreatePlantProfileInput,
+  PlantProfileItem
 > = async (args, context) => {
   if (!context.user) {
     throw new HttpError(401, "Access denied");
   }
 
-  const { name } = args;
-  const { TreeProfileItem } = context.entities;
+  const {
+    name,
+    plantedDate,
+    details,
+    notes,
+    type,
+    group,
+    imageURL,
+    fertilizerNeeds,
+    garden,
+  } = args;
 
-  return await TreeProfileItem.create({
+  const { PlantProfileItem } = context.entities;
+
+  return await PlantProfileItem.create({
     data: {
       user: { connect: { id: context.user.id } },
-      name: name,
-      details: "",
+      name,
+      plantedDate,
+      details,
+      notes,
+      type,
+      group,
+      imageURL,
+      fertilizerNeeds,
+      garden,
     },
   });
 };
