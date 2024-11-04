@@ -10,7 +10,7 @@ const AddPlant = () => {
     event.preventDefault();
     try {
       const target = event.target as HTMLFormElement;
-      const name = target.name;
+      const name = target.plantName.value;
       const imageURL = target.image.value;
       const plantedDate = new Date(target.plantedDate.value);
       const garden = target.location.value;
@@ -38,8 +38,13 @@ const AddPlant = () => {
   return (
     <div className='container w-1/2 mx-auto'>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-3'>
-        <label htmlFor='name'>Plant Name:</label>
-        <input className='border-b-2' type='text' id='name' name='name' />
+        <label htmlFor='plantName'>Plant Name:</label>
+        <input
+          className='border-b-2'
+          type='text'
+          id='plantName'
+          name='plantName'
+        />
         <label htmlFor='image'>Plant Image:</label>
         <input className='border-2' type='text' name='image' id='image' /> *This
         will be the image input for now.
@@ -93,19 +98,12 @@ const AddPlant = () => {
           <option value='tree'>Tree</option>
           <option value='vegetable'>Vegetable</option>
         </select>
-        {!(group === "tree" || group === "") ? (
-          <>
-            <label htmlFor='type'>Type:</label>
-
-            <select name='type' id='type'>
-              <option value='annual'>Annual</option>
-              <option value='biennial'>Biennial</option>
-              <option value='perennial'>Perennial</option>
-            </select>
-          </>
-        ) : (
-          <></>
-        )}
+        <label htmlFor='type'>Type:</label>
+        <select name='type' id='type'>
+          <option value='annual'>Annual</option>
+          <option value='biennial'>Biennial</option>
+          <option value='perennial'>Perennial</option>
+        </select>
         <button className='border-2 bg-green-300' type='submit'>
           Add Plant
         </button>
