@@ -14,7 +14,7 @@ export const MainPage = () => {
         </p>
         <div className='flex flex-row space-x-10 justify-center items-center'>
           <div>
-            <Link to='/garden'>View Your Garden</Link>
+            <Link to='/yard'>View Your Garden</Link>
           </div>
           <div>
             <Link to='/calendar'>Calendar</Link>

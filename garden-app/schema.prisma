@@ -44,11 +44,11 @@ model PlantProfileItem {
   imageURL String? 
   name String
   garden String //GardenMap? @relation(fields: [id], references: [id])
-  type String
+  type String?
   group String
   fertilizerNeeds String
   details String
-  notes String
+  notes String?
 }
 
 model GardenMap {
@@ -57,4 +57,12 @@ model GardenMap {
   user User? @relation(fields: [userId], references: [id])
   userId Int?
   // plantProfileItems PlantProfileItem[]
+}
+
+model ImageItem {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  mimeType  String
+  data      Bytes
+  createdAt DateTime @default(now())
 }

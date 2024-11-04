@@ -1,12 +1,12 @@
-import { GardenMap, PlantProfileItem } from "wasp/entities";
-import { HttpError } from "wasp/server";
+import { PlantProfileItem } from "wasp/entities";
+import { HttpError, prisma } from "wasp/server";
 import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems.js";
 
 type CreatePlantProfileInput = {
   name: string;
   plantedDate: Date;
   details: string;
-  notes: string;
+  notes?: string;
   imageURL: string;
   type: string;
   group: string;

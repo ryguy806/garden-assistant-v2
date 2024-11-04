@@ -57,16 +57,22 @@ page CalendarNewEventDayPage {
   component: import CalendarNewDayEvent from "@src/pages/Calendar/CalendarNewDayEvent"
 }
 
-route PlantProfileRoute { path: "/garden/:garden", to: PlantProfilePage }
-page PlantProfilePage {
-  authRequired: true,
-  component: import PlantProfile  from "@src/pages/Garden/PlantProfile"
-}
-
 route JournalRoute { path: "/journal", to: JournalPage }
 page JournalPage {
   authRequired: true,
   component: import JournalView  from "@src/pages/Journal/JournalView"
+}
+
+route YardRoute { path: "/yard", to: YardPage}
+page YardPage {
+  authRequired: true,
+  component: import Yard from "@src/pages/Garden/Yard"
+}
+
+route AddPlantRoute {path: "/yard/plant-add", to: AddPlantPage}
+page AddPlantPage {
+  authRequired: true,
+  component: import AddPlant from "@src/pages/Garden/AddPlant"
 }
 
 crud JournalItems {
