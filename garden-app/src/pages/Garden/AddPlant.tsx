@@ -29,6 +29,7 @@ const AddPlant = () => {
         type,
         details,
         fertilizerNeeds,
+        noteItems: [],
       });
     } catch (error: any) {
       window.alert("Error: Failed to add plant profile item." + error.message);
