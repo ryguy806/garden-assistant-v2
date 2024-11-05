@@ -19,7 +19,7 @@ const Garden = () => {
             return (
               <Link
                 key={plant.id}
-                to={`/yard/plant-profile/:plant`}
+                to={`/yard/:plant`}
                 params={{ plant: plant.name }}
                 className='border-b-2 border-green-500 hover:bg-green-400'
               >

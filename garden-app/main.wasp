@@ -69,7 +69,7 @@ page YardPage {
   component: import Yard from "@src/pages/Garden/Yard"
 }
 
-route PlantProfileRoute { path: "/yard/plant-profile/:plant", to: PlantProfilePage}
+route PlantProfileRoute { path: "/yard/:plant", to: PlantProfilePage}
 page PlantProfilePage {
   authRequired: true,
   component: import PlantProfile from "@src/pages/Garden/PlantProfile"
