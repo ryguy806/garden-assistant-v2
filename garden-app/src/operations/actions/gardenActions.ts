@@ -6,7 +6,7 @@ type CreatePlantProfileInput = {
   name: string;
   plantedDate: Date;
   details: string;
-  noteItems: NoteItem[];
+  notes: NoteItem[];
   imageURL: string;
   type: string;
   group: string;
@@ -26,7 +26,6 @@ export const createPlantProfileItem: PlantProfileItems.CreateAction<
     name,
     plantedDate,
     details,
-    noteItems,
     type,
     group,
     imageURL,
@@ -42,7 +41,6 @@ export const createPlantProfileItem: PlantProfileItems.CreateAction<
       name,
       plantedDate,
       details,
-      // noteItems,
       type,
       group,
       imageURL,

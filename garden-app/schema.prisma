@@ -48,7 +48,7 @@ model PlantProfileItem {
   group String
   fertilizerNeeds String
   details String
-  noteItems NoteItem[]
+  notes NoteItem[]
 }
 
 model GardenMap {
@@ -71,6 +71,6 @@ model NoteItem {
   id Int @id @default(autoincrement())
   date DateTime @default(now())
   entry String
-  plant PlantProfileItem? @relation(fields: [plantid], references: [id])
-  plantid Int?
+  plantid Int
+  plantProfile PlantProfileItem @relation(fields: [plantid], references: [id])
 }

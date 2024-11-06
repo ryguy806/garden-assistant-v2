@@ -50,6 +50,7 @@ const PlantProfile = () => {
       <div>
         This is where I will put the notes section. I hope to have it update
         each individual plant.
+        {/* {thisPlant[0].noteItems.map((note) => )} */}
       </div>
     </div>
   );

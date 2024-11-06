@@ -1,9 +1,0 @@
--- CreateTable
-CREATE TABLE "TreeProfileItem" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL,
-    "createdDate" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "details" TEXT NOT NULL,
-    "userId" INTEGER,
-    CONSTRAINT "TreeProfileItem_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
-);

@@ -24,6 +24,48 @@ CREATE TABLE "CalendarItem" (
 );
 
 -- CreateTable
+CREATE TABLE "PlantProfileItem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userId" INTEGER NOT NULL,
+    "createdDate" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "plantedDate" DATETIME NOT NULL,
+    "imageURL" TEXT,
+    "name" TEXT NOT NULL,
+    "garden" TEXT NOT NULL,
+    "type" TEXT,
+    "group" TEXT NOT NULL,
+    "fertilizerNeeds" TEXT NOT NULL,
+    "details" TEXT NOT NULL,
+    CONSTRAINT "PlantProfileItem_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "GardenMap" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "userId" INTEGER,
+    CONSTRAINT "GardenMap_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "ImageItem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "filename" TEXT NOT NULL,
+    "mimeType" TEXT NOT NULL,
+    "data" BLOB NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "NoteItem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "entry" TEXT NOT NULL,
+    "plantid" INTEGER NOT NULL,
+    CONSTRAINT "NoteItem_plantid_fkey" FOREIGN KEY ("plantid") REFERENCES "PlantProfileItem" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
 CREATE TABLE "Auth" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "userId" INTEGER,

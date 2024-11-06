@@ -109,6 +109,17 @@ crud PlantProfileItems {
     get: {},
     create: {
       overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
+    },
+    update: {}
+  }
+}
+
+crud NoteItems {
+  entity: NoteItem,
+  operations: {
+    getAll: {},
+    create: {
+      // overrideFn: import createNoteItem from "@src/operations/actions/gardenActions"
     }
   }
 }
