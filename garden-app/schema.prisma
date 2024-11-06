@@ -48,7 +48,7 @@ model PlantProfileItem {
   group String
   fertilizerNeeds String
   details String
-  notes NoteItem[]
+  notes String?
 }
 
 model GardenMap {
@@ -65,12 +65,4 @@ model ImageItem {
   mimeType  String
   data      Bytes
   createdAt DateTime @default(now())
-}
-
-model NoteItem {
-  id Int @id @default(autoincrement())
-  date DateTime @default(now())
-  entry String
-  plantid Int
-  plantProfile PlantProfileItem @relation(fields: [plantid], references: [id])
 }

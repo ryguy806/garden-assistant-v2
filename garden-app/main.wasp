@@ -113,13 +113,3 @@ crud PlantProfileItems {
     update: {}
   }
 }
-
-crud NoteItems {
-  entity: NoteItem,
-  operations: {
-    getAll: {},
-    create: {
-      // overrideFn: import createNoteItem from "@src/operations/actions/gardenActions"
-    }
-  }
-}
