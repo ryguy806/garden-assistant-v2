@@ -5,13 +5,15 @@ const AddPlant = () => {
   const createPlantProfileItem = PlantProfileItems.create.useAction();
 
   const [group, setGroup] = useState<string>("");
+  const [preview, setPreview] = useState<string | null>();
+  const [imageData, setImageData] = useState<string | null>("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const target = event.target as HTMLFormElement;
       const name = target.plantName.value;
-      const imageURL = target.image.value;
+      const imageURL = imageData as string;
       const plantedDate = new Date(target.plantedDate.value);
       const garden = target.location.value;
       const type = target.type.value;
@@ -20,6 +22,7 @@ const AddPlant = () => {
       const fertilizerNeeds = target.fertilizerNeeds.value;
 
       target.reset();
+      setPreview(null);
       createPlantProfileItem({
         name,
         plantedDate,
@@ -35,6 +38,30 @@ const AddPlant = () => {
     }
   };
 
+  const convertToBase64 = (file: File) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setImageData(reader.result as string);
+    };
+
+    reader.onerror = () => {
+      setImageData(null);
+    };
+
+    reader.readAsBinaryString(file);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      convertToBase64(file);
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setImageData(null);
+    }
+  };
+
   return (
     <div className='container w-1/2 mx-auto'>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-3'>
@@ -46,20 +73,17 @@ const AddPlant = () => {
           name='plantName'
         />
         <label htmlFor='image'>Plant Image:</label>
-        <input className='border-2' type='text' name='image' id='image' /> *This
-        will be the image input for now.
-        {/* <label htmlFor='image' className='flex flex-row'>
+        <label htmlFor='image' className='flex flex-row'>
           <input
             name='image'
             type='file'
             accept='image/*'
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              if (!event.target.files) return;
-              setPreview(URL.createObjectURL(event.target.files[0]));
-            }}
+            onChange={handleFileChange}
           />
-          <img className='h-16 w-auto' src={preview} alt={preview} />
-        </label> */}
+          {preview && (
+            <img className='h-16 w-auto' src={preview} alt={preview} />
+          )}
+        </label>
         <label htmlFor='plantedDate'>Date Planted:</label>
         <input
           className='border-2'

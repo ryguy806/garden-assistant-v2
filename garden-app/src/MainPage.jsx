@@ -23,6 +23,11 @@ export const MainPage = () => {
             <Link to='/journal'>Garden Journal</Link>
           </div>
         </div>
+        <div className=' flex mx-auto justify-center'>
+          <Link className='bg-green-400 p-2' to='/yard/plant-add'>
+            Add Plant Button
+          </Link>
+        </div>
       </div>
     </div>
   );

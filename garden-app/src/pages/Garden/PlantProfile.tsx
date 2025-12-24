@@ -20,8 +20,10 @@ const PlantProfile = () => {
           {thisPlant[0].imageURL} *This will be an image in the future.*
         </div>
         <div className='flex flex-col'>
-          <div className='text-lg bold'>{thisPlant[0].name}</div>
-          <div className='flex flex-row space-x-3'>
+          <div className='text-lg bold flex justify-end'>
+            {thisPlant[0].name}
+          </div>
+          <div className='flex flex-row justify-end space-x-3'>
             <h2>Location:</h2>
             <p>{thisPlant[0].garden}</p>
           </div>
