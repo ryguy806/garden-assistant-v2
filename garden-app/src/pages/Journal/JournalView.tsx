@@ -1,11 +1,12 @@
-import { getAllJournalItems, useQuery } from "wasp/client/operations";
+import { JournalItems } from 'wasp/client/crud'
 import JournalList from "./JournalList";
 import { AuthUser } from "wasp/auth";
 import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
-import { createJournalItem } from "wasp/client/operations";
+import { createJournalItem } from '../../operations/actions/journalActions';
 
 const JournalView = ({ user }: { user: AuthUser }) => {
-  const { data: journalItems, isLoading, error } = useQuery(getAllJournalItems);
+  const { data: journalItems, isLoading, error } = JournalItems.getAll.useQuery()
+  const createJournalItem = JournalItems.create.useAction()
 
   const [addEntry, setAddEntry] = useState(false);
   const handleAddEntry = () => setAddEntry(true);
@@ -70,7 +71,7 @@ const JournalItemForm: FC<JournalItemFormProps> = ({ setAddEntry }) => {
       const target = event.target as HTMLFormElement;
       const entry = toSentenceCase(target.entry.value);
       target.reset();
-      await createJournalItem({ entry });
+      await createJournalItem();
     } catch (e: any) {
       window.alert("Error" + e.message);
     }
