@@ -92,7 +92,6 @@ crud JournalItems {
   }
 }
 
-
 crud CalendarItems {
   entity: CalendarItem,
   operations: {
