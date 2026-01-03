@@ -6,10 +6,20 @@ interface CalenderDayProps {
   date: Date;
 }
 
+interface CalendarDayItem {
+  currentMonth: boolean;
+  date: Date;
+  month: number;
+  number: number;
+  selected: boolean;
+  hasTasks: boolean;
+  year: number;
+}
+
 const CalendarDays = ({ date }: CalenderDayProps) => {
   const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
-  let currentDays = [];
+  let currentDays: CalendarDayItem[] = [];
 
   const {
     data: eventItems,
