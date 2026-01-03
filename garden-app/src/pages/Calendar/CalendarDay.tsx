@@ -1,8 +1,5 @@
-import { useQuery } from "wasp/client/operations";
-import { getAllCalendarItems } from "wasp/client/operations";
+import { CalendarItems } from "wasp/client/crud";
 import star from "../..//assets/images/star.png";
-import { CalendarItem } from "wasp/entities";
-import { GetResult } from "@prisma/client/runtime";
 import { Link } from "wasp/client/router";
 
 interface CalenderDayProps {
@@ -13,19 +10,16 @@ const CalendarDays = ({ date }: CalenderDayProps) => {
   const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
-  let incomingEvents: GetResult<
-    {
-      id: number;
-      title: string;
-      createdDate: Date;
-      eventDate: Date;
-      details: string;
-      userId: number;
-    },
-    never
-  >[] = [];
+  let incomingEvents: {
+    id: number;
+    title: string;
+    createdDate: Date;
+    eventDate: Date;
+    details: string;
+    userId: number | null;
+  }[] = []
 
-  const { data: eventItems, isLoading, error } = useQuery(getAllCalendarItems);
+  const { data: eventItems, isLoading, error } = CalendarItems.getAll.useQuery();
 
   if (eventItems) {
     incomingEvents = eventItems;
