@@ -1,6 +1,6 @@
-import { CalendarItems } from "wasp/client/crud";
 import star from "../..//assets/images/star.png";
 import { Link } from "wasp/client/router";
+import { CalendarItems } from "wasp/client/crud";
 
 interface CalenderDayProps {
   date: Date;
@@ -10,20 +10,14 @@ const CalendarDays = ({ date }: CalenderDayProps) => {
   const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
-  let incomingEvents: {
-    id: number;
-    title: string;
-    createdDate: Date;
-    eventDate: Date;
-    details: string;
-    userId: number | null;
-  }[] = []
 
-  const { data: eventItems, isLoading, error } = CalendarItems.getAll.useQuery();
+  const {
+    data: eventItems,
+    isLoading,
+    error,
+  } = CalendarItems.getAll.useQuery();
 
-  if (eventItems) {
-    incomingEvents = eventItems;
-  }
+  const calendarItems = eventItems ?? [];
 
   for (let day = 0; day < 42; day++) {
     if (day === 0 && weekdayOfFirstDay === 0) {
@@ -43,9 +37,9 @@ const CalendarDays = ({ date }: CalenderDayProps) => {
       number: firstDayOfMonth.getDate(),
       selected: firstDayOfMonth.toDateString() === date.toDateString(),
       hasTasks:
-        incomingEvents.filter(
+        calendarItems.filter(
           (items) =>
-            items.eventDate.getDate() === day &&
+            items.eventDate.getDate() + 1 === day &&
             items.eventDate.getMonth() === firstDayOfMonth.getMonth() &&
             items.eventDate.getFullYear() === firstDayOfMonth.getFullYear()
         ).length > 0,
