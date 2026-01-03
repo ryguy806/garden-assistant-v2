@@ -1,6 +1,6 @@
 import { CalendarItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
-import { CalendarItems } from "wasp/server/crud/CalendarItems.js";
+import { CalendarItems } from "wasp/server/crud/CalendarItems";
 
 type CreateCalendarInput = { title: string; details: string; eventDate: Date };
 

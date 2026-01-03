@@ -1,6 +1,6 @@
 import { PlantProfileItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
-import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems.js";
+import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems";
 
 type CreatePlantProfileInput = {
   name: string;

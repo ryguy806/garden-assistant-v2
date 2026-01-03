@@ -1,6 +1,6 @@
 import { JournalItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
-import { JournalItems } from "wasp/server/crud/JournalItems.js";
+import { JournalItems } from "wasp/server/crud/JournalItems";
 
 type CreateJournalInput = { entry: string };
 
