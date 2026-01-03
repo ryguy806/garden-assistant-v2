@@ -1,6 +1,7 @@
-import { createCalendarItem } from "wasp/client/operations";
+import { CalendarItems } from "wasp/client/crud";
 
 const CalendarNewEvent = () => {
+  const createCalendarItem = CalendarItems.create.useAction()
   const handleFormSubmit = async (event: {
     preventDefault: () => void;
     target: any;
@@ -14,7 +15,7 @@ const CalendarNewEvent = () => {
       const eventDate = target.eventDate;
       const description = target.description.value;
       target.reset();
-      await createCalendarItem({ title, details, eventDate });
+      await createCalendarItem({ title, details, eventDate, description });
     } catch (error) {
       window.alert("Error(s) while creating event.");
     }
