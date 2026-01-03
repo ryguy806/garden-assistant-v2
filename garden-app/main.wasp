@@ -54,7 +54,7 @@ page CalendarDayViewPage {
 route CalendarNewEventDayRoute {path: "/calendar/:day/new", to: CalendarNewEventDayPage}
 page CalendarNewEventDayPage {
   authRequired: true,
-  component: import CalendarNewDayEvent from "@src/pages/Calendar/CalendarNewDayEvent"
+  component: import CalendarNewDayEvent from "@src/pages/Calendar/CalendarNewEvent"
 }
 
 route JournalRoute { path: "/journal", to: JournalPage }
