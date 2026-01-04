@@ -1,6 +1,8 @@
 const PlantProfileQuickFacts = () => {
     return (
-        <div>Plant Profile Quick Facts Component</div>
+        <div className=' flex flex-row mx-auto space-x-10 mt-24'>
+            Plant Profile Quick Facts Component
+        </div>
     );
 }
 
