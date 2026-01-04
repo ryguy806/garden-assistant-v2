@@ -6,3 +6,5 @@ const PlantProfileCenterSegment = () => {
         </div>
     )
 }
+
+export default PlantProfileCenterSegment;

@@ -1,8 +1,14 @@
+import DescriptionModule from "../PlantProfileModules/Sections/DescriptionModule";
+import LocationsModule from "../PlantProfileModules/Sections/LocationsModule";
+
 const PlantProfileLeftSegment = () => {
 
     return (
-        <div className='w-1/2'>
-            All the left side segments
+        <div className='flex w-1/2 flex-col space-y-4'>
+            <LocationsModule plantLocations={["Garden", "Rock Garden"]}/>
+            <DescriptionModule plantDescription=""/>
         </div>
     )
 }
+
+export default PlantProfileLeftSegment;

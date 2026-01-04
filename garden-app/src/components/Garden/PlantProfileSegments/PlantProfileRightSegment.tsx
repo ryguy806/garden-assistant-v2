@@ -6,3 +6,5 @@ const PlantProfileRightSegment = () => {
         </div>
     )
 }
+
+export default PlantProfileRightSegment;
