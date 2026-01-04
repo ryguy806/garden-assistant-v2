@@ -1,6 +1,6 @@
 import { PlantProfileItems } from "wasp/client/crud";
-import { titleCase } from "../../components/Breadcrumbs/Breadcrumbs";
 import { useParams } from "react-router";
+import PlantProfileQuickFacts from "../../components/Garden/PlantProfileModules/PlantProfileQuickFacts";
 
 const PlantProfile = () => {
   const { plant } = useParams<"plant">();
@@ -15,37 +15,8 @@ const PlantProfile = () => {
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>
-      <div className='flex flex-col space-y-6 h-full'>
-        <div className='flex text-3xl font-bold bg-blue-300 items-center'>
-          Locations
-        </div>
-        <div className='flex text-3xl font-bold bg-blue-500 items-center'>
-          Description
-        </div>
-      </div>
-      <div className='flex flex-col h-full bg-green-400'>
-        <div className='flex text-3xl font-bold h-full items-center'>
-          Photo(s)
-        </div>
-      </div>
-      <div className='flex flex-col space-y-1 h-full'>
-        <div className='text-lg bg-yellow-300'>
-          <div className='flex font-bold items-center'>
-            Plant Name
-          </div>
-          <div>
-            <p className='flex items-center'><i>Scientific Name</i></p>
-          </div>
-        </div>
-        <div className='flex flex-col space-y-1 h-full'>
-          <div>
-            <p className='flex items-center'>Perennial/Annual/Biennial</p>
-          </div>
-          <div>
-            <p className='flex items-center'>Kind of Plant</p>
-          </div>
-        </div>
-      </div>
+      <PlantProfileQuickFacts />
+
       {/* <div className='flex flex-row space-x-10 justify-between'>
         <div>
           {thisPlant[0].imageURL}<br/><p>*This will be an image in the future.*</p>

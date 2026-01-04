@@ -6,9 +6,9 @@ const PlantProfileRightSegment = () => {
 
     return (
         <div className='flex w-1/2 flex-col space-y-4'>
-            <PlantNamesModule plantName="" scientificName=""/>
-            <PlantGroupModule plantGroup=""/>
-            <PlantTypeModule plantType=""/>
+            <PlantNamesModule plantName="big tree" scientificName="bigitus tree-itus"/>
+            <PlantGroupModule plantGroup="perennial"/>
+            <PlantTypeModule plantType="tree"/>
         </div>
     )
 }

@@ -4,8 +4,9 @@ type DescriptionModuleProps = {
 
 const DescriptionModule = ({ plantDescription = "" }: DescriptionModuleProps) => {
     return (
-        <div className='flex text-3xl font-bold bg-blue-300 items-center'>
-            Description: {plantDescription}
+        <div className='flex flex-col text-3xl font-bold bg-blue-300 items-center'>
+            <div>Description:</div>
+            <div className="text-md font-normal">{plantDescription}</div>
         </div>
     )
 }
