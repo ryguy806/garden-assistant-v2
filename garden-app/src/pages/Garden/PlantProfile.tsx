@@ -16,33 +16,33 @@ const PlantProfile = () => {
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>
       <div className='flex flex-col space-y-6 h-full'>
-        <div className='text-3xl font-bold bg-blue-300'>
+        <div className='flex text-3xl font-bold bg-blue-300 items-center'>
           Locations
         </div>
-        <div className='text-3xl font-bold bg-blue-500'>
+        <div className='flex text-3xl font-bold bg-blue-500 items-center'>
           Description
         </div>
       </div>
-      <div className='flex flex-col h-full align-center m-auto'>
-        <div className='text-3xl font-bold h-full bg-green-400'>
+      <div className='flex flex-col h-full bg-green-400'>
+        <div className='flex text-3xl font-bold h-full items-center'>
           Photo(s)
         </div>
       </div>
       <div className='flex flex-col space-y-1 h-full'>
         <div className='text-lg bg-yellow-300'>
-          <div className='font-bold'>
+          <div className='flex font-bold items-center'>
             Plant Name
           </div>
           <div>
-            <p><i>Scientific Name</i></p>
+            <p className='flex items-center'><i>Scientific Name</i></p>
           </div>
         </div>
         <div className='flex flex-col space-y-1 h-full'>
           <div>
-            <p>Perennial/Annual/Biennial</p>
+            <p className='flex items-center'>Perennial/Annual/Biennial</p>
           </div>
           <div>
-            <p>Kind of Plant</p>
+            <p className='flex items-center'>Kind of Plant</p>
           </div>
         </div>
       </div>
