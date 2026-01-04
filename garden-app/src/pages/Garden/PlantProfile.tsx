@@ -14,10 +14,41 @@ const PlantProfile = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className=' flex flex-col mx-auto space-y-10 mt-24'>
-      <div className='flex flex-row space-x-10 justify-between'>
+    <div className=' flex flex-row mx-auto space-x-10 mt-24'>
+      <div className='flex flex-col space-y-6 h-full'>
+        <div className='text-3xl font-bold bg-blue-300'>
+          Locations
+        </div>
+        <div className='text-3xl font-bold bg-blue-500'>
+          Description
+        </div>
+      </div>
+      <div className='flex flex-col h-full align-center m-auto'>
+        <div className='text-3xl font-bold h-full bg-green-400'>
+          Photo(s)
+        </div>
+      </div>
+      <div className='flex flex-col space-y-1 h-full'>
+        <div className='text-lg bg-yellow-300'>
+          <div className='font-bold'>
+            Plant Name
+          </div>
+          <div>
+            <p><i>Scientific Name</i></p>
+          </div>
+        </div>
+        <div className='flex flex-col space-y-1 h-full'>
+          <div>
+            <p>Perennial/Annual/Biennial</p>
+          </div>
+          <div>
+            <p>Kind of Plant</p>
+          </div>
+        </div>
+      </div>
+      {/* <div className='flex flex-row space-x-10 justify-between'>
         <div>
-          {thisPlant[0].imageURL} *This will be an image in the future.*
+          {thisPlant[0].imageURL}<br/><p>*This will be an image in the future.*</p>
         </div>
         <div className='flex flex-col'>
           <div className='text-lg bold'>{thisPlant[0].name}</div>
@@ -50,7 +81,7 @@ const PlantProfile = () => {
       <div>
         This is where I will put the notes section. I hope to have it update
         each individual plant.
-      </div>
+      </div> */}
     </div>
   );
 };
