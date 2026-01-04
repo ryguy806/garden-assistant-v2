@@ -5,7 +5,7 @@ import PlantTypeModule from "../PlantProfileModules/Sections/PlantTypeModule";
 const PlantProfileRightSegment = () => {
 
     return (
-        <div className='w-1/2'>
+        <div className='flex w-1/2 flex-col space-y-4'>
             <PlantNamesModule plantName="" scientificName=""/>
             <PlantGroupModule plantGroup=""/>
             <PlantTypeModule plantType=""/>
