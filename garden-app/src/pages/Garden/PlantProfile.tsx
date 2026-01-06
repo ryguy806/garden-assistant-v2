@@ -1,6 +1,6 @@
 import { PlantProfileItems } from "wasp/client/crud";
 import { useParams } from "react-router";
-import PlantProfileQuickFacts from "../../components/Garden/PlantProfileModules/PlantProfileQuickFacts";
+import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFacts";
 
 const PlantProfile = () => {
   const { plant } = useParams<"plant">();
