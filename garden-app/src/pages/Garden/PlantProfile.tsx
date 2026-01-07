@@ -4,18 +4,43 @@ import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFac
 
 const PlantProfile = () => {
   const { plant } = useParams<"plant">();
-  const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
+  // const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
 
-  const plantData = data ? data : [];
+  const [apiPlantData, setApiPlantData] = useState(null)
+  const [apiError, setApiError] = useState(null)
+  const [apiIsLoading, setApiIsLoading] = useState(true)
 
-  const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://trefle.io./')
+        if (!response.ok) {
+          throw new Error(`Network response is not OK: ${response.statusText}`)
+        }
+        const result = await response.json()
+        setApiPlantData(result)
+        setApiError(null)
+      } catch (err) {
+        setApiError(err.message)
+        setApiPlantData(null)
+      } finally {
+        setApiIsLoading(false)
+      }
+    }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+    fetchData()
+  }, [])
+
+  // const plantData = data ? data : [];
+
+  // const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
+
+  if (apiIsLoading) return <div>Loading...</div>;
+  if (apiError) return <div>Error: {ApiError.message}</div>;
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>
-      <PlantProfileQuickFacts />
+      <PlantProfileQuickFacts data={apiPlantData}/>
 
       {/* <div className='flex flex-row space-x-10 justify-between'>
         <div>
