@@ -1,13 +1,14 @@
 import { PlantProfileItems } from "wasp/client/crud";
 import { useParams } from "react-router";
-import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFacts";
+import PlantProfileQuickFacts, { PlantProfileQuickFactsProps } from "../../components/Garden/PlantProfileQuickFacts";
+import {useState, useEffect} from 'react'
 
 const PlantProfile = () => {
   const { plant } = useParams<"plant">();
   // const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
 
-  const [apiPlantData, setApiPlantData] = useState(null)
-  const [apiError, setApiError] = useState(null)
+  const [apiPlantData, setApiPlantData] = useState<PlantProfileQuickFactsProps | null>()
+  const [apiError, setApiError] = useState<string | null>(null)
   const [apiIsLoading, setApiIsLoading] = useState(true)
 
   useEffect(() => {
@@ -18,11 +19,15 @@ const PlantProfile = () => {
           throw new Error(`Network response is not OK: ${response.statusText}`)
         }
         const result = await response.json()
-        setApiPlantData(result)
+        setApiPlantData({plantData: result})
         setApiError(null)
       } catch (err) {
-        setApiError(err.message)
-        setApiPlantData(null)
+        if (err instanceof Error) {
+          setApiError(err.message)
+          setApiPlantData(null)
+        } else {
+          setApiError("An unknown error occurred")
+        }
       } finally {
         setApiIsLoading(false)
       }
@@ -36,11 +41,11 @@ const PlantProfile = () => {
   // const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
 
   if (apiIsLoading) return <div>Loading...</div>;
-  if (apiError) return <div>Error: {ApiError.message}</div>;
+  if (apiError) return <div>Error: {apiError}</div>;
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>
-      <PlantProfileQuickFacts data={apiPlantData}/>
+      <PlantProfileQuickFacts plantData={apiPlantData}/>
 
       {/* <div className='flex flex-row space-x-10 justify-between'>
         <div>
