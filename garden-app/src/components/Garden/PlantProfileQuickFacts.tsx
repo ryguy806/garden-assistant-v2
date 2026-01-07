@@ -2,12 +2,12 @@ import PlantProfileLeftSegment from './PlantProfileSegments/PlantProfileLeftSegm
 import PlantProfileCenterSegment from './PlantProfileSegments/PlantProfileCenterSegment';
 import PlantProfileRightSegment from './PlantProfileSegments/PlantProfileRightSegment';
 
-export type PlantProfileQuickFactsProps {
+export type PlantProfileQuickFactsProps = {
      plantData: {
         data: {
-            author: string?,
-            bibliography: string?,
-            common_name: string?,
+            author: string,
+            bibliography: string,
+            common_name: string,
             family: string,
             family_common_name: string,
             genus: string,
