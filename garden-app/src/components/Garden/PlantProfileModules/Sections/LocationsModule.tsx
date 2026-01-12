@@ -4,7 +4,7 @@ type LocationsModuleProps = {
 
 const LocationsModule = ({ plantLocations }: LocationsModuleProps) => {
     return (
-        <div className='flex flex-col text-3xl font-bold bg-blue-300 items-center'>
+        <div className='flex flex-col text-3xl font-bold items-center'>
             <div>Locations:</div>
             <div>{plantLocations}</div>
         </div>
