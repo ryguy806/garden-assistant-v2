@@ -1,12 +1,21 @@
-type LocationsModuleProps = {
-    plantLocations: string[];
-}
+import { useState } from "react";
 
-const LocationsModule = ({ plantLocations }: LocationsModuleProps) => {
+
+const LocationsModule = () => {
+
+    const [locationsSet, setLocationsSet] = useState<boolean>(false);
+    const [locations, setLocations] = useState<string[]>([]);
+
     return (
         <div className='flex flex-col text-3xl font-bold items-center'>
             <div>Locations:</div>
-            <div>{plantLocations}</div>
+            <div>
+                {locationsSet ? (
+                    <p>List of locations will go here.</p>
+                ) : (
+                    <p>No locations set for this plant yet.</p>
+                )}
+            </div>
         </div>
     )
 }
