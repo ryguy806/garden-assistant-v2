@@ -5,7 +5,7 @@ const PlantProfileLeftSegment = () => {
 
     return (
         <div className='flex w-1/2 flex-col space-y-4'>
-            <LocationsModule plantLocations={["Garden", "Rock Garden"]}/>
+            <LocationsModule/>
             <DescriptionModule plantDescription="This is the description of the plant."/>
         </div>
     )
