@@ -8,7 +8,7 @@ app Garden_Assistant {
   },
   server: {
     envValidationSchema: import { envValidationSchema } from "@src/api.ts",
-  }
+  },
   auth: {
     userEntity: User,
     methods: {
