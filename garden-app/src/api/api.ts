@@ -64,7 +64,7 @@ export const fetchAllPlants = async (): Promise<RawDataType> => {
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
-        const rawData = await response.json()
+        const rawData: RawDataType = await response.json()
         return rawData
     } catch (err) {
         console.log(`Error fetching plants: ${err}`)
@@ -78,7 +78,7 @@ export const fetchPlantByID = async (id: number): Promise<RawDataType> => {
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
-        const rawData = await response.json()
+        const rawData: RawDataType = await response.json()
         return rawData
     } catch (err) {
         console.log(`Error fetching plant by ID: ${err}`)
@@ -92,7 +92,7 @@ export const fetchPlantByName = async (name: string): Promise<RawDataType> => {
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
-        const rawData = await response.json()
+        const rawData: RawDataType = await response.json()
         return rawData
     } catch (err) {
         console.log(`Error fetching plant by name: ${err}`)
