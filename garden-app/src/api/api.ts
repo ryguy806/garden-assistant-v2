@@ -50,52 +50,24 @@ export type RawDataType = {
 
 const API_BASE_URL = 'https://trefle.io'
 
-export const envValidationSchema = defineEnvValidationSchema(
-    z.object({
-        API_SECRET_KEY: z.string({
-            required_error: 'API_SECRET_KEY is required.'
-        }),
-    })
-)
+// export const envValidationSchema = defineEnvValidationSchema(
+//     z.object({
+//         API_SECRET_KEY: z.string({
+//             required_error: 'API_SECRET_KEY is required.'
+//         }),
+//     })
+// )
 
-export const fetchAllPlants = async (): Promise<RawDataType> => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/plants?token=${env.API_SECRET_KEY}`)
-        if(!response.ok) {
-            throw new Error(`Response Error status: ${response.status}`)
-        }
-        const rawData: RawDataType = await response.json()
-        return rawData
-    } catch (err) {
-        console.log(`Error fetching plants: ${err}`)
-        throw err
-    }
-}
-
-export const fetchPlantByID = async (id: number): Promise<RawDataType> => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/plants/${id}?token=${env.API_SECRET_KEY}`)
-        if(!response.ok) {
-            throw new Error(`Response Error status: ${response.status}`)
-        }
-        const rawData: RawDataType = await response.json()
-        return rawData
-    } catch (err) {
-        console.log(`Error fetching plant by ID: ${err}`)
-        throw err
-    }
-}
-
-export const fetchPlantByName = async (name: string): Promise<RawDataType> => {
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/plants/search=${name}?token=${env.API_SECRET_KEY}`)
-        if(!response.ok) {
-            throw new Error(`Response Error status: ${response.status}`)
-        }
-        const rawData: RawDataType = await response.json()
-        return rawData
-    } catch (err) {
-        console.log(`Error fetching plant by name: ${err}`)
-        throw err
-    }
-}
+// export const fetchAllPlants = async (): Promise<RawDataType> => {
+//     try {
+//         const response = await fetch(`${API_BASE_URL}/api/v1/plants?token=${env.API_SECRET_KEY}`)
+//         if(!response.ok) {
+//             throw new Error(`Response Error status: ${response.status}`)
+//         }
+//         const rawData: RawDataType = await response.json()
+//         return rawData
+//     } catch (err) {
+//         console.log(`Error fetching plants: ${err}`)
+//         throw err
+//     }
+// }
