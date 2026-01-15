@@ -1,6 +1,7 @@
-import { PlantProfileItem } from "wasp/entities";
+import { PlantProfileItem, PlantItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
 import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems";
+import { PlantItems } from "wasp/server/crud/PlantItems";
 
 type CreatePlantProfileInput = {
   name: string;
@@ -12,6 +13,14 @@ type CreatePlantProfileInput = {
   fertilizerNeeds: string;
   garden: string;
 };
+
+type CreatePlantItemInput = {
+  id: number
+  image_url: string;
+  common_name: string;
+  scientific_name: string;
+  slug: string
+}
 
 export const createPlantProfileItem: PlantProfileItems.CreateAction<
   CreatePlantProfileInput,
@@ -48,3 +57,33 @@ export const createPlantProfileItem: PlantProfileItems.CreateAction<
     },
   });
 };
+
+export const createPlantItem: PlantItems.CreateAction<
+  CreatePlantItemInput,
+  PlantItem
+> = async (args, context) => {
+  if (!context.user) {
+    throw new HttpError(401, "Access denied");
+  }
+
+  const {
+    id,
+    image_url,
+    common_name,
+    scientific_name,
+    slug
+  } = args;
+
+  const { PlantItem } = context.entities;
+
+  return await PlantItem.create({
+    data: {
+      id,
+      image_url,
+      common_name,
+      scientific_name,
+      slug
+    },
+  });
+};
+

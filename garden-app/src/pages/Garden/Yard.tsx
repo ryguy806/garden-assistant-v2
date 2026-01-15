@@ -20,7 +20,6 @@ const Yard = () => {
           'scientific_name': res.data[i].scientific_name,
           'image_url': undefined,
           'slug': res.data[i].slug,
-          'family_common_name': res.data[i].family_common_name ? res.data[i].family_common_name : undefined
         })
       }
       setPlantData(incomingPlantData)
@@ -29,6 +28,20 @@ const Yard = () => {
       setError(err.message)
     }) : [] as PlantDataType[]
   }, [])
+
+  // id Int @id @default(autoincrement())
+  // user User @relation(fields: [userId], references: [id])
+  // userId Int
+  // createdDate DateTime @default(now())
+  // plantedDate DateTime
+  // imageURL String? 
+  // name String
+  // garden String //GardenMap? @relation(fields: [id], references: [id])
+  // type String?
+  // group String
+  // fertilizerNeeds String
+  // details String
+  // notes String?
 
   if(error) return <div>Error: {error}</div>
   if(isLoading) return <div>Loading data...</div>
@@ -49,3 +62,10 @@ const Yard = () => {
 };
 
 export default Yard;
+
+const passDataToDB = (data: PlantDataType[]) => {
+  data.forEach(plant => {
+    // console.log(plant)
+
+  })
+}

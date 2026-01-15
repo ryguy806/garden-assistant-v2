@@ -123,6 +123,18 @@ crud PlantProfileItems {
   }
 }
 
+crud PlantItems {
+  entity: PlantItem,
+  operations: {
+    getAll: {},
+    get: {},
+    create: {
+      overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
+    },
+    update: {}
+  }
+}
+
 crud GardenMapItems {
   entity: GardenMap,
   operations: {

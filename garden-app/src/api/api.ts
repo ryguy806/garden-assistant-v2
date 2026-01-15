@@ -9,7 +9,6 @@ export type PlantDataType = {
     'scientific_name': string;
     'image_url': string | null | undefined;
     'slug': string;
-    'family_common_name': string | null | undefined;
 }
 
 export type RawDataType = {

@@ -51,6 +51,14 @@ model PlantProfileItem {
   notes String?
 }
 
+model PlantItem {
+  id Int @id @default(autoincrement())
+  common_name String?
+  scientific_name String
+  image_url String
+  slug String
+}
+
 model GardenMap {
   id Int @id @default(autoincrement())
   name String
