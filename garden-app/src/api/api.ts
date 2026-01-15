@@ -5,11 +5,11 @@ import { env } from "wasp/server";
 
 export type PlantDataType = {
     'id': number;
-    'common_name'?: string;
+    'common_name': string | null | undefined;
     'scientific_name': string;
-    'image_url'?: string;
+    'image_url': string | null | undefined;
     'slug': string;
-    'family_common_name'?: string
+    'family_common_name': string | null | undefined;
 }
 
 export type RawDataType = {
