@@ -6,9 +6,9 @@ app Garden_Assistant {
   client: {
     rootComponent: import Layout from "@src/Layout/Layout.tsx",
   },
-  // server: {
-  //   envValidationSchema: import { envValidationSchema } from "@src/api.ts",
-  // },
+  server: {
+    envValidationSchema: import { envValidationSchema } from "@src/api/api.ts",
+  },
   auth: {
     userEntity: User,
     methods: {

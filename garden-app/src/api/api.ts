@@ -1,7 +1,6 @@
 import { defineEnvValidationSchema } from "wasp/env";
-import {api} from 'wasp/api'
 import * as z from 'zod';
-// import { env } from "wasp/server";
+import { env } from "wasp/server";
 //This file is for all API functions.
 
 export type PlantDataType = {
@@ -51,17 +50,17 @@ export type RawDataType = {
 
 const API_BASE_URL = 'https://trefle.io/api/v1/plants'
 
-// export const envValidationSchema = defineEnvValidationSchema(
-//     z.object({
-//         API_SECRET_KEY: z.string({
-//             required_error: 'API_SECRET_KEY is required.'
-//         }),
-//     })
-// )
+export const envValidationSchema = defineEnvValidationSchema(
+    z.object({
+        API_SECRET_KEY: z.string({
+            required_error: 'API_SECRET_KEY is required.'
+        }),
+    })
+)
 
 export const fetchAllPlants = async (): Promise<RawDataType> => {
     try {
-        const response = await api.get(`${API_BASE_URL}?token=${usr-riInH7JvE2Rlrj9xwL5F3btX5qQ5FTy-7_ZhQdy9vNE}`)
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
