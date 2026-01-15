@@ -1,6 +1,7 @@
 import { defineEnvValidationSchema } from "wasp/env";
+import {api} from 'wasp/api'
 import * as z from 'zod';
-import { env } from "wasp/server";
+// import { env } from "wasp/server";
 //This file is for all API functions.
 
 export type PlantDataType = {
@@ -48,7 +49,7 @@ export type RawDataType = {
     }
 }
 
-const API_BASE_URL = 'https://trefle.io'
+const API_BASE_URL = 'https://trefle.io/api/v1/plants'
 
 // export const envValidationSchema = defineEnvValidationSchema(
 //     z.object({
@@ -58,16 +59,16 @@ const API_BASE_URL = 'https://trefle.io'
 //     })
 // )
 
-// export const fetchAllPlants = async (): Promise<RawDataType> => {
-//     try {
-//         const response = await fetch(`${API_BASE_URL}/api/v1/plants?token=${env.API_SECRET_KEY}`)
-//         if(!response.ok) {
-//             throw new Error(`Response Error status: ${response.status}`)
-//         }
-//         const rawData: RawDataType = await response.json()
-//         return rawData
-//     } catch (err) {
-//         console.log(`Error fetching plants: ${err}`)
-//         throw err
-//     }
-// }
+export const fetchAllPlants = async (): Promise<RawDataType> => {
+    try {
+        const response = await api.get(`${API_BASE_URL}?token=${usr-riInH7JvE2Rlrj9xwL5F3btX5qQ5FTy-7_ZhQdy9vNE}`)
+        if(!response.ok) {
+            throw new Error(`Response Error status: ${response.status}`)
+        }
+        const rawData: RawDataType = await response.json()
+        return rawData
+    } catch (err) {
+        console.log(`Error fetching plants: ${err}`)
+        throw err
+    }
+}

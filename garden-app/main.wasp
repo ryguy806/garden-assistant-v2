@@ -85,6 +85,12 @@ page AddPlantPage {
   component: import AddPlant from "@src/pages/Garden/AddPlant"
 }
 
+route AddGardenRoute {path: "/yard/garden-add", to: AddGardenPage}
+page AddGardenPage {
+  authRequired: true,
+  component: import AddGarden from "@src/pages/Garden/AddGarden"
+}
+
 crud JournalItems {
   entity: JournalItem,
   operations: {
@@ -114,5 +120,13 @@ crud PlantProfileItems {
       overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
+  }
+}
+
+crud GardenMapItems {
+  entity: GardenMap,
+  operations: {
+    getAll: {},
+    create: {}
   }
 }
