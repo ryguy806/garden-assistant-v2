@@ -9,25 +9,25 @@ const Yard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let data = fetchAllPlants()
-    let incomingPlantData = [] as PlantDataType[]
-    data ? data.then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        incomingPlantData.push({
-          'id': res.data[i].id,
-          'common_name': res.data[i].common_name ? res.data[i].common_name : undefined,
-          'scientific_name': res.data[i].scientific_name,
-          'image_url': undefined,
-          'slug': res.data[i].slug,
-        })
-      }
-      setPlantData(incomingPlantData)
-      setIsLoading(false)
-    }).catch((err) => {
-      setError(err.message)
-    }) : [] as PlantDataType[]
-  }, [])
+  // useEffect(() => {
+  //   let data = fetchAllPlants()
+  //   let incomingPlantData = [] as PlantDataType[]
+  //   data ? data.then((res) => {
+  //     for (let i = 0; i < res.data.length; i++) {
+  //       incomingPlantData.push({
+  //         'id': res.data[i].id,
+  //         'common_name': res.data[i].common_name ? res.data[i].common_name : undefined,
+  //         'scientific_name': res.data[i].scientific_name,
+  //         'image_url': undefined,
+  //         'slug': res.data[i].slug,
+  //       })
+  //     }
+  //     setPlantData(incomingPlantData)
+  //     setIsLoading(false)
+  //   }).catch((err) => {
+  //     setError(err.message)
+  //   }) : [] as PlantDataType[]
+  // }, [])
 
   // id Int @id @default(autoincrement())
   // user User @relation(fields: [userId], references: [id])

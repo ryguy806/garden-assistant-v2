@@ -7,7 +7,7 @@ app Garden_Assistant {
     rootComponent: import Layout from "@src/Layout/Layout.tsx",
   },
   server: {
-    envValidationSchema: import { envValidationSchema } from "@src/api/api.ts",
+    envValidationSchema: import { envValidationSchema } from "@src/env.ts",
   },
   auth: {
     userEntity: User,
@@ -17,6 +17,10 @@ app Garden_Assistant {
     onAuthFailedRedirectTo: "/login",
     onAuthSucceededRedirectTo: "/"
   },
+}
+
+action getAllPlantData {
+  fn: import { getAllPlantData } from "@src/operations/queries/serverActions",
 }
 
 //Routes
@@ -129,7 +133,7 @@ crud PlantItems {
     getAll: {},
     get: {},
     create: {
-      overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
+      overrideFn: import {createPlantItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
   }
