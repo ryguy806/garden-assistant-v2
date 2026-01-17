@@ -14,14 +14,14 @@ export const MainPage = () => {
         </p>
         <div className='flex flex-row space-x-10 justify-center items-center'>
           <div>
-            <Link to='/yard'>View Your Garden</Link>
+            <Link to='/yard'>Plant Profiles</Link>
           </div>
-          <div>
+          {/* <div>
             <Link to='/calendar'>Calendar</Link>
           </div>
           <div>
             <Link to='/journal'>Garden Journal</Link>
-          </div>
+          </div> */}
         </div>
         <div className=' flex mx-auto justify-center'>
           <Link className='bg-green-400 p-2' to='/yard/plant-add'>
