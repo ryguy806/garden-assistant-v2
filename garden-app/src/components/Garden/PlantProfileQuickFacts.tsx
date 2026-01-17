@@ -9,7 +9,7 @@ const PlantProfileQuickFacts = ({plantProfile}: PlantProfileProps) => {
     return (
         <div className=' flex flex-row mx-auto justify-between mt-24'>
             <PlantProfileLeftSegment />
-            <PlantProfileCenterSegment />
+            <PlantProfileCenterSegment plantPhotos={plantProfile.image_url ? [plantProfile.image_url] : []}/>
             <PlantProfileRightSegment commonName={plantProfile.common_name ? plantProfile.common_name : ''} scientificName={plantProfile.scientific_name} />
         </div>
     );

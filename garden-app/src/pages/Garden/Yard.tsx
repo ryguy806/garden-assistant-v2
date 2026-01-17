@@ -28,6 +28,8 @@ const Yard = () => {
     })
   }, [])
 
+  console.log(plantData[0]?.image_url)
+
   // useEffect( () => {
   //   const getPlantData = async () => {
   //     let incomingPlantData = [] as PlantDataType[]

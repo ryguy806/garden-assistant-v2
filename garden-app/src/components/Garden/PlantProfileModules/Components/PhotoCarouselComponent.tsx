@@ -7,13 +7,11 @@ type PhotoCarouselProps = {
 const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
 
     return (
-        <>
+        <div className="flex flex-col">
             {images.map((image, index) => (
-                <div key={index}>
-                    <IndividualPhotoComponent image={image}/>
-                </div>
+                <IndividualPhotoComponent key={index} image={image}/>
             ))}
-        </>
+        </div>
     )
 }
 
