@@ -5,7 +5,7 @@ const Header = () => {
   const { data: user } = useAuth();
   return (
     <div className='bg-[#596720] h-10 flex items-center justify-center'>
-      <h1 className='text-xl font-bold text-white'>BumbleBot Gardenp</h1>
+      <h1 className='text-xl font-bold text-white'>BumbleBot Garden</h1>
       <div className='absolute right-3'>
         {user ? (
           <button

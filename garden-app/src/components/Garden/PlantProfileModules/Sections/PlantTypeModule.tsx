@@ -7,7 +7,7 @@ type PlantTypeModuleProps = {
 const PlantTypeModule = ({ plantType = "" }: PlantTypeModuleProps) => {
 
     return (
-        <div className='flex text-3xl font-bold'>
+        <div className='flex text-3xl font-bold mx-auto justify-center'>
             {toSentenceCase(plantType)}
         </div>
     )
