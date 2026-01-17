@@ -22,6 +22,7 @@ export type RawDataType = {
             "genus": string,
             "genus_id": number,
             "id": number,
+            "image_url": string | null,
             "links": {
                 "genus": string,
                 "plant": string,

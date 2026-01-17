@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { PlantDataType } from "../../api/api";
+import { useEffect, useState } from "react";
+import { PlantDataType, RawDataType } from "../../api/api";
 import PlantProfile from "./PlantProfile";
 import { getPlantAPIData, useQuery } from "wasp/client/operations";
 
@@ -9,16 +9,24 @@ const Yard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const allPlantAPIData = await getPlantAPIData()
-  let incomingPlantData = [] as PlantDataType[]
+  useEffect(() => {
+    let incomingPlantData = [] as PlantDataType[]
+    const getPlantData = async () => {
+      const allPlantAPIData = await getPlantAPIData()
+      const data = allPlantAPIData ? allPlantAPIData : {} as RawDataType
 
-  allPlantAPIData = allPlantAPIData ? allPlantAPIData : [] as PlantDataType[]
-
-  allPlantAPIData.map((plant: PlantDataType) => {
-    return {
-      incomingPlantData.push({'id': plant.id, 'common_name': plant.common_name, 'scientific_name': plant.scientific_name, 'image_url': plant.image_url, 'slug': plant.slug})
+      data.data?.map((plant) => {
+        return (      
+          incomingPlantData.push({'id': plant.id, 'common_name': plant.common_name, 'scientific_name': plant.scientific_name, 'image_url': plant.image_url, 'slug': plant.slug})
+        )
+      })
+      setPlantData(incomingPlantData)
+      setIsLoading(false)
     }
-  })
+    getPlantData().catch((err) => {
+      setError(err.message)
+    })
+  }, [])
 
   // useEffect( () => {
   //   const getPlantData = async () => {
