@@ -1,3 +1,5 @@
+import PhotoCarouselComponent from "../Components/PhotoCarouselComponent";
+
 type PlantPhotosModuleProps = {
     plantPhotos: string[];
 }
@@ -5,7 +7,7 @@ type PlantPhotosModuleProps = {
 const PlantPhotosModule = ({ plantPhotos }: PlantPhotosModuleProps) => {
     return (
         <div className='flex text-3xl font-bold items-center'>
-            Photos: {plantPhotos}
+            <PhotoCarouselComponent images={plantPhotos}/>
         </div>
     )
 }
