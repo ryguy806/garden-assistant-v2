@@ -11,7 +11,7 @@ export type PlantProfileProps = {
 const PlantProfile = ({plantProfile}: PlantProfileProps) => {
 
   return (
-    <div className=' flex flex-row mx-auto space-x-10 mt-24'>
+    <div className=' flex flex-row mx-auto space-x-10 mt-0'>
       <PlantProfileQuickFacts plantProfile={plantProfile}/>
     </div>
   );
