@@ -15,7 +15,7 @@ const Layout = ({ children }: any) => {
           <Outlet />
         </div>
       </div>
-      <div className='w-full absolute bottom-0'>
+      <div className='w-full sticky bottom-0'>
         <Footer />
       </div>
     </div>
