@@ -2,17 +2,22 @@ import { PlantProfileItems } from "wasp/client/crud";
 import { useParams } from "react-router";
 import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFacts";
 import {useState, useEffect} from 'react'
+import { PlantDataType } from "../../api/api";
 
-const PlantProfile = () => {
-  const { plant } = useParams<"plant">();
-  const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
+type PlantProfileProps = {
+  plantProfile: PlantDataType
+}
 
-  const plantData = data ? data : [];
+const PlantProfile = ({plantProfile}: PlantProfileProps) => {
+  // const { plant } = useParams<"plant">();
+  // const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
 
-  const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
+  // const plantData = data ? data : [];
 
-  if(error) return <div>Information Error: {error.message}</div>
-  if(isLoading) return <div>Loading data...</div>
+  // const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
+
+  // if(error) return <div>Information Error: {error.message}</div>
+  // if(isLoading) return <div>Loading data...</div>
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>

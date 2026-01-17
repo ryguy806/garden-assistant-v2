@@ -19,9 +19,9 @@ app Garden_Assistant {
   },
 }
 
-action getAllPlantData {
-  fn: import { getAllPlantData } from "@src/operations/queries/serverActions",
-}
+// action getAllPlantData {
+//   fn: import { getAllPlantData } from "@src/operations/queries/serverActions",
+// }
 
 //Routes
 route LoginRoute { path: "/login", to: LoginPage }

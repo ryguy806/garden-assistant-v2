@@ -47,9 +47,9 @@ export type RawDataType = {
     }
 }
 
-export const fetchAllPlants = async (api_key: string): Promise<RawDataType> => {
+export const fetchAllPlants = async (): Promise<RawDataType> => {
     try {
-        const response = await fetch(`${API_BASE_URL}?token=${api_key}`)
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
