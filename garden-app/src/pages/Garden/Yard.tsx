@@ -33,7 +33,6 @@ const Yard = () => {
 
   return (
     <div className='container mx-auto'>
-      <div>Here are your Plants</div>
       <div className='border-1 border-solid border-black-500 p-5'>
         <PlantProfile plantProfile={plantData[0]}/>
       </div>
