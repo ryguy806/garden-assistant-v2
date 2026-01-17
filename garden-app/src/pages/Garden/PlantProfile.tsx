@@ -4,7 +4,7 @@ import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFac
 import {useState, useEffect} from 'react'
 import { PlantDataType } from "../../api/api";
 
-type PlantProfileProps = {
+export type PlantProfileProps = {
   plantProfile: PlantDataType
 }
 
@@ -21,7 +21,7 @@ const PlantProfile = ({plantProfile}: PlantProfileProps) => {
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-24'>
-      <PlantProfileQuickFacts/>
+      <PlantProfileQuickFacts plantProfile={plantProfile}/>
 
       {/* <div className='flex flex-row space-x-10 justify-between'>
         <div>
