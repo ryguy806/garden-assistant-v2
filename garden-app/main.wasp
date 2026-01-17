@@ -20,7 +20,7 @@ app Garden_Assistant {
 }
 
 query getPlantAPIData {
-  fn: import {fetchAllPlants} from "@src/api/api.ts",
+  fn: import {fetchAllPlants} from "@src/api/api",
 }
 
 //Routes
