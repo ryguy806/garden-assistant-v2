@@ -50,7 +50,7 @@ const Yard = () => {
   return (
     <div className='container mx-auto'>
       <div className='border-1 border-solid border-black-500 p-5'>
-        <PlantProfile plantProfile={plantData[0]}/>
+        <PlantProfile plantProfile={plantData[19]}/>
       </div>
     </div>
   );
