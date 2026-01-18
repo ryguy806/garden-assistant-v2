@@ -5,7 +5,7 @@ type IndividualPhotoProps = {
 const IndividualPhotoComponent = ({image}: IndividualPhotoProps) => {
 
     return (
-        <div className="flex justify-center border-black border-2 p-4 mx-4">
+        <div className="flex justify-center border-black border-2 mx-auto size-5/6">
             <img src={image} alt="Plant Photo"/>
         </div>
     );

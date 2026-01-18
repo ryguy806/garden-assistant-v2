@@ -60,6 +60,21 @@ export const toSentenceCase = (str: string): string => {
   return newEntry;
 };
 
+export const capitalizeWords = (str: string) =>  {
+
+  str = str.toLowerCase(); 
+
+  const words = str.split(' ');
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 0) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+  }
+
+  return words.join(' ');
+}
+
 const JournalItemForm: FC<JournalItemFormProps> = ({ setAddEntry }) => {
   const createJournalItem = JournalItems.create.useAction();
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
