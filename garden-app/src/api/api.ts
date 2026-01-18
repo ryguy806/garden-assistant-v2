@@ -1,7 +1,7 @@
 import { env } from "wasp/server";
 //This file is for all API functions.
 
-export const API_BASE_URL = 'https://trefle.io/api/v1/plants'
+export const API_BASE_URL = 'https://trefle.io/api/v1/species'
 
 export type PlantDataType = {
     'id': number;
