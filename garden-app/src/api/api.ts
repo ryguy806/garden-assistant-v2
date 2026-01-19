@@ -13,6 +13,21 @@ export type PlantDataType = {
     'slug': string;
 }
 
+export type IndividualPlantDataType = {
+    'id': number;
+    'common_name': string | null | undefined;
+    'scientific_name': string;
+    "images": {
+        "flower": ImageFieldType[],
+        "leaf": ImageFieldType[],
+        "habit": ImageFieldType[],
+        "fruit": ImageFieldType[],
+        "bark": ImageFieldType[],
+        "other": ImageFieldType[],
+    },
+    'slug': string;
+}
+
 export type RawDataType = {
     "data": [
         {
@@ -223,25 +238,24 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
     }
 }
 
-const lookForSpecificPlant = async (plantScientificName: string): Promise<PlantDataType[]> => {
-    const matchedPlantData: PlantDataType[] = []
+export const lookForSpecificPlant = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
+    let specificPlant: IndividualPlantDataType = {} as IndividualPlantDataType
     try {
         const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${plantScientificName}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }   
-        const rawData: RawDataType = await response.json()
-        rawData.data.map((plant) => {
-            matchedPlantData.push({
-                'id': plant.id,
-                'common_name': plant.common_name,
-                'scientific_name': plant.scientific_name,
-                'image_url': plant.image_url,
-                'slug': plant.slug
-            })
-        })
+        const rawData: RawIndividualDataType = await response.json()
     
-        return matchedPlantData
+        specificPlant = {
+            "id": rawData.data.id,
+            "common_name": rawData.data.common_name,
+            "scientific_name": rawData.data.scientific_name,
+            "images": rawData.data.images,
+            "slug": rawData.data.slug,
+        }
+
+        return specificPlant
     } catch (err) {
         console.log(`Error fetching specific plant: ${err}`)
         throw err
