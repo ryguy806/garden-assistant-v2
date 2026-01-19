@@ -23,10 +23,6 @@ query getPlantAPIData {
   fn: import {fetchAllPlants} from "@src/api/api",
 }
 
-query getPlantDataIntoDB {
-  fn: import {getAllPlantsIntoDB} from "@src/api/api",
-}
-
 //Routes
 route LoginRoute { path: "/login", to: LoginPage }
 page LoginPage {

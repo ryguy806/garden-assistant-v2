@@ -77,39 +77,3 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
         throw err
     }
 }
-
-export const getAllPlantsIntoDB: GetPlantAPIData = async (args, context) => {
-    let page = 1
-    const maxCalls = 120
-    let hasMore = true
-    let allPlantData = []
-
-    while (hasMore) {
-        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&page=${page}`)
-        if (!response.ok) {
-            throw new Error(`Response Error status: ${response.status}`)
-        }
-        const data = await response.json()
-        allPlantData.push(...data.data)
-        if(data.links.next != "" || data.links.next != null) {
-            page++
-        } else {
-            hasMore = false
-        }
-
-        await new Promise(resolve => setTimeout(resolve, 500));
-    }
-
-    const createPlantDataItem = PlantItems.create.useAction()
-    allPlantData.map((plant) => {
-        createPlantDataItem({
-            id: plant.id,
-            common_name: plant.common_name ? plant.common_name : '',
-            scientific_name: plant.scientific_name,
-            image_url: plant.image_url ? plant.image_url : '',
-            slug: plant.slug
-        })
-    })
-
-    return { success: true, message: 'Plants have been added to the database.' }
-}

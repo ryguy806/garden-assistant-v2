@@ -2,6 +2,7 @@ import { Link } from "wasp/client/router";
 import "./Main.css";
 
 export const MainPage = () => {
+  
   return (
     <div className='container mx-auto -mt-20'>
       <div className='items-center'>
