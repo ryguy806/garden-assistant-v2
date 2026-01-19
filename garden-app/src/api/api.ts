@@ -1,4 +1,6 @@
 import { env } from "wasp/server";
+import { GetPlantAPIData } from "wasp/server/operations";
+import { PlantItems } from "wasp/client/crud";
 //This file is for all API functions.
 
 export const API_BASE_URL = 'https://trefle.io/api/v1/species'
@@ -48,16 +50,66 @@ export type RawDataType = {
     }
 }
 
-export const fetchAllPlants = async (): Promise<RawDataType> => {
+export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
+    let pageNumber = 1
+    let allPlantData: PlantDataType[] = []
     try {
-        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}`)
+        while (pageNumber < 20865){
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&page=${pageNumber}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
         const rawData: RawDataType = await response.json()
-        return rawData
+        rawData.data.map((plant) => {
+            allPlantData.push({
+                'id': plant.id,
+                'common_name': plant.common_name,
+                'scientific_name': plant.scientific_name,
+                'image_url': plant.image_url,
+                'slug': plant.slug
+            })
+        })
+        pageNumber++
+        }
+        return allPlantData
     } catch (err) {
         console.log(`Error fetching plants: ${err}`)
         throw err
     }
+}
+
+export const getAllPlantsIntoDB: GetPlantAPIData = async (args, context) => {
+    let page = 1
+    const maxCalls = 120
+    let hasMore = true
+    let allPlantData = []
+
+    while (hasMore) {
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&page=${page}`)
+        if (!response.ok) {
+            throw new Error(`Response Error status: ${response.status}`)
+        }
+        const data = await response.json()
+        allPlantData.push(...data.data)
+        if(data.links.next != "" || data.links.next != null) {
+            page++
+        } else {
+            hasMore = false
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    const createPlantDataItem = PlantItems.create.useAction()
+    allPlantData.map((plant) => {
+        createPlantDataItem({
+            id: plant.id,
+            common_name: plant.common_name ? plant.common_name : '',
+            scientific_name: plant.scientific_name,
+            image_url: plant.image_url ? plant.image_url : '',
+            slug: plant.slug
+        })
+    })
+
+    return { success: true, message: 'Plants have been added to the database.' }
 }

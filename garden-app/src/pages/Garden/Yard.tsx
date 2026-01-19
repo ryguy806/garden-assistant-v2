@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { PlantDataType, RawDataType } from "../../api/api";
 import PlantProfile from "./PlantProfile";
 import { getPlantAPIData } from "wasp/client/operations";
-import { createPlantItem } from "../../operations/actions/gardenActions";
 import { PlantItems } from "wasp/client/crud";
 
 const Yard = () => {
@@ -20,21 +19,19 @@ const Yard = () => {
     let incomingPlantData = [] as PlantDataType[]
     const getPlantData = async () => {
       const allPlantAPIData = await getPlantAPIData()
-      const data = allPlantAPIData ? allPlantAPIData : {} as RawDataType
+      const data = allPlantAPIData ? allPlantAPIData : []
 
-      data.data?.map((plant) => {
+      data.map((plant) => {
         return (      
-          incomingPlantData.push({'id': plant.id, 'common_name': plant.common_name, 'scientific_name': plant.scientific_name, 'image_url': plant.image_url, 'slug': plant.slug})
+          incomingPlantData.push({
+            'id': plant.id,
+            'common_name': plant.common_name,
+            'scientific_name': plant.scientific_name,
+            'image_url': plant.image_url,
+            'slug': plant.slug
+          })
         )
       })
-
-      const applyAPIToDB = () => {
-      plantData.map((plant) => {
-        handleCreatePlantItem(plant)
-      })
-    }
-
-    applyAPIToDB()
 
       setPlantData(incomingPlantData)
       setIsLoading(false)

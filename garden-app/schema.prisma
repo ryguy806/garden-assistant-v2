@@ -52,7 +52,7 @@ model PlantProfileItem {
 }
 
 model PlantItem {
-  id Int @id
+  id Int @id 
   common_name String?
   scientific_name String
   image_url String
