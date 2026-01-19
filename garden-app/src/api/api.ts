@@ -51,14 +51,12 @@ export type RawDataType = {
 }
 
 export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
-    let pageNumber = 1
     let allPlantData: PlantDataType[] = []
     try {
-        while (pageNumber < 20865){
-        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&page=${pageNumber}`)
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
-        }
+        }   
         const rawData: RawDataType = await response.json()
         rawData.data.map((plant) => {
             allPlantData.push({
@@ -69,8 +67,7 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
                 'slug': plant.slug
             })
         })
-        pageNumber++
-        }
+    
         return allPlantData
     } catch (err) {
         console.log(`Error fetching plants: ${err}`)
