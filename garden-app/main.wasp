@@ -74,7 +74,6 @@ page JournalPage {
   component: import JournalView  from "@src/pages/Journal/JournalView"
 }
 
-
 route YardRoute { path: "/yard", to: YardPage}
 page YardPage {
   authRequired: true,
