@@ -2,7 +2,7 @@ import waspLogo from "../waspLogo.png";
 
 const Footer = () => {
   return (
-    <div className='flex flex-row justify-center items-center bg-[#596720] absolute bottom-0 w-full h-10'>
+    <div className='flex flex-row justify-center items-center bg-[#596720] sticky bottom-0 w-full h-10'>
       <div>
         <p className='text-white'>
           Made using Wasp:{" "}

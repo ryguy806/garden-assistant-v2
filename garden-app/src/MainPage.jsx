@@ -5,8 +5,8 @@ export const MainPage = () => {
   
   return (
     <div className='container mx-auto -mt-20'>
-      <div className='flex flex-col items-center mx-auto'>
-        <h1 className='text-xl font-bold'>Welcome to BumbleBot!</h1>
+      <div className='flex flex-col items-center mx-auto space-y-2 my-12'>
+        <h1 className='text-3xl'>Welcome to BumbleBot!</h1>
         <p>Brought to you by the Bumbling Botanist!</p>
       </div>
       <div className='space-y-5'>
