@@ -4,7 +4,11 @@ import { resolveProjectPath } from "wasp/dev";
 export default {
   content: [resolveProjectPath('./src/**/*.{js,jsx,ts,tsx}')],
   theme: {
-    extend: {},
+     extend: {
+      fontFamily: {
+        'shadows': ['"Shadows Into Light"', 'cursive'], // Use 'cursive' as fallback
+      },
+    },
   },
   plugins: [],
 }
