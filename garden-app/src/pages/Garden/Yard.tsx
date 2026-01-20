@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IndividualPlantDataType, PlantDataType, RawDataType } from "../../api/api";
 import PlantProfile from "./PlantProfile";
-import { getPlantAPIData } from "wasp/client/operations";
+import { getPlantAPIData, lookForSpecificPlantScientificName } from "wasp/client/operations";
 import { PlantItems } from "wasp/client/crud";
 
 const Yard = () => {
@@ -11,15 +11,18 @@ const Yard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const getIndividualPlantData = async () => {
-  //     // const individualPlantData = await lookForSpecificPlant("Sorbus aucuparia")
-  //   }
+    const getIndividualPlantData = async () => {
+      const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName("Sorbus aucuparia")
+      setIndividualPlantData(individualAPIPlantData)
+      setIsLoading(false)
+    }
 
-  //   getIndividualPlantData().catch((err) => {
-  //     setError(err.message)
-  //   }
+    getIndividualPlantData().catch((err) => {
+      setError(err.message)
+    })
+  }, [])
 
   //   // let incomingPlantData = [] as PlantDataType[]
   //   // const getPlantData = async () => {
@@ -52,7 +55,7 @@ const Yard = () => {
   return (
     <div className='container mx-auto'>
       <div className='border-1 border-solid border-black-500 p-5'>
-        <PlantProfile plantProfile={plantData[19]}/>
+        <PlantProfile plantProfile={individualPlantData ? individualPlantData : {} as IndividualPlantDataType}/>
       </div>
     </div>
   );

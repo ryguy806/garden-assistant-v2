@@ -1,7 +1,15 @@
+import { ImageFieldType } from "../../../../api/api";
 import PhotoCarouselComponent from "../Components/PhotoCarouselComponent";
 
 type PlantPhotosModuleProps = {
-    plantPhotos: string[];
+    plantPhotos: {
+            "flower": ImageFieldType[],
+            "leaf": ImageFieldType[],
+            "habit": ImageFieldType[],
+            "fruit": ImageFieldType[],
+            "bark": ImageFieldType[],
+            "other": ImageFieldType[]
+        }
 }
 
 const PlantPhotosModule = ({ plantPhotos }: PlantPhotosModuleProps) => {

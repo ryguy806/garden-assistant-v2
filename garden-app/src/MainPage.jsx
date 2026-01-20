@@ -5,13 +5,13 @@ export const MainPage = () => {
   
   return (
     <div className='container mx-auto -mt-20'>
-      <div className='items-center'>
-        <h1 className='text-xl font-bold'>Welcome to the Garden Assistant.</h1>
+      <div className='flex flex-col items-center mx-auto'>
+        <h1 className='text-xl font-bold'>Welcome to BumbleBot!</h1>
+        <p>Brought to you by the Bumbling Botanist!</p>
       </div>
       <div className='space-y-5'>
         <p>
-          The Garden Assistant is a web application that allows users to manage
-          their garden.
+          Manage your garden better with plant identification and garden management!
         </p>
         <div className='flex flex-row space-x-10 justify-center items-center'>
           <div>

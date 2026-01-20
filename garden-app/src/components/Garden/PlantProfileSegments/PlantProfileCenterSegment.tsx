@@ -1,7 +1,15 @@
+import { ImageFieldType } from "../../../api/api";
 import PlantPhotosModule from "../PlantProfileModules/Sections/PlantPhotosModule";
 
 type PlantProfilePhotoProps = {
-    plantPhotos: string[];
+    plantPhotos: {
+        "flower": ImageFieldType[],
+        "leaf": ImageFieldType[],
+        "habit": ImageFieldType[],
+        "fruit": ImageFieldType[],
+        "bark": ImageFieldType[],
+        "other": ImageFieldType[]
+    }
 }
 
 const PlantProfileCenterSegment = ({plantPhotos}: PlantProfilePhotoProps) => {

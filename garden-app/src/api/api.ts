@@ -1,6 +1,4 @@
 import { env } from "wasp/server";
-import { GetPlantAPIData } from "wasp/server/operations";
-import { PlantItems } from "wasp/client/crud";
 //This file is for all API functions.
 
 export const API_BASE_URL = 'https://trefle.io/api/v1/species'
@@ -65,7 +63,7 @@ export type RawDataType = {
     }
 }
 
-type ImageFieldType = {
+export type ImageFieldType = {
     "id" : number,
     "image_url": string,
     "copyright": string | null,
@@ -160,6 +158,7 @@ export type RawIndividualDataType = {
         },
         "observations": string,
         "id": number,
+        "image_url": string | null,
         "images": {
             "flower": ImageFieldType[],
             "leaf": ImageFieldType[],
@@ -238,7 +237,7 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
     }
 }
 
-export const lookForSpecificPlant = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
+export const lookForSpecificPlantScientificName = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
     let specificPlant: IndividualPlantDataType = {} as IndividualPlantDataType
     try {
         const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${plantScientificName}`)
