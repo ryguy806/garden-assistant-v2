@@ -24,6 +24,8 @@ export type IndividualPlantDataType = {
         "other": ImageFieldType[],
     },
     'slug': string;
+    'duration': string[] | null;
+    'ligneous_type': string | null
 }
 
 export type RawDataType = {
@@ -84,7 +86,7 @@ type ZoneType = {
 }
 
 export type RawIndividualDataType = {
-    "data": [{
+    "data": {
         "author": string | null,
         "bibliography": string | null,
         "common_name": string | null,
@@ -206,7 +208,7 @@ export type RawIndividualDataType = {
         },
         "year": number | null
         "extras": any
-    }],
+    },
     "meta": {
         "total": number
     }
@@ -244,7 +246,7 @@ const getPlantApiIdScientificName = async (searchTerm: string) => {
         const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${searchTerm}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData = await response.json()
-        
+
         id = rawData.data[0].id
 
         return id
@@ -256,9 +258,10 @@ const getPlantApiIdScientificName = async (searchTerm: string) => {
 
 export const lookForSpecificPlantScientificName = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
     let specificPlant: IndividualPlantDataType = {} as IndividualPlantDataType
-    let dataHolder: RawIndividualDataType
-    const id = await getPlantApiIdScientificName(plantScientificName)
+    let id = 1
+
     try {
+        id = await getPlantApiIdScientificName(plantScientificName)
         const response = await fetch(`${API_BASE_URL}/${id}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
@@ -266,14 +269,14 @@ export const lookForSpecificPlantScientificName = async (plantScientificName: st
         const rawData: RawIndividualDataType = await response.json()
     
         specificPlant = {
-            "id": rawData.data[0].id,
-            "common_name": rawData.data[0].common_name,
-            "scientific_name": rawData.data[0].scientific_name,
-            "images": rawData.data[0].images,
-            "slug": rawData.data[0].slug,
+            "id": id,
+            "common_name": rawData.data.common_name,
+            "scientific_name": rawData.data.scientific_name,
+            "images": rawData.data.images,
+            "slug": rawData.data.slug,
+            "duration": rawData.data.duration,
+            "ligneous_type": rawData.data.specifications.ligneous_type
         }
-
-        console.log(specificPlant)
 
         return specificPlant
     } catch (err) {
