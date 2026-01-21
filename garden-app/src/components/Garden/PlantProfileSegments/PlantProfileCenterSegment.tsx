@@ -15,7 +15,7 @@ type PlantProfilePhotoProps = {
 const PlantProfileCenterSegment = ({plantPhotos}: PlantProfilePhotoProps) => {
     return (
         <div className='flex w-1/2 flex-col h-full'>
-            {/* <PlantPhotosModule plantPhotos={plantPhotos}/> */}
+            <PlantPhotosModule plantPhotos={plantPhotos}/>
         </div>
     )
 }
