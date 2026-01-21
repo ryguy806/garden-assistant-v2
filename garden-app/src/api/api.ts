@@ -84,7 +84,7 @@ type ZoneType = {
 }
 
 export type RawIndividualDataType = {
-    "data": {
+    "data": [{
         "author": string | null,
         "bibliography": string | null,
         "common_name": string | null,
@@ -206,7 +206,7 @@ export type RawIndividualDataType = {
         },
         "year": number | null
         "extras": any
-    },
+    }],
     "meta": {
         "total": number
     }
@@ -237,22 +237,43 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
     }
 }
 
+//GET THE ID FROM THE SCIENTIFIC NAME, THEN pass along the ID to get the specific plant!
+const getPlantApiIdScientificName = async (searchTerm: string) => {
+    let id = 0
+    try {
+        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${searchTerm}`)
+        if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
+        const rawData = await response.json()
+        
+        id = rawData.data[0].id
+
+        return id
+
+    } catch (err) {
+        throw err
+    }
+}
+
 export const lookForSpecificPlantScientificName = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
     let specificPlant: IndividualPlantDataType = {} as IndividualPlantDataType
+    let dataHolder: RawIndividualDataType
+    const id = await getPlantApiIdScientificName(plantScientificName)
     try {
-        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${plantScientificName}`)
+        const response = await fetch(`${API_BASE_URL}/${id}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
-        }   
+        }
         const rawData: RawIndividualDataType = await response.json()
     
         specificPlant = {
-            "id": rawData.data.id,
-            "common_name": rawData.data.common_name,
-            "scientific_name": rawData.data.scientific_name,
-            "images": rawData.data.images,
-            "slug": rawData.data.slug,
+            "id": rawData.data[0].id,
+            "common_name": rawData.data[0].common_name,
+            "scientific_name": rawData.data[0].scientific_name,
+            "images": rawData.data[0].images,
+            "slug": rawData.data[0].slug,
         }
+
+        console.log(specificPlant)
 
         return specificPlant
     } catch (err) {

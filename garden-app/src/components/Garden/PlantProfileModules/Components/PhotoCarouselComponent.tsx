@@ -63,13 +63,34 @@ const convertToImageFieldTypeArray = (imageUrls: {
     "other": ImageFieldType[]
 }): ImageFieldType[] => {
     const newArray: ImageFieldType[] = []
+
+    const flowers = imageUrls["flower"];
+    const leafs = imageUrls["leaf"];
+    const habits = imageUrls["habit"];
+    const fruits = imageUrls["fruit"];
+    const barks = imageUrls["bark"];
+    const others = imageUrls["other"];
+
+    console.log(flowers)
     
-    newArray.push(...imageUrls.flower)
-    newArray.push(...imageUrls.leaf)
-    newArray.push(...imageUrls.habit)
-    newArray.push(...imageUrls.fruit)
-    newArray.push(...imageUrls.bark)
-    newArray.push(...imageUrls.other)
+    // for (let i = 0; i < flowers.length; i++) {
+    //     newArray.push(flowers[i]);
+    // }
+    // for (let i = 0; i < leafs.length; i++) {
+    //     newArray.push(leafs[i]);
+    // }
+    // for (let i = 0; i < habits.length; i++) {
+    //     newArray.push(habits[i]);
+    // }
+    // for (let i = 0; i < fruits.length; i++) {
+    //     newArray.push(fruits[i]);
+    // }
+    // for (let i = 0; i < barks.length; i++) {
+    //     newArray.push(barks[i]);
+    // }
+    // for (let i = 0; i < others.length; i++) {
+    //     newArray.push(others[i]);
+    // }
 
     return newArray
 }
