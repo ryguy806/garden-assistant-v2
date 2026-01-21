@@ -4,11 +4,11 @@ type PlantTypeModuleProps = {
     plantType: string;
 }
 
-const PlantTypeModule = ({ plantType = "" }: PlantTypeModuleProps) => {
+const PlantTypeModule = ({ plantType }: PlantTypeModuleProps) => {
 
     return (
         <div className='flex text-2xl justify-center border-black border-2 p-4'>
-            {toSentenceCase(plantType)}
+            {plantType === "" ? (<p><i>unavailable</i></p>) : toSentenceCase(plantType)}
         </div>
     )
 }

@@ -9,7 +9,7 @@ const PlantProfileQuickFacts = ({plantProfile}: PlantProfileProps) => {
         <div className=' flex flex-row mx-auto justify-between content-center my-auto'>
             <PlantProfileLeftSegment />
             <PlantProfileCenterSegment plantPhotos={plantProfile["images"] ? plantProfile["images"] : plantProfile["images"]} />
-            <PlantProfileRightSegment commonName={plantProfile.common_name ? plantProfile.common_name : plantProfile.scientific_name} scientificName={plantProfile.scientific_name} />
+            <PlantProfileRightSegment commonName={plantProfile.common_name ? plantProfile.common_name : plantProfile.scientific_name} scientificName={plantProfile.scientific_name} ligneousType={plantProfile.ligneous_type ? plantProfile.ligneous_type : ""} duration={plantProfile.duration ? plantProfile.duration[0] : ""} />
         </div>
     );
 }

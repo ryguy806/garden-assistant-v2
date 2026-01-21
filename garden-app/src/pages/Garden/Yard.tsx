@@ -23,31 +23,6 @@ const Yard = () => {
       setError(err.message)
     })
   }, [])
-
-  //   // let incomingPlantData = [] as PlantDataType[]
-  //   // const getPlantData = async () => {
-  //   //   const allPlantAPIData = await getPlantAPIData()
-  //   //   const data = allPlantAPIData ? allPlantAPIData : []
-
-  //   //   data.map((plant) => {
-  //   //     return (      
-  //   //       incomingPlantData.push({
-  //   //         'id': plant.id,
-  //   //         'common_name': plant.common_name,
-  //   //         'scientific_name': plant.scientific_name,
-  //   //         'image_url': plant.image_url,
-  //   //         'slug': plant.slug
-  //   //       })
-  //   //     )
-  //   //   })
-
-  //   //   setPlantData(incomingPlantData)
-  //   //   setIsLoading(false)
-  //   // }
-  //   // getPlantData().catch((err) => {
-  //   //   setError(err.message)
-  //   // })
-  // }, [])
   
   if(error) return <div>Error: {error}</div>
   if(isLoading) return <div>Loading data...</div>

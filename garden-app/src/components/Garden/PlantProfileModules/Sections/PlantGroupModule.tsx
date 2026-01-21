@@ -4,10 +4,10 @@ type PlantGroupModuleProps = {
     plantGroup: string;
 }
 
-const PlantGroupModule = ({ plantGroup = "" }: PlantGroupModuleProps) => {
+const PlantGroupModule = ({ plantGroup }: PlantGroupModuleProps) => {
     return (
         <div className='flex text-2xl item-start justify-center border-black border-2 p-4'>
-            {toSentenceCase(plantGroup)}
+            {plantGroup === "" ? (<p><i>unavailable</i></p>) : toSentenceCase(plantGroup)}
         </div>
     )
 }
