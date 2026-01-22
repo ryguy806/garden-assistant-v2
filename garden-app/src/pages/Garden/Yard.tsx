@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { IndividualPlantDataType, PlantDataType, RawDataType } from "../../api/api";
+import { IndividualPlantDataType, PlantDataType } from "../../api/api";
 import PlantProfile from "./PlantProfile";
-import { getPlantAPIData, lookForSpecificPlantScientificName } from "wasp/client/operations";
-import { PlantItems } from "wasp/client/crud";
+import { lookForSpecificPlantScientificName } from "wasp/client/operations";
 
 const Yard = () => {
 
