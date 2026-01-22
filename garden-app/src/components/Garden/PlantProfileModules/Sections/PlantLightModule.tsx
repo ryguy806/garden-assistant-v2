@@ -21,7 +21,7 @@ const PlantLightModule = ({ light }: PlantLightModuleProps) => {
                         value={light}
                         className="w-full h-2 bg-gradient-to-r from-black to-white border-black border-2 rounded-lg appearance-none cursor-pointer range-sm"
                     />
-                    <Sun size={32} color={"#f4bf2f"}/>
+                    <Sun color={"#f4bf2f"}/>
                 </div>
                 
                 </>
