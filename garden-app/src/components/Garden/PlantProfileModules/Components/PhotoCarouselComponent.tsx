@@ -10,12 +10,15 @@ type PhotoCarouselProps = {
         "fruit": ImageFieldType[],
         "bark": ImageFieldType[],
         "other": ImageFieldType[]
-    }
+    } | null
 }
 
 const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
-    const [currentPhotoIndex, setCurrentPhotoIndex] =  useState<number>(0);
-    const imageArray = convertToImageFieldTypeArray(images);
+    const [currentPhotoIndex, setCurrentPhotoIndex] =  useState<number>(0)
+    const [imageArray, setImageArray] = useState<ImageFieldType[]>([])
+    if (images !== null) {
+        setImageArray(convertToImageFieldTypeArray(images));
+    }
     
     const prevSlide = () => {
         setCurrentPhotoIndex((prev) => prev === 0 ? imageArray.length - 1 : prev - 1)
@@ -31,7 +34,7 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
 
     return (
         <div className="relative">
-            {imageArray.length <= 1 ?  imageArray.map((image, index) => (
+            {imageArray.length <= 1 || imageArray === null ?  imageArray.map((image, index) => (
                 <IndividualPhotoComponent key={index} image={image.image_url} visible={true}/>
             )) : (
                 <div className="flex h-96 w-96 justify-center mx-auto object-cover">

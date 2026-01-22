@@ -248,6 +248,8 @@ const getPlantApiIdScientificName = async (searchTerm: string) => {
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData = await response.json()
 
+        console.log("Partial Species Data: ", rawData)
+
         id = rawData.data[0].id
 
         return id
@@ -268,6 +270,8 @@ export const lookForSpecificPlantScientificName = async (plantScientificName: st
             throw new Error(`Response Error status: ${response.status}`)
         }
         const rawData: RawIndividualDataType = await response.json()
+
+        console.log("Full Species Data: ", rawData)
     
         specificPlant = {
             "id": id,

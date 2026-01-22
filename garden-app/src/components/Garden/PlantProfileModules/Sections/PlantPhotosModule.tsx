@@ -9,7 +9,7 @@ type PlantPhotosModuleProps = {
             "fruit": ImageFieldType[],
             "bark": ImageFieldType[],
             "other": ImageFieldType[]
-        }
+    } | null
 }
 
 const PlantPhotosModule = ({ plantPhotos }: PlantPhotosModuleProps) => {
