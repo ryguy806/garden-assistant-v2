@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IndividualPhotoComponent from "./IndividulaPhotoComponent";
 import { ImageFieldType } from "../../../../api/api";
 
@@ -18,51 +18,47 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
     const imageArray = convertToImageFieldTypeArray(images);
     
     const prevSlide = () => {
-        const newIndex = currentPhotoIndex === 0 ? imageArray.length - 1 : currentPhotoIndex - 1;
-        setCurrentPhotoIndex(newIndex)
+        setCurrentPhotoIndex((prev) => prev === 0 ? imageArray.length - 1 : prev - 1)
     }
     
     const nextSlide = () => {
-        const newIndex = currentPhotoIndex === imageArray.length -1 ? 0 : currentPhotoIndex + 1;
-        setCurrentPhotoIndex(newIndex)
+        setCurrentPhotoIndex((next) => next === imageArray.length - 1 ? 0 : next + 1)
     }
 
-    return (
-        <div className="flex">
-            {imageArray.length >= 1 ?  imageArray.map((image, index) => (
-                <IndividualPhotoComponent key={index} image={image.image_url}/>
-            )) : (
-                <div className="max-w-lg h-96 w-full m-auto py-4 px-2 relative group">
-                {/* Image Container */}
-                <div
-                    style={{ backgroundImage: `url(${imageArray[currentPhotoIndex].image_url})` }}
-                    className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-                ></div>
-                
-                {/* Left Arrow */}
-                <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer" onClick={prevSlide}>
-                    {"<"}
-                </div>
-                
-                {/* Right Arrow */}
-                <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer" onClick={nextSlide}>
-                    {">"}
-                </div>
+    const goToSlide = (index: number) => setCurrentPhotoIndex(index);
 
-                {/* Indicators */}
-                <div className="flex top-4 justify-center py-2">
+    console.log("currentPhotoIndex: ", currentPhotoIndex);
+
+    return (
+        <div>
+            {imageArray.length <= 1 ?  imageArray.map((image, index) => (
+                <IndividualPhotoComponent key={index} image={image.image_url} visible={true}/>
+            )) : (
+                <div className="flex">
                     {imageArray.map((src, index) => (
-                    <div
-                        key={index}
-                        onClick={() => setCurrentPhotoIndex(index)}
-                        className={`cursor-pointer w-3 h-3 mx-1 rounded-full ${
-                        currentPhotoIndex === index ? 'bg-black' : 'bg-gray-400'
-                        }`}
-                    ></div>
+                        <div key={index} className={`inset-0 transition-opacity duration-700 ease-in-out ${
+                            index === currentPhotoIndex ? "opacity-100 z-10" : "hidden opacity-0 z-0"
+                        }`}>
+                            <IndividualPhotoComponent image={src.image_url} visible={index === currentPhotoIndex}/>
+                        </div>
                     ))}
                 </div>
-                </div>
             )}
+
+            <button onClick={prevSlide} className="top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20">
+                {"<"}
+            </button>
+            <button onClick={nextSlide} className="top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20">
+                {">"}
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {imageArray.map((src, index) => (
+                    <button key={src.id} onClick={() => goToSlide(index)} className={`w-3 h-3 rounded-full border border-white ${
+                        index === currentPhotoIndex ? "bg-white" : "bg-white/40"
+                    }`}/>
+                ))}
+            </div>
       </div>
     )
 }
