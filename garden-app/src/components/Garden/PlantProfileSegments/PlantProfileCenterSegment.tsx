@@ -9,13 +9,14 @@ type PlantProfilePhotoProps = {
         "fruit": ImageFieldType[],
         "bark": ImageFieldType[],
         "other": ImageFieldType[]
-    }
+    },
+    image_url: string | null
 }
 
-const PlantProfileCenterSegment = ({plantPhotos}: PlantProfilePhotoProps) => {
+const PlantProfileCenterSegment = ({plantPhotos, image_url}: PlantProfilePhotoProps) => {
     return (
         <div className='flex w-1/2 flex-col h-full'>
-            <PlantPhotosModule plantPhotos={plantPhotos}/>
+            <PlantPhotosModule plantPhotos={plantPhotos} image_url={image_url}/>
         </div>
     )
 }

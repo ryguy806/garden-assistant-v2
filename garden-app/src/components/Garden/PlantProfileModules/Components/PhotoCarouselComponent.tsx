@@ -10,10 +10,11 @@ type PhotoCarouselProps = {
         "fruit": ImageFieldType[],
         "bark": ImageFieldType[],
         "other": ImageFieldType[]
-    } | null
+    } | null,
+    image_url: string | null
 }
 
-const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
+const PhotoCarouselComponent = ({images, image_url}: PhotoCarouselProps) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] =  useState<number>(0)
     const [imageArray, setImageArray] = useState<ImageFieldType[]>([])
     if (images !== null) {
@@ -28,15 +29,19 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
         setCurrentPhotoIndex((next) => next === imageArray.length - 1 ? 0 : next + 1)
     }
 
-    const goToSlide = (index: number) => setCurrentPhotoIndex(index);
+    // const goToSlide = (index: number) => setCurrentPhotoIndex(index);
 
     console.log("currentPhotoIndex: ", currentPhotoIndex);
 
     return (
         <div className="relative">
-            {imageArray.length <= 1 || imageArray === null ?  imageArray.map((image, index) => (
-                <IndividualPhotoComponent key={index} image={image.image_url} visible={true}/>
-            )) : (
+            {imageArray === null ? (
+                <div>
+                   {image_url !== null ? (<IndividualPhotoComponent image={image_url!} visible={true}/>) : (
+                    <div>No Plant Photo provided.</div>
+                   )}
+                </div>
+                ) : (
                 <div className="flex h-96 w-96 justify-center mx-auto object-cover">
                     {imageArray.map((src, index) => (
                         <div key={index} className={`inset-0 transition-opacity duration-700 ease-in-out ${

@@ -25,8 +25,9 @@ export type IndividualPlantDataType = {
     },
     'slug': string;
     'duration': string[] | null;
-    'ligneous_type': string | null
-    'light': number | null;
+    'ligneous_type': string | null,
+    'light': number | null,
+    'image_url': string | null
 }
 
 export type RawDataType = {
@@ -281,7 +282,8 @@ export const lookForSpecificPlantScientificName = async (plantScientificName: st
             "slug": rawData.data.slug,
             "duration": rawData.data.duration,
             "ligneous_type": rawData.data.specifications.ligneous_type,
-            "light": rawData.data.growth.light
+            "light": rawData.data.growth.light,
+            "image_url": rawData.data.image_url
         }
 
         return specificPlant
