@@ -7,7 +7,7 @@ const IndividualPhotoComponent = ({image, visible}: IndividualPhotoProps) => {
 
     return (
         <div className={`flex justify-center border-black border-2 mx-auto size-5/6 ${visible ? "" : "hidden"}`}>
-            <img src={image} alt="Plant Photo"/>
+            <img className="object-cover w-full h-full" src={image} alt="Plant Photo"/>
         </div>
     );
 }

@@ -30,11 +30,11 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
     console.log("currentPhotoIndex: ", currentPhotoIndex);
 
     return (
-        <div>
+        <div className="relative">
             {imageArray.length <= 1 ?  imageArray.map((image, index) => (
                 <IndividualPhotoComponent key={index} image={image.image_url} visible={true}/>
             )) : (
-                <div className="flex">
+                <div className="flex h-96 w-96 justify-center mx-auto object-cover">
                     {imageArray.map((src, index) => (
                         <div key={index} className={`inset-0 transition-opacity duration-700 ease-in-out ${
                             index === currentPhotoIndex ? "opacity-100 z-10" : "hidden opacity-0 z-0"
@@ -45,20 +45,20 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
                 </div>
             )}
 
-            <button onClick={prevSlide} className="top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20">
+            <button onClick={prevSlide} className="absolute bottom-1/2 left-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
                 {"<"}
             </button>
-            <button onClick={nextSlide} className="top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20">
+            <button onClick={nextSlide} className="absolute bottom-1/2 right-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
                 {">"}
             </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                 {imageArray.map((src, index) => (
                     <button key={src.id} onClick={() => goToSlide(index)} className={`w-3 h-3 rounded-full border border-white ${
                         index === currentPhotoIndex ? "bg-black" : "bg-black/40"
                     }`}/>
                 ))}
-            </div>
+            </div> */}
       </div>
     )
 }
