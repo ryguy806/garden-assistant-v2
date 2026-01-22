@@ -10,18 +10,18 @@ type PhotoCarouselProps = {
         "fruit": ImageFieldType[],
         "bark": ImageFieldType[],
         "other": ImageFieldType[]
-    } | null,
+    },
     image_url: string | null
 }
 
 const PhotoCarouselComponent = ({images, image_url}: PhotoCarouselProps) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] =  useState<number>(0)
     const [imageArray, setImageArray] = useState<ImageFieldType[]>([])
-    if (images !== null) {
-        setImageArray(convertToImageFieldTypeArray(images));
+    if (Object.keys(images).length = 0) {
+        setImageArray(convertToImageFieldTypeArray(images))
     }
     
-    const prevSlide = () => {
+    const prevSlide = () => {  
         setCurrentPhotoIndex((prev) => prev === 0 ? imageArray.length - 1 : prev - 1)
     }
     
@@ -31,34 +31,33 @@ const PhotoCarouselComponent = ({images, image_url}: PhotoCarouselProps) => {
 
     // const goToSlide = (index: number) => setCurrentPhotoIndex(index);
 
-    console.log("currentPhotoIndex: ", currentPhotoIndex);
-
     return (
         <div className="relative">
-            {imageArray === null ? (
+            {imageArray.length === 0 ? (
                 <div>
                    {image_url !== null ? (<IndividualPhotoComponent image={image_url!} visible={true}/>) : (
-                    <div>No Plant Photo provided.</div>
+                    <div className="flex h-96 w-96 justify-center items-center m-auto object-cover bg-gray-300 text-white">No plant photo provided.</div>
                    )}
                 </div>
                 ) : (
-                <div className="flex h-96 w-96 justify-center mx-auto object-cover">
-                    {imageArray.map((src, index) => (
-                        <div key={index} className={`inset-0 transition-opacity duration-700 ease-in-out ${
-                            index === currentPhotoIndex ? "opacity-100 z-10" : "hidden opacity-0 z-0"
-                        }`}>
-                            <IndividualPhotoComponent image={src.image_url} visible={index === currentPhotoIndex}/>
+                    <>
+                        <div className="flex h-96 w-96 justify-center mx-auto object-cover">
+                            {imageArray.map((src, index) => (
+                                <div key={index} className={`inset-0 transition-opacity duration-700 ease-in-out ${
+                                    index === currentPhotoIndex ? "opacity-100 z-10" : "hidden opacity-0 z-0"
+                                }`}>
+                                    <IndividualPhotoComponent image={src.image_url} visible={index === currentPhotoIndex}/>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                        <button onClick={prevSlide} className="absolute bottom-1/2 left-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
+                            {"<"}
+                        </button>
+                        <button onClick={nextSlide} className="absolute bottom-1/2 right-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
+                            {">"}
+                        </button>
+                    </>
             )}
-
-            <button onClick={prevSlide} className="absolute bottom-1/2 left-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
-                {"<"}
-            </button>
-            <button onClick={nextSlide} className="absolute bottom-1/2 right-10 -translate-y-1/2 bg-green-500/50 text-white p-2 rounded-full z-20">
-                {">"}
-            </button>
 
             {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                 {imageArray.map((src, index) => (
@@ -90,24 +89,25 @@ const convertToImageFieldTypeArray = (imageUrls: {
     const barks = imageUrls["bark"];
     const others = imageUrls["other"];
     
-    for (let i = 0; i < flowers.length; i++) {
+    if (imageUrls["flower"]) {
+        for (let i = 0; i < flowers.length; i++) {
         newArray.push(flowers[i]);
-    }
-    for (let i = 0; i < leafs.length; i++) {
+    }}
+    if (imageUrls["leaf"]) {for (let i = 0; i < leafs.length; i++) {
         newArray.push(leafs[i]);
-    }
-    for (let i = 0; i < habits.length; i++) {
+    }}
+    if (imageUrls['habit']) {for (let i = 0; i < habits.length; i++) {
         newArray.push(habits[i]);
-    }
-    for (let i = 0; i < fruits.length; i++) {
+    }}
+    if (imageUrls["fruit"]) {for (let i = 0; i < fruits.length; i++) {
         newArray.push(fruits[i]);
-    }
-    for (let i = 0; i < barks.length; i++) {
+    }}
+    if (imageUrls["bark"]) {for (let i = 0; i < barks.length; i++) {
         newArray.push(barks[i]);
-    }
-    for (let i = 0; i < others.length; i++) {
+    }}
+    if (imageUrls["other"]) {for (let i = 0; i < others.length; i++) {
         newArray.push(others[i]);
-    }
+    }}
 
     return newArray
 }

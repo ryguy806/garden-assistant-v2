@@ -10,13 +10,13 @@ type PlantPhotosModuleProps = {
             "fruit": ImageFieldType[],
             "bark": ImageFieldType[],
             "other": ImageFieldType[]
-    } | null
+    },
     image_url: string | null
 }
 
 const PlantPhotosModule = ({ plantPhotos, image_url }: PlantPhotosModuleProps) => {
     return (
-        <div className='flex text-3xl font-bold items-center'>
+        <div className='flex text-3xl font-bold items-center border-black border-2 p-4'>
             <PhotoCarouselComponent images={plantPhotos} image_url={image_url}/>
         </div>
     )
