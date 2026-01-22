@@ -55,7 +55,7 @@ const PhotoCarouselComponent = ({images}: PhotoCarouselProps) => {
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                 {imageArray.map((src, index) => (
                     <button key={src.id} onClick={() => goToSlide(index)} className={`w-3 h-3 rounded-full border border-white ${
-                        index === currentPhotoIndex ? "bg-white" : "bg-white/40"
+                        index === currentPhotoIndex ? "bg-black" : "bg-black/40"
                     }`}/>
                 ))}
             </div>
