@@ -27,6 +27,10 @@ query lookForSpecificPlantScientificName {
   fn: import {lookForSpecificPlantScientificName} from "@src/api/api",
 }
 
+query getPlantApiId {
+  fn import {getPlantApiId} from "@src/api/api"
+}
+
 //Routes
 route LoginRoute { path: "/login", to: LoginPage }
 page LoginPage {
