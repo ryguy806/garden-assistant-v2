@@ -38,6 +38,11 @@ page SignupPage {
   component: import  Signup  from "@src/Auth/Signup"
 }
 
+route PlantSearchRoute {path: "/search", to: PlantSearchPage}
+page PlantSearchPage {
+  component: import PlantSearch from "@src/components/Garden/PlantSearch/PlantSearch"
+}
+
 route RootRoute { path: "/", to: MainPage }
 page MainPage {
   authRequired: true,

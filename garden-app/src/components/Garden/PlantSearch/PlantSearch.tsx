@@ -25,11 +25,13 @@ const PlantSearch = () => {
         } else {
             setResults({} as IndividualPlantDataType)
         }
-    }, [])
+    }, [debouncedSearchTerm])
 
     const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value)
     }
+
+    console.log(results)
 
     return (
         <div>
@@ -37,7 +39,7 @@ const PlantSearch = () => {
 
             {isSearching && <div>Searching...</div>}
 
-            {results && <div><PlantProfile plantProfile={results}/></div>}
+            {results && <div>{results.scientific_name}</div>}
         </div>
     )
 }
