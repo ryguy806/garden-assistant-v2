@@ -244,7 +244,7 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
 //GET THE ID FROM THE SCIENTIFIC NAME, THEN pass along the ID to get the specific plant!
 const getPlantApiIdScientificName = async (searchTerm: string) => {
     try {
-        const response = await fetch(`${API_BASE_URL}?token=${env.API_SECRET_KEY}&filter[scientific_name]=${searchTerm}`)
+        const response = await fetch(`${API_BASE_URL}/search?q=${searchTerm}&&token=${env.API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData: RawIndividualDataType = await response.json()
 
