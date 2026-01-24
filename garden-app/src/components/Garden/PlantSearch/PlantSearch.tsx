@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useDebounce from "./useDebounce";
 import { IndividualPlantDataType } from "wasp/src/api/api";
 import { lookForSpecificPlantScientificName } from "wasp/client/operations";
+import PlantProfile from "../../../pages/Garden/PlantProfile";
 
 const PlantSearch = () => {
 
@@ -36,7 +37,7 @@ const PlantSearch = () => {
 
             {isSearching && <div>Searching...</div>}
 
-            {results && <div>{results.scientific_name}</div>}
+            {results && <div><PlantProfile plantProfile={results}/></div>}
         </div>
     )
 }
