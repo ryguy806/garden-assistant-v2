@@ -40,6 +40,7 @@ page SignupPage {
 
 route PlantSearchRoute {path: "/search", to: PlantSearchPage}
 page PlantSearchPage {
+  authRequired: true,
   component: import PlantSearch from "@src/components/Garden/PlantSearch/PlantSearch"
 }
 

@@ -17,6 +17,7 @@ const PlantSearch = () => {
         const getIndividualPlantData = async (search: string) => {
               const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName(search)
               setResults(individualAPIPlantData)
+              setIsSearching(false)
             }
 
         if(debouncedSearchTerm) {
@@ -25,6 +26,7 @@ const PlantSearch = () => {
         } else {
             setResults({} as IndividualPlantDataType)
         }
+
     }, [debouncedSearchTerm])
 
     const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
