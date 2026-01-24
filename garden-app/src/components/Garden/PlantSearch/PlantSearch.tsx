@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useDebounce from "./useDebounce";
 import { IndividualPlantDataType } from "wasp/src/api/api";
 import { lookForSpecificPlantScientificName } from "wasp/client/operations";
-import PlantProfile from "../../../pages/Garden/PlantProfile";
+import { Link } from "wasp/client/router";
 
 const PlantSearch = () => {
 
@@ -31,15 +31,17 @@ const PlantSearch = () => {
         setSearchTerm(event.target.value)
     }
 
-    console.log(results)
-
     return (
         <div>
             <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchInput}/>
 
             {isSearching && <div>Searching...</div>}
 
-            {results && <div>{results.scientific_name}</div>}
+            {results && (
+                <div>
+                    <Link to="/yard/:plant" params={{plant: results.scientific_name}}/>
+                </div>
+            )}
         </div>
     )
 }

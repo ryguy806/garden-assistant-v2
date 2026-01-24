@@ -1,7 +1,11 @@
 import PlantProfileLeftSegment from './PlantProfileSegments/PlantProfileLeftSegment';
 import PlantProfileCenterSegment from './PlantProfileSegments/PlantProfileCenterSegment';
 import PlantProfileRightSegment from './PlantProfileSegments/PlantProfileRightSegment';
-import { PlantProfileProps } from '../../pages/Garden/PlantProfile';
+import { IndividualPlantDataType } from 'wasp/src/api/api';
+
+export type PlantProfileProps = {
+    plantProfile: IndividualPlantDataType
+}
 
 const PlantProfileQuickFacts = ({plantProfile}: PlantProfileProps) => {
 
