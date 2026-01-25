@@ -242,32 +242,31 @@ export const fetchAllPlants = async (): Promise<PlantDataType[]> => {
 }
 
 //GET THE ID FROM THE SCIENTIFIC NAME, THEN pass along the ID to get the specific plant!
-export const getPlantApiId = async (searchTerm: string) => {
+export const searchForPlants = async (searchTerm: string) => {
     try {
         const response = await fetch(`${API_BASE_URL}/search?q=${searchTerm}&&token=${env.API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
-        const rawData: RawIndividualDataType = await response.json()
+        const rawData: RawDataType = await response.json()
 
-        return rawData.data.id
+        return rawData
 
     } catch (err) {
         throw err
     }
 }
 
-export const lookForSpecificPlantScientificName = async (plantScientificName: string): Promise<IndividualPlantDataType> => {
+export const lookForSpecificPlantScientificName = async (plantID: number): Promise<IndividualPlantDataType> => {
     let specificPlant: IndividualPlantDataType = {} as IndividualPlantDataType
 
     try {
-        const id = await getPlantApiId(plantScientificName)
-        const response = await fetch(`${API_BASE_URL}/${id}?token=${env.API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}/${plantID}?token=${env.API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
         const rawData: RawIndividualDataType = await response.json()
     
         specificPlant = {
-            "id": id,
+            "id": plantID,
             "common_name": rawData.data.common_name,
             "scientific_name": rawData.data.scientific_name,
             "images": rawData.data.images,

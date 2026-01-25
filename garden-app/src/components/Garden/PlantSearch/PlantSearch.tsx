@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useDebounce from "./useDebounce";
-import { IndividualPlantDataType } from "wasp/src/api/api";
-import { lookForSpecificPlantScientificName } from "wasp/client/operations";
+import { RawDataType } from "wasp/src/api/api";
+import { searchForPlants } from "wasp/client/operations";
 import { Link } from "wasp/client/router";
 
 const PlantSearch = () => {
@@ -9,22 +9,21 @@ const PlantSearch = () => {
     const [searchTerm, setSearchTerm] = useState("")
 
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
-    const [results, setResults] = useState<IndividualPlantDataType>({} as IndividualPlantDataType)
+    const [results, setResults] = useState<RawDataType>({} as RawDataType)
     const [isSearching, setIsSearching] = useState(false)
 
     useEffect(() => {
 
-        const getIndividualPlantData = async (search: string) => {
-              const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName(search)
-              setResults(individualAPIPlantData)
-              setIsSearching(false)
+        const getPlantData = async (search: string) => {
+              const rawPlantData: RawDataType = await searchForPlants(search)
+              setResults(rawPlantData)
             }
 
         if(debouncedSearchTerm) {
             setIsSearching(true)
-            getIndividualPlantData(debouncedSearchTerm)
+            getPlantData(debouncedSearchTerm)
         } else {
-            setResults({} as IndividualPlantDataType)
+            setResults({} as RawDataType)
         }
 
     }, [debouncedSearchTerm])
@@ -39,11 +38,13 @@ const PlantSearch = () => {
 
             {isSearching && <div>Searching...</div>}
 
-            {results && (
-                <div>
-                    <Link to="/yard/:plant" params={{plant: results.scientific_name}}/>
-                </div>
-            )}
+            {
+                results === {} as RawDataType ? (<div>No Results yet</div>) : ({
+                    results.data.map((id: number) => (
+                        <Link to={"/yard/:plant"} params={{ plant: id }} key={id}/>
+                    ))
+                })
+            }
         </div>
     )
 }

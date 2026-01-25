@@ -6,7 +6,7 @@ import { lookForSpecificPlantScientificName } from "wasp/client/operations";
 
 const PlantProfile = () => {
 
-  const {plant} = useParams<"plant">()
+  const { plant } = useParams<"plant">()
 
   const [individualPlantData, setIndividualPlantData] = useState<IndividualPlantDataType | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,7 +15,7 @@ const PlantProfile = () => {
     useEffect(() => {
   
       const getIndividualPlantData = async () => {
-        const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName(plant!)
+        const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName(parseInt(plant!))
         setIndividualPlantData(individualAPIPlantData)
         setIsLoading(false)
       }

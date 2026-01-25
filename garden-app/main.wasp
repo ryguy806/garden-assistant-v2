@@ -27,8 +27,8 @@ query lookForSpecificPlantScientificName {
   fn: import {lookForSpecificPlantScientificName} from "@src/api/api",
 }
 
-query getPlantApiId {
-  fn import {getPlantApiId} from "@src/api/api"
+query searchForPlants {
+  fn: import { searchForPlants } from "@src/api/api"
 }
 
 //Routes
