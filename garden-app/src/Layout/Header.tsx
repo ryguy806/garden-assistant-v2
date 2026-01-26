@@ -10,7 +10,7 @@ const Header = () => {
         {user ? (
           <button
             onClick={logout}
-            className='border-2 border-white text-white p-2'
+            className='text-white p-2'
           >
             (Logout)
           </button>
