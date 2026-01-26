@@ -17,6 +17,9 @@ export const MainPage = () => {
           <div>
             <Link to='/yard'>Plant Profiles</Link>
           </div>
+          <div>
+            <Link to='/search'>Plant Look-up</Link>
+          </div>
           {/* <div>
             <Link to='/calendar'>Calendar</Link>
           </div>

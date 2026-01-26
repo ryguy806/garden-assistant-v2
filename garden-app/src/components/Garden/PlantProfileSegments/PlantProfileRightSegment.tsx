@@ -7,16 +7,16 @@ type PlantProfileRightSegmentProps = {
     commonName: string;
     scientificName: string;
     duration: string;
-    ligneousType: string;
+    growth_habit: string;
     light: number | null;
 }
 
-const PlantProfileRightSegment = ({ commonName, scientificName, duration, ligneousType, light }: PlantProfileRightSegmentProps) => {
+const PlantProfileRightSegment = ({ commonName, scientificName, duration, growth_habit, light }: PlantProfileRightSegmentProps) => {
 
     return (
         <div className='flex w-1/2 flex-col h-full space-y-5 mt-0'>
             <PlantNamesModule plantName={commonName} scientificName={scientificName}/>
-            <PlantGroupModule plantGroup={ligneousType}/>
+            <PlantGroupModule plantGroup={growth_habit}/>
             <PlantTypeModule plantType={duration}/>
             <PlantLightModule light={light}/>
         </div>

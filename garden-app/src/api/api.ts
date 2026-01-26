@@ -25,7 +25,7 @@ export type IndividualPlantDataType = {
     },
     'slug': string;
     'duration': string[] | null;
-    'ligneous_type': string | null,
+    'growth_habit': string | null,
     'light': number | null,
     'image_url': string | null
 }
@@ -272,7 +272,7 @@ export const lookForSpecificPlantScientificName = async (plantID: number): Promi
             "images": rawData.data.images,
             "slug": rawData.data.slug,
             "duration": rawData.data.duration,
-            "ligneous_type": rawData.data.specifications.ligneous_type,
+            "growth_habit": rawData.data.specifications.growth_habit,
             "light": rawData.data.growth.light,
             "image_url": rawData.data.image_url
         }
