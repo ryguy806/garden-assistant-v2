@@ -9,7 +9,7 @@ const PlantSearch = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
 
-    const debouncedSearchTerm = useDebounce(toSentenceCase(searchTerm), 1000)
+    const debouncedSearchTerm = useDebounce(toSentenceCase(searchTerm), 500)
     const [results, setResults] = useState<RawDataType>({data: [] as unknown as RawDataType["data"], links: {first: "", last: "", next: "", self: ""}, meta: {total: 0}})
     const [isSearching, setIsSearching] = useState(false)
     const [hasResults, setHasResults] = useState(false)
@@ -34,8 +34,6 @@ const PlantSearch = () => {
         } else {
             setResults({} as RawDataType)
         }
-
-        console.log("Results: ", results)
 
     }, [debouncedSearchTerm])
 

@@ -24,8 +24,6 @@ const PlantProfile = () => {
         setError(err.message)
       })
     }, [])
-    
-    console.log(individualPlantData)
 
     if(error) return <div>Error: {error}</div>
     if(isLoading) return <div>Loading data...</div>
