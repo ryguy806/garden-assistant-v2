@@ -59,16 +59,23 @@ page YardPage {
   component: import Yard from "@src/pages/Garden/Yard"
 }
 
-route PlantSearchRoute {path: "/search", to: PlantSearchPage}
-page PlantSearchPage {
-  authRequired: true,
-  component: import PlantSearch from "@src/components/Garden/PlantSearch/PlantSearch"
-}
-
 route PlantProfileRoute { path: "/yard/:plant", to: PlantProfilePage}
 page PlantProfilePage {
   authRequired: true,
   component: import PlantProfile from "@src/pages/Garden/PlantProfile"
+}
+
+//Search routes
+route PlantSearchRoute {path: "/search", to: PlantSearchPage}
+page PlantSearchPage {
+  authRequired: true,
+  component: import PlantLookUp from "@src/pages/Search/PlantLookUp"
+}
+
+route PlantProfileFromSearchRoute { path: "/search/:plant", to: PlantProfileFromSearchPage }
+page PlantProfileFromSearchPage {
+  authRequired: true,
+  component: import PlantProfileAPI from "@src/pages/Search/PlantProfileAPI"
 }
 
 // -- Calendar routes

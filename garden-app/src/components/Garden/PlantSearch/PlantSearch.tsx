@@ -42,7 +42,7 @@ const PlantSearch = () => {
     }
 
     return (
-        <div className="flex flex-col justify-center mx-auto h-full w-full mt-10 mb-24 space-y-24">
+        <div className="flex flex-col place-content-center h-full w-full space-y-12">
             <input className="flex mx-auto border-black border w-1/3" type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchInput}/>
 
             {isSearching && <div className="flex mx-auto">🔍Searching...🔎</div>}
@@ -51,7 +51,7 @@ const PlantSearch = () => {
                 hasResults && (
                     results.data.map((plant) => (
                         <div key={plant.id} className="border-black border-2 mx-5 w-full h-auto">
-                            <Link to="/yard/:plant" params={{plant: plant.id}} className="flex mx-auto my-4 justify-center">
+                            <Link to="/search/:plant" params={{plant: plant.id}} className="flex mx-auto my-4 justify-center">
                                <p>{plant.common_name && `${plant.common_name} | `}<i>{plant.scientific_name}</i></p>
                             </Link>
                         </div>
