@@ -1,9 +1,36 @@
+import { PlantProfileItems } from "wasp/client/crud"
 import PlantProfile from "../Garden/PlantProfile"
+import { lookForSpecificPlantScientificName } from "wasp/client/operations"
+import { useParams } from "react-router"
+import { IndividualPlantDataType } from "../../api/api"
+import { useState } from "react"
 
 const PlantProfileAPI = () => {
+    const {plant} = useParams()
 
-    const handleAddPlantButton = () => {
+    const createPlantItem = PlantProfileItems.create.useAction()
 
+    const [clickedButton, setClickedButton] = useState(false)
+
+    const handleAddPlantButton = async () => {
+        try {
+            const data: IndividualPlantDataType = await lookForSpecificPlantScientificName(parseInt(plant!))
+            createPlantItem({
+                id: data.id,
+                common_name: data.common_name!,
+                scientific_name: data.scientific_name,
+                slug: data.slug,
+                growth_habit: data.growth_habit,
+                light: data.light,
+                image_url: data.image_url,
+                images: data.images,
+                duration: data.duration
+            })
+        } catch(err) {
+            throw err
+        }
+
+        setClickedButton(true)
     }
 
     return (
@@ -15,7 +42,7 @@ const PlantProfileAPI = () => {
                 <div className="flex m-auto">
                     Add plant to your garden?
                 </div>
-                <button className='border border-green-300 bg-green-300 h-full'>Add Plant</button>
+                {!clickedButton && <button className='border border-green-300 bg-green-300 h-full' onClick={handleAddPlantButton}>Add Plant</button>}
             </div>
         </div>
     )
