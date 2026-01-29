@@ -33,6 +33,11 @@ query searchForPlants {
   fn: import { searchForPlants } from "@src/api/api"
 }
 
+query getAllPlants {
+  fn: import {getAllPlants} from "@src/operations/queries/serverActions",
+  entities: [PlantProfileItem]
+}
+
 query getPlantById {
   fn: import {getPlantById} from "@src/operations/queries/serverActions",
   entities: [PlantProfileItem]
