@@ -1,5 +1,5 @@
 import { PlantProfileItems } from "wasp/client/crud"
-import PlantProfile from "../Garden/PlantProfile"
+import PlantProfile from "./PlantProfile"
 import { lookForSpecificPlantScientificName } from "wasp/client/operations"
 import { useParams } from "react-router"
 import { IndividualPlantDataType } from "../../api/api"
@@ -39,10 +39,14 @@ const PlantProfileAPI = () => {
                 <PlantProfile/>
             </div>
             <div className="flex flex-col m-auto p-10 space-y-5 h-full">
-                <div className="flex m-auto">
-                    Add plant to your garden?
-                </div>
-                {!clickedButton && <button className='border border-green-300 bg-green-300 h-full' onClick={handleAddPlantButton}>Add Plant</button>}
+                {!clickedButton && (
+                    <>
+                        <div className="flex m-auto">
+                            Add plant to your garden?
+                        </div>
+                        <button className='border border-green-300 bg-green-300 h-full' onClick={handleAddPlantButton}>Add Plant</button>
+                    </>
+                )}
             </div>
         </div>
     )

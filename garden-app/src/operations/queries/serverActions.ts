@@ -1,7 +1,12 @@
-import {fetchAllPlants} from "wasp/src/api/api"
+import { type PlantProfileItem } from 'wasp/entities'
+import { type GetPlantById } from 'wasp/server/operations'
 
-// export const getAllPlantData = async (args, context) => {
-//   try {
-//     const allPlantData = fetchAllPlants()
-//   }
-// }
+export const getPlantById: GetPlantById<
+    {id: number},
+    PlantProfileItem | null
+> = async ({id}, context) => {
+    return context.entities.PlantProfileItem.findUnique({
+        where: {id}
+    })
+}
+

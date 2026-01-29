@@ -33,6 +33,11 @@ query searchForPlants {
   fn: import { searchForPlants } from "@src/api/api"
 }
 
+query getPlantById {
+  fn: import {getPlantById} from "@src/operations/queries/serverActions",
+  entities: [PlantProfileItem]
+}
+
 //Routes
 // -- Admin routes
 route LoginRoute { path: "/login", to: LoginPage }
