@@ -43,6 +43,11 @@ query getPlantById {
   entities: [PlantProfileItem]
 }
 
+query getImageItemById {
+  fn: import {getImageItemById} from "@src/operations/queries/serverActions",
+  entities: [ImageItem]
+}
+
 //Routes
 // -- Admin routes
 route LoginRoute { path: "/login", to: LoginPage }
