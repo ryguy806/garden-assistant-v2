@@ -23,7 +23,7 @@ const PlantProfile = () => {
       other: [],
       fruit: []
     },
-    duration: [],
+    duration: [""],
     growth_habit: data.growth_habit,
     light: data.light,
   } : {} as IndividualPlantDataType

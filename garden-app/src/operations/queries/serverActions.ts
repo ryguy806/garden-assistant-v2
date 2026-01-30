@@ -41,7 +41,11 @@ export const getPlantById: GetPlantById<
             },
             include: {
                 images: true,
-                duration: true,
+                duration: {
+                    select: {
+                        duration: true
+                    }
+                }
             },
         });
 
