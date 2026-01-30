@@ -22,19 +22,10 @@ export const getAllPlants: GetAllPlants<void, PlantProfileItem[] | null> = async
 
   try {
     const plants = await context.entities.PlantProfileItem.findMany({
-      include: {
-        user: {
-          select: {
-            id: true,
-          },
-        },
-        images: true,
-        duration: true,
-      },
-      orderBy: {
-        createdDate: 'desc',
-      },
-    });
+        where: {
+            userId: context.user.id
+        }
+    })
 
     return plants;
   } catch (error) {
