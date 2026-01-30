@@ -32,7 +32,7 @@ const PlantProfile = () => {
   if(error) return <div>Error loading plant data: {error.message}</div>
 
   return (
-    <div className=' flex flex-row mx-auto space-x-10 mt-0'>
+    <div className=' flex flex-col m-10 py-10 pb-24 h-screen space-y-10 mt-0'>
       <PlantProfileQuickFacts plantProfile={individualPlantData}/>
     </div>
   );
