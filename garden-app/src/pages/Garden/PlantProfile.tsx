@@ -2,6 +2,8 @@ import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFac
 import { useParams } from "react-router";
 import { getPlantById, useQuery } from "wasp/client/operations";
 import { IndividualPlantDataType } from "../../api/api";
+import JournalView from "wasp/src/pages/Journal/JournalView";
+import { AuthUserData, makeAuthUserIfPossible } from "wasp/auth/user";
 
 const PlantProfile = () => {
 
@@ -33,7 +35,7 @@ const PlantProfile = () => {
 
   return (
     <div className=' flex flex-col m-10 py-10 pb-24 h-screen space-y-10 mt-0'>
-      <PlantProfileQuickFacts plantProfile={individualPlantData}/>
+        <PlantProfileQuickFacts plantProfile={individualPlantData}/>
     </div>
   );
 };
