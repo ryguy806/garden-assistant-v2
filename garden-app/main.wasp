@@ -2,9 +2,12 @@ app Garden_Assistant {
   wasp: {
     version: "^0.20.0"
   },
-  title: "Garden Assistant",
+  title: "BumbleBot Garden App",
   client: {
     rootComponent: import Layout from "@src/Layout/Layout.tsx",
+  },
+  server: {
+    envValidationSchema: import { envValidationSchema } from "@src/env.ts",
   },
   auth: {
     userEntity: User,
@@ -16,7 +19,37 @@ app Garden_Assistant {
   },
 }
 
+
+//Queries
+query getPlantAPIData {
+  fn: import {fetchAllPlants} from "@src/api/api",
+}
+
+query lookForSpecificPlantScientificName {
+  fn: import {lookForSpecificPlantScientificName} from "@src/api/api",
+}
+
+query searchForPlants {
+  fn: import { searchForPlants } from "@src/api/api"
+}
+
+query getAllPlants {
+  fn: import {getAllPlants} from "@src/operations/queries/serverActions",
+  entities: [PlantProfileItem]
+}
+
+query getPlantById {
+  fn: import {getPlantById} from "@src/operations/queries/serverActions",
+  entities: [PlantProfileItem]
+}
+
+query getImageItemById {
+  fn: import {getImageItemById} from "@src/operations/queries/serverActions",
+  entities: [ImageItem]
+}
+
 //Routes
+// -- Admin routes
 route LoginRoute { path: "/login", to: LoginPage }
 page LoginPage {
   component: import  Login  from "@src/Auth/Login"
@@ -27,12 +60,40 @@ page SignupPage {
   component: import  Signup  from "@src/Auth/Signup"
 }
 
+// -- Main route
 route RootRoute { path: "/", to: MainPage }
 page MainPage {
   authRequired: true,
   component: import { MainPage } from "@src/MainPage"
 }
 
+// -- Plant routes
+route YardRoute { path: "/yard", to: YardPage}
+page YardPage {
+  authRequired: true,
+  component: import Yard from "@src/pages/Garden/Yard"
+}
+
+route PlantProfileRoute { path: "/yard/:plant", to: PlantProfilePage}
+page PlantProfilePage {
+  authRequired: true,
+  component: import PlantProfile from "@src/pages/Garden/PlantProfile"
+}
+
+//Search routes
+route PlantSearchRoute {path: "/search", to: PlantSearchPage}
+page PlantSearchPage {
+  authRequired: true,
+  component: import PlantLookUp from "@src/pages/Search/PlantLookUp"
+}
+
+route PlantProfileFromSearchRoute { path: "/search/:plant", to: PlantProfileFromSearchPage }
+page PlantProfileFromSearchPage {
+  authRequired: true,
+  component: import PlantProfileAPI from "@src/pages/Search/PlantProfileAPI"
+}
+
+// -- Calendar routes
 route CalendarRoute { path: "/calendar", to: CalendarPage }
 page CalendarPage {
   authRequired: true,
@@ -57,31 +118,14 @@ page CalendarNewEventDayPage {
   component: import CalendarNewDayEvent from "@src/pages/Calendar/CalendarNewEvent"
 }
 
+// -- Journal routes
 route JournalRoute { path: "/journal", to: JournalPage }
 page JournalPage {
   authRequired: true,
   component: import JournalView  from "@src/pages/Journal/JournalView"
 }
 
-
-route YardRoute { path: "/yard", to: YardPage}
-page YardPage {
-  authRequired: true,
-  component: import Yard from "@src/pages/Garden/Yard"
-}
-
-route PlantProfileRoute { path: "/yard/:plant", to: PlantProfilePage}
-page PlantProfilePage {
-  authRequired: true,
-  component: import PlantProfile from "@src/pages/Garden/PlantProfile"
-}
-
-route AddPlantRoute {path: "/yard/plant-add", to: AddPlantPage}
-page AddPlantPage {
-  authRequired: true,
-  component: import AddPlant from "@src/pages/Garden/AddPlant"
-}
-
+// AUTO CRUD
 crud JournalItems {
   entity: JournalItem,
   operations: {
@@ -111,5 +155,25 @@ crud PlantProfileItems {
       overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
+  }
+}
+
+crud PlantItems {
+  entity: PlantItem,
+  operations: {
+    getAll: {},
+    get: {},
+    create: {
+      overrideFn: import {createPlantItem} from "@src/operations/actions/gardenActions",
+    },
+    update: {}
+  }
+}
+
+crud GardenMapItems {
+  entity: GardenMap,
+  operations: {
+    getAll: {},
+    create: {}
   }
 }

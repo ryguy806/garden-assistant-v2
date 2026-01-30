@@ -1,56 +1,41 @@
-import { PlantProfileItems } from "wasp/client/crud";
-import { titleCase } from "../../components/Breadcrumbs/Breadcrumbs";
+import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFacts";
 import { useParams } from "react-router";
+import { getPlantById, useQuery } from "wasp/client/operations";
+import { IndividualPlantDataType } from "../../api/api";
+import JournalView from "wasp/src/pages/Journal/JournalView";
+import { AuthUserData, makeAuthUserIfPossible } from "wasp/auth/user";
 
 const PlantProfile = () => {
-  const { plant } = useParams<"plant">();
-  const { data, isLoading, error } = PlantProfileItems.getAll.useQuery();
 
-  const plantData = data ? data : [];
+  const { plant } = useParams<"plant">()
+  
+  const { data, isLoading, error} = useQuery(getPlantById, {id: parseInt(plant!)})
 
-  const thisPlant = plantData.filter((plantItem) => plantItem.name === plant);
+  const individualPlantData: IndividualPlantDataType = data ? {
+    id: data.id,
+    common_name: data.common_name,
+    scientific_name: data.scientific_name,
+    slug: data.slug,
+    image_url: data.image_url,
+    images: {
+      flower: [],
+      leaf: [],
+      bark: [],
+      habit: [],
+      other: [],
+      fruit: []
+    },
+    duration: [""],
+    growth_habit: data.growth_habit,
+    light: data.light,
+  } : {} as IndividualPlantDataType
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if(isLoading) return <div>Loading...</div>
+  if(error) return <div>Error loading plant data: {error.message}</div>
 
   return (
-    <div className=' flex flex-col mx-auto space-y-10 mt-24'>
-      <div className='flex flex-row space-x-10 justify-between'>
-        <div>
-          {thisPlant[0].imageURL} *This will be an image in the future.*
-        </div>
-        <div className='flex flex-col'>
-          <div className='text-lg bold'>{thisPlant[0].name}</div>
-          <div className='flex flex-row space-x-3'>
-            <h2>Location:</h2>
-            <p>{thisPlant[0].garden}</p>
-          </div>
-        </div>
-      </div>
-      <div className='flex flex-col space-y-5'>
-        <div className='flex flex-row justify-between'>
-          <h2>Details:</h2>
-          <p>{thisPlant[0].details}</p>
-        </div>
-        <div className='flex flex-row justify-between'>
-          <h2>Fertilizer Needs:</h2>
-          <p>{thisPlant[0].fertilizerNeeds}</p>
-        </div>
-        <div className='flex flex-row justify-between'>
-          <div className='flex flex-row space-x-3'>
-            <h2>Type:</h2>
-            <p>{titleCase(thisPlant[0].type as string)}</p>
-          </div>
-          <div className='flex flex-row space-x-3'>
-            <h2>Group:</h2>
-            <p>{titleCase(thisPlant[0].group)}</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        This is where I will put the notes section. I hope to have it update
-        each individual plant.
-      </div>
+    <div className=' flex flex-col m-10 py-10 pb-24 h-screen space-y-10 mt-0'>
+        <PlantProfileQuickFacts plantProfile={individualPlantData}/>
     </div>
   );
 };
