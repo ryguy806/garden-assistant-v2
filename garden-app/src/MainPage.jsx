@@ -1,14 +1,19 @@
 import { Link } from "wasp/client/router";
 import "./Main.css";
 import bumblebot from './assets/images/BumbleBot.png'
+import bumblebotVid from './assets/vid/BumbleBot.mp4'
 
 export const MainPage = () => {
   
   return (
     <div className='container mx-auto -mt-20'>
       <div className='flex flex-row h-1/2 w-auto space-x-10'>
-        <div className="h-1/4 w-auto">
-          <img src={bumblebot} alt="Bumblebot"/>
+        <div className="h-full w-auto">
+          {/* <img src={bumblebot} alt="Bumblebot"/> */}
+          <video autoPlay muted playsInline>
+            <source src={bumblebotVid} type="video/mp4"/>
+            Your browser does not support this video.
+          </video>
         </div>
         <div className='flex flex-col items-center justify-center mx-auto space-y-2 my-12'>
           <h1 className='text-3xl'>Welcome to BumbleBot!</h1>
