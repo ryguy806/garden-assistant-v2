@@ -3,6 +3,9 @@ app Garden_Assistant {
     version: "^0.20.0"
   },
   title: "BumbleBot Garden App",
+  head: [
+    "<link rel=\"shortcut icon\" href=\"/favicon.ico\" />"
+  ],
   client: {
     rootComponent: import Layout from "@src/Layout/Layout.tsx",
   },
