@@ -9,7 +9,6 @@ export const MainPage = () => {
     <div className='container mx-auto -mt-20'>
       <div className='flex flex-row h-1/2 w-auto space-x-10'>
         <div className="h-full w-auto">
-          {/* <img src={bumblebot} alt="Bumblebot"/> */}
           <video autoPlay muted playsInline>
             <source src={bumblebotVid} type="video/mp4"/>
             Your browser does not support this video.
