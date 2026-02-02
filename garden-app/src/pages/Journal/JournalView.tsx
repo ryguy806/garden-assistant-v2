@@ -1,6 +1,6 @@
 import JournalList from "./JournalList";
 import { AuthUser } from "wasp/auth";
-import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import { Dispatch, FC, SubmitEvent, SetStateAction, useState } from "react";
 import { JournalItems } from "wasp/client/crud";
 
 const JournalView = ({ user }: { user: AuthUser }) => {
@@ -77,7 +77,7 @@ export const capitalizeWords = (str: string) =>  {
 
 const JournalItemForm: FC<JournalItemFormProps> = ({ setAddEntry }) => {
   const createJournalItem = JournalItems.create.useAction();
-  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const target = event.target as HTMLFormElement;
