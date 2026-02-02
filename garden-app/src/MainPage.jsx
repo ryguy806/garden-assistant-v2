@@ -19,7 +19,7 @@ export const MainPage = () => {
             </p>
             <div className='flex flex-row justify-center items-center'>
               <div className="flex border-2 mx-auto justify-center p-5">
-                <Link to='/yard'>My Plants</Link>
+                <Link to='/yard'>My Plants  </Link>
               </div>
               <div className="flex border-2 mx-auto justify-center p-5">
                 <Link to='/search'>Plant Look-up</Link>
