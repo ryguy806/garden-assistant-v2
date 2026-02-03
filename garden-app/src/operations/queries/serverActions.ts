@@ -40,14 +40,21 @@ export const getPlantById: GetPlantById<
                 id: id,
             },
             include: {
-                images: true,
-                duration: {
-                    select: {
-                        duration: true
+                images: {
+                    include: {
+                        fruit: true,
+                        leaf: true,
+                        habit: true,
+                        bark: true,
+                        other: true,
+                        flower: true  
                     }
-                }
+                },
+                duration: true,
             },
         });
+
+        console.log("Plant duration from API: ", plant?.duration)
 
         if (!plant) {
             throw new HttpError(404, 'Plant not found');
@@ -68,6 +75,10 @@ export const getAllPlants: GetAllPlants<void, PlantProfileItem[] | null> = async
     const plants = await context.entities.PlantProfileItem.findMany({
         where: {
             userId: context.user.id
+        },
+        include: {
+            images: true,
+            duration: true
         }
     })
 
