@@ -1,16 +1,36 @@
 import { Link } from "wasp/client/router";
+import {useRef, useEffect} from "react"
 import "./Main.css";
-import bumblebot from './assets/images/BumbleBot.png'
 import bumblebotVid from './assets/vid/BumbleBot.mp4'
 
 export const MainPage = () => {
   
+  const videoRef = useRef(null);
+
+  // useEffect(() => {
+  //   let intervalId = null
+
+  //   const tryToPlayVideo = () => {
+  //     if(videoRef.current) {
+  //       videoRef.current.currentTime = 0
+  //     }
+  //   }
+
+  //   intervalId = setInterval(tryToPlayVideo(), 60000)
+
+  //   return () => {
+  //     if (intervalId) {
+  //       clearInterval(intervalId)
+  //     }
+  //   }
+  // })
+
   return (
     <div className='container mx-auto -mt-20'>
       <div className='flex flex-row h-1/2 w-auto space-x-10'>
         <div className="h-full w-auto">
           <video autoPlay muted playsInline>
-            <source src={bumblebotVid} type="video/mp4"/>
+            <source ref={videoRef} src={bumblebotVid} type="video/mp4"/>
             Your browser does not support this video.
           </video>
         </div>

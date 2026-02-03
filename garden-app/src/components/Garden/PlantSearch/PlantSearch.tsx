@@ -25,7 +25,10 @@ const PlantSearch = () => {
                     setIsSearching(false)
                     setHasResults(true)
                 }
-        }}
+        } else {
+            setHasResults(false)
+        }
+    }
 
         if(debouncedSearchTerm && debouncedSearchTerm.length >= 3 ) {
             setIsSearching(true)
@@ -35,20 +38,20 @@ const PlantSearch = () => {
             setResults({} as RawDataType)
         }
 
-    }, [debouncedSearchTerm])
+    }, [debouncedSearchTerm, searchTerm])
 
     const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value)
     }
 
     return (
-        <div className="flex flex-col place-content-center h-full w-full space-y-12">
-            <input className="flex mx-auto border-black border w-1/3" type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchInput}/>
+        <div className="flex flex-col h-full w-full">
+            <input className="flex mx-auto border-black border w-1/3 p-1 pl-2" type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchInput}/>
 
-            {isSearching && <div className="flex mx-auto">🔍Searching...🔎</div>}
+            {isSearching && <div className="flex mx-auto">Searching...🔎🌱</div>}
             <div className="flex flex-col space-y-3 text-black mx-auto justify-center">
             {
-                hasResults && (
+                hasResults ? (
                     results.data.map((plant) => (
                         <div key={plant.id} className="border-black border-2 mx-5 w-full h-auto">
                             <Link to="/search/:plant" params={{plant: plant.id}} className="flex mx-auto my-4 justify-center">
@@ -56,7 +59,7 @@ const PlantSearch = () => {
                             </Link>
                         </div>
                     ))
-                )
+                ) : (<div>No results found.</div>)
             }
             </div>
         </div>

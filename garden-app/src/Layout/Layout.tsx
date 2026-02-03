@@ -10,7 +10,7 @@ const Layout = ({ children }: any) => {
         <Header />
         <Breadcrumbs />
       </div>
-      <div className='flex flex-col object-fill'>
+      <div className='flex flex-col object-fill px-10'>
         <div className='flex h-auto'>
           <Outlet />
         </div>
