@@ -42,10 +42,10 @@ export const MainPage = () => {
               Manage your garden better with plant identification and garden management!
             </p>
             <div className='flex flex-row justify-center items-center'>
-              <div className="flex border-2 mx-auto justify-center p-5">
+              <div className="flex border-2 mx-auto justify-center p-5 hover:ring-2 ring-yellow-500">
                 <Link to='/yard'>My Plants  </Link>
               </div>
-              <div className="flex border-2 mx-auto justify-center p-5">
+              <div className="flex border-2 mx-auto justify-center p-5 hover:ring-2 ring-yellow-500">
                 <Link to='/search'>Plant Look-up</Link>
               </div>
               {/* <div>

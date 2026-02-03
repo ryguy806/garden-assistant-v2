@@ -53,7 +53,7 @@ const PlantSearch = () => {
             {
                 hasResults ? (
                     results.data.map((plant) => (
-                        <div key={plant.id} className="border-black border-2 mx-5 w-full h-auto">
+                        <div key={plant.id} className="mx-5 w-full h-auto hover:ring-2 ring-yellow-500 first:mt-5">
                             <Link to="/search/:plant" params={{plant: plant.id}} className="flex mx-auto my-4 justify-center">
                                <p>{plant.common_name && `${plant.common_name} | `}<i>{plant.scientific_name}</i></p>
                             </Link>
