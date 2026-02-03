@@ -54,8 +54,6 @@ export const getPlantById: GetPlantById<
             },
         });
 
-        console.log("Plant duration from API: ", plant?.duration)
-
         if (!plant) {
             throw new HttpError(404, 'Plant not found');
         }
