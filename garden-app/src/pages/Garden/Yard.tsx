@@ -17,7 +17,7 @@ const Yard = () => {
 
   const {data, isLoading, error} = useQuery(getAllPlants)
 
-  const plants = data ? data : []
+  const plants = data ? data.sort((a, b) => a.scientific_name.localeCompare(b.scientific_name)) : []
   
   if(isLoading) return <div className="bg-green-300 text-3xl">Loading...</div>
   if(error) return <div className="bg-red-300 text-3xl font-bold">Error loading data: {error.message}</div>
