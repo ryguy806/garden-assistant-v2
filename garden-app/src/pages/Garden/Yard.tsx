@@ -28,7 +28,7 @@ const Yard = () => {
       <div className="flex flex-col justify-center mx-auto space-y-10 first:mt-10">
         {plants.map((plant) => (
           <div key={plant.id} className="flex justify-center mx-10 p-4 hover:ring-2 ring-yellow-500">
-            <Link to="/yard/:plant" params={{plant: plant.id}}>
+            <Link to="/garden/:plant" params={{plant: plant.id}}>
               {plant.common_name && `${plant.common_name} | `}{plant.scientific_name}
             </Link>
           </div>
