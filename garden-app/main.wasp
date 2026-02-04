@@ -3,6 +3,9 @@ app Garden_Assistant {
     version: "^0.20.0"
   },
   title: "BumbleBot Garden App",
+  head: [
+    "<link rel=\"shortcut icon\" href=\"/favicon.ico\" />"
+  ],
   client: {
     rootComponent: import Layout from "@src/Layout/Layout.tsx",
   },
@@ -68,13 +71,13 @@ page MainPage {
 }
 
 // -- Plant routes
-route YardRoute { path: "/yard", to: YardPage}
+route YardRoute { path: "/garden", to: YardPage}
 page YardPage {
   authRequired: true,
   component: import Yard from "@src/pages/Garden/Yard"
 }
 
-route PlantProfileRoute { path: "/yard/:plant", to: PlantProfilePage}
+route PlantProfileRoute { path: "/garden/:plant", to: PlantProfilePage}
 page PlantProfilePage {
   authRequired: true,
   component: import PlantProfile from "@src/pages/Garden/PlantProfile"

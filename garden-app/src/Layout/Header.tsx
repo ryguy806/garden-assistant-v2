@@ -12,7 +12,7 @@ const Header = () => {
             onClick={logout}
             className='text-white p-2'
           >
-            (Logout)
+            Logout
           </button>
         ) : (
           <Link to='/login'>

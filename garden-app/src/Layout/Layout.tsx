@@ -5,12 +5,12 @@ import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs";
 
 const Layout = ({ children }: any) => {
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen bg-[#F2F5F3]'>
       <div className='sticky top-0 w-full flex-flex-col z-10'>
         <Header />
         <Breadcrumbs />
       </div>
-      <div className='flex flex-col object-fill'>
+      <div className='flex flex-col object-fill px-10'>
         <div className='flex h-auto'>
           <Outlet />
         </div>
