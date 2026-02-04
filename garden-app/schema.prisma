@@ -15,6 +15,7 @@ model User {
   calendarItems CalendarItem[]
   gardenMaps GardenMap[]
   plantProfileItems PlantProfileItem[]
+  perenualPlantProfileItem PerenualPlantProfileItem[]
 }
 
 model JournalItem {
@@ -124,6 +125,46 @@ model PlantProfileItem {
   growth_habit String?
   light Int?
   image_url String?
+}
+
+model PerenualPlantProfileItem {
+  id Int @id
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  createdDate DateTime @default(now())
+  default_image String
+  common_name String
+  scientific_name String
+  type String
+  dimensions DimensionsItem[]
+  cycle String
+  watering String
+  description String
+  soil String
+  sunlight SunlightItem[]
+  hardiness HardinessItem?
+}
+
+model SunlightItem {
+  id Int @id @unique
+  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
+  value String
+}
+
+model HardinessItem {
+  id Int @id @unique
+  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
+  min Int
+  max Int
+}
+
+model DimensionsItem {
+  id Int @id @unique
+  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
+  type String?
+  min_value Float
+  max_value Float
+  unit String
 }
 
 model PlantItem {

@@ -46,6 +46,17 @@ query getPlantById {
   entities: [PlantProfileItem]
 }
 
+
+query getAllPerenualPlants {
+  fn: import {getAllPerenualPlants} from "@src/operations/queries/newServerActions",
+  entities: [PerenualPlantProfileItem]
+}
+
+query getPerenualPlantById {
+  fn: import {getPerenualPlantById} from "@src/operations/queries/newServerActions",
+  entities: [PerenualPlantProfileItem]
+}
+
 query getImageItemById {
   fn: import {getImageItemById} from "@src/operations/queries/serverActions",
   entities: [ImageItem]
