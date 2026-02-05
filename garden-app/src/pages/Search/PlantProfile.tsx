@@ -1,21 +1,22 @@
 import PlantProfileQuickFacts from "../../components/Garden/PlantProfileQuickFacts";
 import { IndividualPlantDataType } from "../../api/api";
+import {PerenualIndividualPlantDataType} from "../../api/newApi"
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { lookForSpecificPlantScientificName } from "wasp/client/operations";
+import { lookForSpecificPlantScientificName, lookForSpecificPerenualPlantScientificName } from "wasp/client/operations";
 
 const PlantProfile = () => {
 
   const { plant } = useParams<"plant">()
 
-  const [individualPlantData, setIndividualPlantData] = useState<IndividualPlantDataType | null>(null)
+  const [individualPlantData, setIndividualPlantData] = useState<PerenualIndividualPlantDataType | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
   
     useEffect(() => {
   
       const getIndividualPlantData = async () => {
-        const individualAPIPlantData: IndividualPlantDataType = await lookForSpecificPlantScientificName(parseInt(plant!))
+        const individualAPIPlantData: PerenualIndividualPlantDataType = await lookForSpecificPerenualPlantScientificName(parseInt(plant!))
         setIndividualPlantData(individualAPIPlantData)
         setIsLoading(false)
       }
