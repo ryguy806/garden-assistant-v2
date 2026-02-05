@@ -28,12 +28,24 @@ query getPlantAPIData {
   fn: import {fetchAllPlants} from "@src/api/api",
 }
 
+query fetchAllPerenualPlants {
+  fn: import {fetchAllPerenualPlants} from "@src/api/newApi",
+}
+
 query lookForSpecificPlantScientificName {
   fn: import {lookForSpecificPlantScientificName} from "@src/api/api",
 }
 
+query lookForSpecificPerenualPlantScientificName {
+  fn: import {lookForSpecificPerenualPlantScientificName} from "@src/api/newApi"
+}
+
 query searchForPlants {
   fn: import { searchForPlants } from "@src/api/api"
+}
+
+query searchForPerenualPlants {
+  fn: import { searchForPerenualPlants } from "@src/api/newApi"
 }
 
 query getAllPlants {

@@ -197,7 +197,7 @@ export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]>
 //GET THE ID FROM THE SCIENTIFIC NAME, THEN pass along the ID to get the specific plant!
 export const searchForPerenualPlants = async (searchTerm: string) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/search?q=${searchTerm}&&token=${env.API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}/search?q=${searchTerm}&&key=${env.NEW_API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData: PerenualRawDataType = await response.json()
 
@@ -208,7 +208,7 @@ export const searchForPerenualPlants = async (searchTerm: string) => {
     }
 }
 
-export const lookForSpecificPlantScientificName = async (plantID: number): Promise<PerenualIndividualPlantDataType> => {
+export const lookForSpecificPerenualPlantScientificName = async (plantID: number): Promise<PerenualIndividualPlantDataType> => {
     let specificPlant: PerenualIndividualPlantDataType = {} as PerenualIndividualPlantDataType
 
     try {
