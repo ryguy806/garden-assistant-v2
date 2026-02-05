@@ -10,12 +10,7 @@ const PlantSearch = () => {
     const [searchTerm, setSearchTerm] = useState("")
 
     const debouncedSearchTerm = useDebounce(toSentenceCase(searchTerm), 500)
-    const [results, setResults] = useState<PerenualRawDataType>({data: [] as unknown as PerenualRawDataType["data"], to: 0,
-    per_page: 0,
-    current_page: 0,
-    from: 0,
-    last_page: 0,
-    total: 0})
+    const [results, setResults] = useState<PerenualRawDataType>({data: [] as unknown as PerenualRawDataType["data"], to: 0, per_page: 0, current_page: 0, from: 0, last_page: 0, total: 0})
     const [isSearching, setIsSearching] = useState(false)
     const [hasResults, setHasResults] = useState(false)
 
