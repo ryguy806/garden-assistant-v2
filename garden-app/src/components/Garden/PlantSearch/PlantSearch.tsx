@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useDebounce from "./useDebounce";
-import { RawDataType } from "wasp/src/api/api";
-import { searchForPlants } from "wasp/client/operations";
+import { PerenualRawDataType } from "../../../api/newApi";
+import { searchForPerenualPlants } from "wasp/client/operations";
 import { Link } from "wasp/client/router";
 import { toSentenceCase } from "../../../pages/Journal/JournalView";
 
@@ -10,7 +10,12 @@ const PlantSearch = () => {
     const [searchTerm, setSearchTerm] = useState("")
 
     const debouncedSearchTerm = useDebounce(toSentenceCase(searchTerm), 500)
-    const [results, setResults] = useState<RawDataType>({data: [] as unknown as RawDataType["data"], links: {first: "", last: "", next: "", self: ""}, meta: {total: 0}})
+    const [results, setResults] = useState<PerenualRawDataType>({data: [] as unknown as PerenualRawDataType["data"], to: 0,
+    per_page: 0,
+    current_page: 0,
+    from: 0,
+    last_page: 0,
+    total: 0})
     const [isSearching, setIsSearching] = useState(false)
     const [hasResults, setHasResults] = useState(false)
 
@@ -19,7 +24,7 @@ const PlantSearch = () => {
         const getPlantData = async (search: string) => {
         //Add way to stop the search if string is empty.
             if (search.length >=3) {
-                const rawPlantData: RawDataType = await searchForPlants(search)
+                const rawPlantData: PerenualRawDataType = await searchForPerenualPlants(search)
                 setResults(rawPlantData)
                 if (results.data.length >= 1) {
                     setIsSearching(false)
@@ -35,7 +40,7 @@ const PlantSearch = () => {
             setHasResults(false)
             getPlantData(debouncedSearchTerm)
         } else {
-            setResults({} as RawDataType)
+            setResults({} as PerenualRawDataType)
         }
 
     }, [debouncedSearchTerm, searchTerm])

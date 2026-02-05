@@ -3,7 +3,7 @@ import { env } from "wasp/server";
 
 export const API_BASE_URL = 'https://perenual.com/api/v2/'
 
-type PerenualPlantDataType = {
+export type PerenualPlantDataType = {
     data: {
         id: number,
         default_image: string,
@@ -12,7 +12,7 @@ type PerenualPlantDataType = {
     }
 }
 
-type PerenualRawDataType = {
+export type PerenualRawDataType = {
     data: {
         id: number,
         common_name: string,
@@ -45,7 +45,7 @@ type PerenualRawDataType = {
     total: number
 }
 
-type PerenualIndividualPlantDataType = {
+export type PerenualIndividualPlantDataType = {
  data: {
         id: number,
         default_image: string,
@@ -70,7 +70,7 @@ type PerenualIndividualPlantDataType = {
     }
 }
 
-type PerenualIndividualRawDataType = {
+export type PerenualIndividualRawDataType = {
     data: {
         id: number,
         common_name: string,
