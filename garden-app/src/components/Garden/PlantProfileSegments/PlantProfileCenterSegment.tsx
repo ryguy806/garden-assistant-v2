@@ -2,21 +2,13 @@ import { ImageFieldType } from "../../../api/api";
 import PlantPhotosModule from "../PlantProfileModules/Sections/PlantPhotosModule";
 
 type PlantProfilePhotoProps = {
-    plantPhotos: {
-        "flower": ImageFieldType[],
-        "leaf": ImageFieldType[],
-        "habit": ImageFieldType[],
-        "fruit": ImageFieldType[],
-        "bark": ImageFieldType[],
-        "other": ImageFieldType[]
-    },
-    image_url: string | null
+    image_url: string 
 }
 
-const PlantProfileCenterSegment = ({plantPhotos, image_url}: PlantProfilePhotoProps) => {
+const PlantProfileCenterSegment = ({image_url}: PlantProfilePhotoProps) => {
     return (
         <div className='flex w-1/2 flex-col h-full mx-4'>
-            <PlantPhotosModule plantPhotos={plantPhotos} image_url={image_url}/>
+            <PlantPhotosModule image_url={image_url}/>
         </div>
     )
 }
