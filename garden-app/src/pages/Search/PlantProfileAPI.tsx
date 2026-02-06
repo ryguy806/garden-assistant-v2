@@ -24,11 +24,12 @@ const PlantProfileAPI = () => {
                 cycle: data.data.cycle,
                 type: data.data.type,
                 default_image: data.data.default_image,
-                soil: data.data.soil[0],
+                soil: data.data.soil,
                 dimensions: data.data.dimensions,
-                sunlight: data.data.sunlight[0],
+                sunlight: data.data.sunlight,
                 watering: data.data.watering,
-                hardiness: data.data.hardiness
+                hardiness: data.data.hardiness,
+                description: data.data.description
             })
         } catch(err) {
             throw err

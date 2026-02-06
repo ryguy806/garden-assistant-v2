@@ -161,7 +161,7 @@ model HardinessItem {
 model DimensionsItem {
   id Int @id @unique
   plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
-  type String?
+  type String
   min_value Float
   max_value Float
   unit String

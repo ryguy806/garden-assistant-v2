@@ -1,4 +1,4 @@
-import { PlantProfileItem, PlantItem, PerenualPlantProfileItem } from "wasp/entities";
+import { PlantProfileItem, PlantItem, PerenualPlantProfileItem, DimensionsItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
 import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems";
 import {PerenualPlantProfileItems} from "wasp/server/crud/PerenualPlantProfileItems"
@@ -64,6 +64,15 @@ type CreatePerenualPlantProfileInput = {
   }[],
   watering: string,
   sunlight: string
+}
+
+type DimensionType = {
+  item: {
+    type: string,
+    min_value: number,
+    max_value: number,
+    unit: string
+  }
 }
 
 // export const createPlantProfileItem: PlantProfileItems.CreateAction<
@@ -249,17 +258,34 @@ export const createPerenualPlantProfileItem: PerenualPlantProfileItems.CreateAct
   return await PerenualPlantProfileItem.create({
     data: {
       id,
+      userId: context.user.id,
       common_name,
       scientific_name,
-      hardiness,
+      hardiness: {
+        create: {
+          min: hardiness.min,
+          max: hardiness.max
+        }
+      },
       type,
       cycle,
       default_image,
       watering,
       description,
       soil,
-      dimensions,
-      sunlight
+      dimensions: dimensions && dimensions.length > 0 ? {
+        create: dimensions.map((item) => ({
+          type: item.type,
+          min_value: item.min_value,
+          max_value: item.max_value,
+          unit: item.unit
+        }))
+      } : undefined,
+      sunlight: {
+        create: {
+          value: sunlight
+        }
+      }
     }
   });
 };
