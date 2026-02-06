@@ -1,6 +1,7 @@
-import { PlantProfileItem, PlantItem } from "wasp/entities";
+import { PlantProfileItem, PlantItem, PerenualPlantProfileItem } from "wasp/entities";
 import { HttpError } from "wasp/server";
 import { PlantProfileItems } from "wasp/server/crud/PlantProfileItems";
+import {PerenualPlantProfileItems} from "wasp/server/crud/PerenualPlantProfileItems"
 import { PlantItems } from "wasp/server/crud/PlantItems";
 import { ImageFieldType } from "../../api/api";
 
@@ -40,6 +41,29 @@ type CreatePlantItemInput = {
   common_name: string;
   scientific_name: string;
   slug: string
+}
+
+type CreatePerenualPlantProfileInput = {
+  id: number,
+  common_name: string,
+  scientific_name: string,
+  type: string,
+  cycle: string,
+  description: string,
+  default_image: string,
+  hardiness: {
+    min: number,
+    max: number,
+  },
+  soil: string,
+  dimensions: {
+    type: string,
+    min_value: number,
+    max_value: number,
+    unit: string,
+  }[],
+  watering: string,
+  sunlight: string
 }
 
 // export const createPlantProfileItem: PlantProfileItems.CreateAction<
@@ -197,3 +221,45 @@ export const createPlantItem: PlantItems.CreateAction<
   });
 };
 
+export const createPerenualPlantProfileItem: PerenualPlantProfileItems.CreateAction<
+  CreatePerenualPlantProfileInput,
+  PerenualPlantProfileItem
+> = async (args, context) => {
+  if (!context.user) {
+    throw new HttpError(401, "Access denied");
+  }
+
+  const {
+    id,
+    common_name,
+    scientific_name,
+    hardiness,
+    type,
+    cycle,
+    default_image,
+    watering,
+    description,
+    soil,
+    dimensions,
+    sunlight
+  } = args;
+
+  const { PerenualPlantProfileItem } = context.entities;
+
+  return await PerenualPlantProfileItem.create({
+    data: {
+      id,
+      common_name,
+      scientific_name,
+      hardiness,
+      type,
+      cycle,
+      default_image,
+      watering,
+      description,
+      soil,
+      dimensions,
+      sunlight
+    }
+  });
+};

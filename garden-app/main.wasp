@@ -184,6 +184,18 @@ crud PlantProfileItems {
   }
 }
 
+crud PerenualPlantProfileItems {
+  entity: PerenualPlantProfileItem,
+  operations: {
+    getAll: {},
+    get: {},
+    create: {
+      overrideFn: import {createPerenualPlantProfileItem} from "@src/operations/actions/gardenActions",
+    },
+    update: {}
+  }
+}
+
 crud PlantItems {
   entity: PlantItem,
   operations: {
