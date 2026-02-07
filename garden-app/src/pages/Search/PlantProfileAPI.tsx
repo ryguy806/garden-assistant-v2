@@ -21,6 +21,7 @@ const PlantProfileAPI = () => {
             const plantData: PerenualIndividualPlantDataType = await lookForSpecificPerenualPlantScientificName(parseInt(plant!))
             setIndividualPlantData(plantData)
             setIsLoading(false)
+            console.log(plantData)
         }
 
         try {

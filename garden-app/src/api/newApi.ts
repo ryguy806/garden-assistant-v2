@@ -216,29 +216,29 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
-        const rawData: PerenualIndividualRawDataType = await response.json()
+        const rawData = await response.json()
 
-        console.log(rawData)
-    
         specificPlant = {
            data: {
-            id: rawData.data.id,
-            common_name: rawData.data.common_name,
-            scientific_name: rawData.data.scientific_name[0],
-            default_image: rawData.data.default_image.original_url,
+            id: rawData.id,
+            common_name: rawData.common_name,
+            scientific_name: rawData.scientific_name[0],
+            default_image: rawData.default_image.original_url,
             hardiness: {
-                min: parseInt(rawData.data.hardiness.min),
-                max: parseInt(rawData.data.hardiness.max),
+                min: parseInt(rawData.hardiness.min),
+                max: parseInt(rawData.hardiness.max),
             },
-            watering: rawData.data.watering,
-            sunlight: rawData.data.sunlight[0],
-            cycle: rawData.data.cycle,
-            description: rawData.data.description,
-            dimensions: rawData.data.dimensions,
-            soil: rawData.data.soil[0],
-            type: rawData.data.type
+            watering: rawData.watering,
+            sunlight: rawData.sunlight[0],
+            cycle: rawData.cycle,
+            description: rawData.description,
+            dimensions: rawData.dimensions,
+            soil: rawData.soil[0],
+            type: rawData.type
            }
         }
+
+        console.log(specificPlant)
 
         return specificPlant
     } catch (err) {
