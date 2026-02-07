@@ -3,7 +3,6 @@ import { Link } from "wasp/client/router";
 
 const Yard = () => {
 
-  // const {data, isLoading, error} = useQuery(getAllPlants)
   const {data, isLoading, error} = useQuery(getAllPerenualPlants)
 
   const plants = data ? data.sort((a, b) => a.scientific_name.localeCompare(b.scientific_name)) : []

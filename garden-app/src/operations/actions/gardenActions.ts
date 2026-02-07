@@ -25,15 +25,6 @@ type CreatePerenualPlantProfileInput = {
   sunlight: string
 }
 
-type DimensionType = {
-  item: {
-    type: string,
-    min_value: number,
-    max_value: number,
-    unit: string
-  }
-}
-
 export const createPerenualPlantProfileItem: PerenualPlantProfileItems.CreateAction<
   CreatePerenualPlantProfileInput,
   PerenualPlantProfileItem
