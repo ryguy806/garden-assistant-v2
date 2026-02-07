@@ -141,14 +141,8 @@ model PerenualPlantProfileItem {
   watering String
   description String
   soil String
-  sunlight SunlightItem[]
+  sunlight String
   hardiness HardinessItem?
-}
-
-model SunlightItem {
-  id Int @id @unique
-  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
-  value String
 }
 
 model HardinessItem {

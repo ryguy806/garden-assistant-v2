@@ -1,9 +1,8 @@
-import { PerenualPlantProfileItems, PlantProfileItems } from "wasp/client/crud"
+import { PerenualPlantProfileItems } from "wasp/client/crud"
 import PlantProfile from "./PlantProfile"
-import { lookForSpecificPerenualPlantScientificName, lookForSpecificPlantScientificName } from "wasp/client/operations"
+import { lookForSpecificPerenualPlantScientificName } from "wasp/client/operations"
 import { useParams } from "react-router"
-import { IndividualPlantDataType } from "../../api/api"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PerenualIndividualPlantDataType } from "../../api/newApi"
 
 const PlantProfileAPI = () => {
@@ -13,23 +12,41 @@ const PlantProfileAPI = () => {
     const createPerenualPlantItem = PerenualPlantProfileItems.create.useAction()
 
     const [clickedButton, setClickedButton] = useState(false)
+    const [individualPlantData, setIndividualPlantData] = useState<PerenualIndividualPlantDataType>({} as PerenualIndividualPlantDataType)
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        const getIndividualPlantData = async () => {
+            const plantData: PerenualIndividualPlantDataType = await lookForSpecificPerenualPlantScientificName(parseInt(plant!))
+            setIndividualPlantData(plantData)
+            setIsLoading(false)
+        }
+
+        try {
+            getIndividualPlantData().catch((err) => {
+                setError(err)
+            })
+        } catch (err) {
+            throw err
+        }
+    }, [])
 
     const handleAddPlantButton = async () => {
         try {
-            const data: PerenualIndividualPlantDataType = await lookForSpecificPerenualPlantScientificName(parseInt(plant!))
             createPerenualPlantItem({
-                id: data.data.id,
-                common_name: data.data.common_name!,
-                scientific_name: data.data.scientific_name,
-                cycle: data.data.cycle,
-                type: data.data.type,
-                default_image: data.data.default_image,
-                soil: data.data.soil[0],
-                dimensions: data.data.dimensions,
-                sunlight: data.data.sunlight[0],
-                watering: data.data.watering,
-                hardiness: data.data.hardiness,
-                description: data.data.description
+                id: individualPlantData.data.id,
+                common_name: individualPlantData.data.common_name!,
+                scientific_name: individualPlantData.data.scientific_name,
+                cycle: individualPlantData.data.cycle,
+                type: individualPlantData.data.type,
+                default_image: individualPlantData.data.default_image,
+                soil: individualPlantData.data.soil[0],
+                dimensions: individualPlantData.data.dimensions,
+                sunlight: individualPlantData.data.sunlight[0],
+                watering: individualPlantData.data.watering,
+                hardiness: individualPlantData.data.hardiness,
+                description: individualPlantData.data.description
             })
         } catch(err) {
             throw err
@@ -38,10 +55,13 @@ const PlantProfileAPI = () => {
         setClickedButton(true)
     }
 
+    if(isLoading) return (<div>Loading...</div>)
+    if(error) return (<div>Error: {error}</div>)
+
     return (
         <div className="flex flex-col h-full ">
             <div className="flex m-auto size-full object-fill">
-                <PlantProfile/>
+                <PlantProfile individualPlantData={individualPlantData}/>
             </div>
             <div className="flex flex-col m-auto p-10 space-y-5 h-full">
                 {!clickedButton && (

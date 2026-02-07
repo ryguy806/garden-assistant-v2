@@ -281,11 +281,7 @@ export const createPerenualPlantProfileItem: PerenualPlantProfileItems.CreateAct
           unit: item.unit
         }))
       } : undefined,
-      sunlight: {
-        create: {
-          value: sunlight
-        }
-      }
+      sunlight
     }
   });
 };

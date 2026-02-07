@@ -5,29 +5,11 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { lookForSpecificPlantScientificName, lookForSpecificPerenualPlantScientificName } from "wasp/client/operations";
 
-const PlantProfile = () => {
+type PlantProfileProps = {
+  individualPlantData: PerenualIndividualPlantDataType
+}
 
-  const { plant } = useParams<"plant">()
-
-  const [individualPlantData, setIndividualPlantData] = useState<PerenualIndividualPlantDataType | null>(null)
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-  
-    useEffect(() => {
-  
-      const getIndividualPlantData = async () => {
-        const individualAPIPlantData: PerenualIndividualPlantDataType = await lookForSpecificPerenualPlantScientificName(parseInt(plant!))
-        setIndividualPlantData(individualAPIPlantData)
-        setIsLoading(false)
-      }
-  
-      getIndividualPlantData().catch((err) => {
-        setError(err.message)
-      })
-    }, [])
-
-    if(error) return <div>Error: {error}</div>
-    if(isLoading) return <div>Loading data...</div>
+const PlantProfile = ({individualPlantData}: PlantProfileProps ) => {
 
   return (
     <div className=' flex flex-row mx-auto space-x-10 mt-0'>

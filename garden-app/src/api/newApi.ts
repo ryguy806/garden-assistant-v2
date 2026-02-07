@@ -61,8 +61,8 @@ export type PerenualIndividualPlantDataType = {
         cycle: string,
         watering: string,
         description: string,
-        soil: string[],
-        sunlight: string[],
+        soil: string,
+        sunlight: string,
         hardiness: {
             min: number,
             max: number
@@ -217,6 +217,8 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
             throw new Error(`Response Error status: ${response.status}`)
         }
         const rawData: PerenualIndividualRawDataType = await response.json()
+
+        console.log(rawData)
     
         specificPlant = {
            data: {
@@ -229,11 +231,11 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
                 max: parseInt(rawData.data.hardiness.max),
             },
             watering: rawData.data.watering,
-            sunlight: rawData.data.sunlight,
+            sunlight: rawData.data.sunlight[0],
             cycle: rawData.data.cycle,
             description: rawData.data.description,
             dimensions: rawData.data.dimensions,
-            soil: rawData.data.soil,
+            soil: rawData.data.soil[0],
             type: rawData.data.type
            }
         }

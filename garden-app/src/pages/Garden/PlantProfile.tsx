@@ -44,9 +44,9 @@ const PlantProfile = () => {
       },
       default_image: data.default_image,
       description: data.description,
-      soil: [data.soil],
+      soil: data.soil,
       dimensions: [],
-      sunlight: ['7'],
+      sunlight: data.sunlight,
       watering: data.watering,
     }
   } : {} as PerenualIndividualPlantDataType

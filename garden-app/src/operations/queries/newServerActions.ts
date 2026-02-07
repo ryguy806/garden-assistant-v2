@@ -16,7 +16,6 @@ export const getPerenualPlantById: GetPerenualPlantById<
             },
             include: {
                 hardiness: true,
-                sunlight: true
             }
         });
 
