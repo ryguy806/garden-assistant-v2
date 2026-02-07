@@ -8,7 +8,6 @@ import { PerenualIndividualPlantDataType } from "../../api/newApi"
 const PlantProfileAPI = () => {
     const {plant} = useParams()
 
-    // const createPlantItem = PlantProfileItems.create.useAction()
     const createPerenualPlantItem = PerenualPlantProfileItems.create.useAction()
 
     const [clickedButton, setClickedButton] = useState(false)
@@ -34,7 +33,6 @@ const PlantProfileAPI = () => {
     }, [])
 
     const handleAddPlantButton = async () => {
-        console.log(individualPlantData.data.soil)
         try {
             createPerenualPlantItem({
                 id: individualPlantData.data.id,
