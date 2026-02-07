@@ -18,7 +18,7 @@ const PlantSearch = () => {
 
         const getPlantData = async (search: string) => {
         //Add way to stop the search if string is empty.
-            if (search.length >=3) {
+            if (search.split().length >=3) {
                 const rawPlantData: PerenualRawDataType = await searchForPerenualPlants(search)
                 setResults(rawPlantData)
                 if (results.data.length >= 1) {

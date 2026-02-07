@@ -24,9 +24,9 @@ const PlantProfileAPI = () => {
                 cycle: data.data.cycle,
                 type: data.data.type,
                 default_image: data.data.default_image,
-                soil: data.data.soil,
+                soil: data.data.soil[0],
                 dimensions: data.data.dimensions,
-                sunlight: data.data.sunlight,
+                sunlight: data.data.sunlight[0],
                 watering: data.data.watering,
                 hardiness: data.data.hardiness,
                 description: data.data.description
