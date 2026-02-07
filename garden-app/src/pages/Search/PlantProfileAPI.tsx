@@ -34,6 +34,7 @@ const PlantProfileAPI = () => {
     }, [])
 
     const handleAddPlantButton = async () => {
+        console.log(individualPlantData.data.soil)
         try {
             createPerenualPlantItem({
                 id: individualPlantData.data.id,
@@ -42,7 +43,7 @@ const PlantProfileAPI = () => {
                 cycle: individualPlantData.data.cycle,
                 type: individualPlantData.data.type,
                 default_image: individualPlantData.data.default_image,
-                soil: individualPlantData.data.soil[0],
+                soil: individualPlantData.data.soil ? individualPlantData.data.soil[0] : "No soil information provided.",
                 dimensions: individualPlantData.data.dimensions,
                 sunlight: individualPlantData.data.sunlight[0],
                 watering: individualPlantData.data.watering,

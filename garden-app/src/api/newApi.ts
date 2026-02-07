@@ -238,8 +238,6 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
            }
         }
 
-        console.log(specificPlant)
-
         return specificPlant
     } catch (err) {
         console.log(`Error fetching specific plant: ${err}`)
