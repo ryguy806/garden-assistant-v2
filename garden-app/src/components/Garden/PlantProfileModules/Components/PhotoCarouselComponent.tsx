@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import IndividualPhotoComponent from "./IndividulaPhotoComponent";
-import { ImageFieldType } from "../../../../api/api";
 
 type PhotoCarouselProps = {
     image_url: string
@@ -69,43 +68,3 @@ const PhotoCarouselComponent = ({image_url}: PhotoCarouselProps) => {
 }
 
 export default PhotoCarouselComponent;
-
-const convertToImageFieldTypeArray = (imageUrls: {
-    "flower": ImageFieldType[],
-    "leaf": ImageFieldType[],
-    "habit": ImageFieldType[],
-    "fruit": ImageFieldType[],
-    "bark": ImageFieldType[],
-    "other": ImageFieldType[]
-}): ImageFieldType[] => {
-    const newArray: ImageFieldType[] = []
-
-    const flowers = imageUrls["flower"];
-    const leafs = imageUrls["leaf"];
-    const habits = imageUrls["habit"];
-    const fruits = imageUrls["fruit"];
-    const barks = imageUrls["bark"];
-    const others = imageUrls["other"];
-    
-    if (imageUrls["flower"]) {
-        for (let i = 0; i < flowers.length; i++) {
-        newArray.push(flowers[i]);
-    }}
-    if (imageUrls["leaf"]) {for (let i = 0; i < leafs.length; i++) {
-        newArray.push(leafs[i]);
-    }}
-    if (imageUrls['habit']) {for (let i = 0; i < habits.length; i++) {
-        newArray.push(habits[i]);
-    }}
-    if (imageUrls["fruit"]) {for (let i = 0; i < fruits.length; i++) {
-        newArray.push(fruits[i]);
-    }}
-    if (imageUrls["bark"]) {for (let i = 0; i < barks.length; i++) {
-        newArray.push(barks[i]);
-    }}
-    if (imageUrls["other"]) {for (let i = 0; i < others.length; i++) {
-        newArray.push(others[i]);
-    }}
-
-    return newArray
-}

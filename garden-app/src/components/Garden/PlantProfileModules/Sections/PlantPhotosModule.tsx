@@ -1,4 +1,4 @@
-import { ImageFieldType } from "../../../../api/api";
+
 import IndividualPhotoComponent from "../Components/IndividulaPhotoComponent";
 import PhotoCarouselComponent from "../Components/PhotoCarouselComponent";
 

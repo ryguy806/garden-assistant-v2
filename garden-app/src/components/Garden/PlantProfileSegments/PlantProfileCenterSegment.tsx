@@ -1,4 +1,3 @@
-import { ImageFieldType } from "../../../api/api";
 import PlantPhotosModule from "../PlantProfileModules/Sections/PlantPhotosModule";
 
 type PlantProfilePhotoProps = {

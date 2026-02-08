@@ -40,17 +40,6 @@ query searchForPerenualPlants {
   fn: import { searchForPerenualPlants } from "@src/api/newApi"
 }
 
-query getAllPlants {
-  fn: import {getAllPlants} from "@src/operations/queries/serverActions",
-  entities: [PlantProfileItem]
-}
-
-query getPlantById {
-  fn: import {getPlantById} from "@src/operations/queries/serverActions",
-  entities: [PlantProfileItem]
-}
-
-
 query getAllPerenualPlants {
   fn: import {getAllPerenualPlants} from "@src/operations/queries/newServerActions",
   entities: [PerenualPlantProfileItem]
@@ -59,11 +48,6 @@ query getAllPerenualPlants {
 query getPerenualPlantById {
   fn: import {getPerenualPlantById} from "@src/operations/queries/newServerActions",
   entities: [PerenualPlantProfileItem]
-}
-
-query getImageItemById {
-  fn: import {getImageItemById} from "@src/operations/queries/serverActions",
-  entities: [ImageItem]
 }
 
 //Routes
@@ -164,18 +148,6 @@ crud CalendarItems {
   }
 }
 
-crud PlantProfileItems {
-  entity: PlantProfileItem,
-  operations: {
-    getAll: {},
-    get: {},
-    create: {
-      overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
-    },
-    update: {}
-  }
-}
-
 crud PerenualPlantProfileItems {
   entity: PerenualPlantProfileItem,
   operations: {
@@ -183,18 +155,6 @@ crud PerenualPlantProfileItems {
     get: {},
     create: {
       overrideFn: import {createPerenualPlantProfileItem} from "@src/operations/actions/gardenActions",
-    },
-    update: {}
-  }
-}
-
-crud PlantItems {
-  entity: PlantItem,
-  operations: {
-    getAll: {},
-    get: {},
-    create: {
-      overrideFn: import {createPlantItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
   }
