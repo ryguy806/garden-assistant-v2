@@ -43,7 +43,7 @@ query getAllPerenualPlants {
 
 query getPerenualPlantById {
   fn: import {getPerenualPlantById} from "@src/operations/queries/newServerActions",
-  entities: [PerenualPlantProfileItem]
+  entities: [PerenualPlantProfileItem, HardinessItem, DimensionsItem]
 }
 
 //Routes

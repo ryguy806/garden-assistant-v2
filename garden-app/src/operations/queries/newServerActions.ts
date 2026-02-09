@@ -16,6 +16,7 @@ export const getPerenualPlantById: GetPerenualPlantById<
             },
             include: {
                 hardiness: true,
+                dimensions: true,
             }
         });
 

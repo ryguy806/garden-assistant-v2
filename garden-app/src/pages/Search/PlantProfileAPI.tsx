@@ -42,7 +42,7 @@ const PlantProfileAPI = () => {
                 default_image: individualPlantData.data.default_image,
                 soil: individualPlantData.data.soil ? individualPlantData.data.soil[0] : "No soil information provided.",
                 dimensions: individualPlantData.data.dimensions,
-                sunlight: individualPlantData.data.sunlight[0],
+                sunlight: individualPlantData.data.sunlight,
                 watering: individualPlantData.data.watering,
                 hardiness: individualPlantData.data.hardiness,
                 description: individualPlantData.data.description

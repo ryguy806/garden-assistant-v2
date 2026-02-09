@@ -1,7 +1,6 @@
 import PlantProfileLeftSegment from './PlantProfileSegments/PlantProfileLeftSegment';
 import PlantProfileCenterSegment from './PlantProfileSegments/PlantProfileCenterSegment';
 import PlantProfileRightSegment from './PlantProfileSegments/PlantProfileRightSegment';
-import { IndividualPlantDataType } from 'wasp/src/api/api';
 import { PerenualIndividualPlantDataType } from 'wasp/src/api/newApi';
 
 export type PlantProfileProps = {
@@ -17,7 +16,7 @@ const PlantProfileQuickFacts = ({plantProfile}: PlantProfileProps) => {
                     <PlantProfileLeftSegment description={plantProfile.data.description}/>
                 </span>
                 <PlantProfileCenterSegment image_url={plantProfile.data.default_image} />
-                <PlantProfileRightSegment commonName={plantProfile.data.common_name ? plantProfile.data.common_name : plantProfile.data.scientific_name} scientificName={plantProfile.data.scientific_name} growth_habit={plantProfile.data.type} duration={plantProfile.data.cycle} light={parseInt(plantProfile.data.sunlight[0])} />
+                <PlantProfileRightSegment commonName={plantProfile.data.common_name ? plantProfile.data.common_name : plantProfile.data.scientific_name} scientificName={plantProfile.data.scientific_name} growth_habit={plantProfile.data.type} duration={plantProfile.data.cycle} light={plantProfile.data.sunlight} />
             </div>
         </>
     );

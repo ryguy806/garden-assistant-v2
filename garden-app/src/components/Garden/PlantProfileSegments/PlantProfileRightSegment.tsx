@@ -8,7 +8,7 @@ type PlantProfileRightSegmentProps = {
     scientificName: string;
     duration: string;
     growth_habit: string;
-    light: number | null;
+    light: string | null;
 }
 
 const PlantProfileRightSegment = ({ commonName, scientificName, duration, growth_habit, light }: PlantProfileRightSegmentProps) => {
