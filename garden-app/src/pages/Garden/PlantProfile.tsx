@@ -29,8 +29,6 @@ const PlantProfile = () => {
     }
   } : {} as PerenualIndividualPlantDataType
 
-  console.log("Individual Plant Data: ", individualPlantData)
-
   if(isLoading) return <div>Loading...</div>
   if(error) return <div>Error loading plant data: {error.message}</div>
 
