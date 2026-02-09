@@ -71,7 +71,6 @@ export type PerenualIndividualPlantDataType = {
 }
 
 export type PerenualIndividualRawDataType = {
-    data: {
         id: number,
         common_name: string,
         scientific_name: string[],
@@ -164,7 +163,6 @@ export type PerenualIndividualRawDataType = {
             small_url: string,
             thumbnail: string
         }[],
-    }
 }
 
 export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]> => {
@@ -221,7 +219,7 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
-        const rawData = await response.json()
+        const rawData: PerenualIndividualRawDataType = await response.json()
 
         specificPlant = {
            data: {

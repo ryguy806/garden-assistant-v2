@@ -17,17 +17,19 @@ const PlantProfile = () => {
       cycle: data.cycle,
       type: data.type,
       hardiness: {
-        min: 0,
-        max: 1,
+        min: data.hardiness ? data.hardiness.min : 0,
+        max: data.hardiness ? data.hardiness.max : 0,
       },
       default_image: data.default_image,
       description: data.description,
       soil: data.soil,
-      dimensions: [],
+      dimensions: data.dimensions,
       sunlight: data.sunlight,
       watering: data.watering,
     }
   } : {} as PerenualIndividualPlantDataType
+
+  console.log("Individual Plant Data: ", individualPlantData)
 
   if(isLoading) return <div>Loading...</div>
   if(error) return <div>Error loading plant data: {error.message}</div>

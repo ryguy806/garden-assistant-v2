@@ -1,16 +1,31 @@
-import { type PerenualPlantProfileItem } from 'wasp/entities'
+import { type PerenualPlantProfileItem, type HardinessItem, type DimensionsItem } from 'wasp/entities'
 import { HttpError } from 'wasp/server';
 import { type GetPerenualPlantById, type GetAllPerenualPlants } from 'wasp/server/operations'
 
+type PerenualPlantType = {
+    hardiness: {
+        id: number
+        min: number;
+        max: number;
+    } | null,
+    dimensions: {
+        id: number
+        type: string,
+        min_value: number,
+        max_value: number,
+        unit: string,
+    }[]
+}
+
 export const getPerenualPlantById: GetPerenualPlantById<
     {id: number},
-    PerenualPlantProfileItem | null
+    (PerenualPlantProfileItem & PerenualPlantType) | null
 > = async ({id}, context) => {
     if(!context.user) {
         throw new HttpError(401, "You must be logged in to see your plant.")
     }
     try {
-        const plant = await context.entities.PerenualPlantProfileItem.findUnique({
+        const plant: (PerenualPlantProfileItem & PerenualPlantType) | null = await context.entities.PerenualPlantProfileItem.findUnique({
             where: {
                 id: id,
             },
@@ -24,6 +39,7 @@ export const getPerenualPlantById: GetPerenualPlantById<
             throw new HttpError(404, 'Plant not found');
         }
 
+        console.log(plant)
         return plant;
     } catch (error) {
         throw new HttpError(500, "Failed to fetch plant data.")
