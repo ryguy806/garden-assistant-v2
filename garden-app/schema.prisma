@@ -14,7 +14,7 @@ model User {
   journalItems JournalItem[]
   calendarItems CalendarItem[]
   gardenMaps GardenMap[]
-  plantProfileItems PlantProfileItem[]
+  perenualPlantProfileItem PerenualPlantProfileItem[]
 }
 
 model JournalItem {
@@ -24,75 +24,6 @@ model JournalItem {
   user User? @relation(fields: [userId], references: [id])
   userId Int?
 }
-
-model ImageItem {
-  internal_id Int @id @default(autoincrement())
-  flower FlowerImageFieldType[]
-  leaf LeafImageFieldType[]
-  habit HabitImageFieldType[]
-  fruit FruitImageFieldType[]
-  bark BarkImageFieldType[]
-  other OtherImageFieldType[]
-
-  plant_profile_id Int @unique
-  plant_profile PlantProfileItem @relation(fields: [plant_profile_id], references: [id])
-}
-
-model FlowerImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-model LeafImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-  
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-model HabitImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-model FruitImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-model BarkImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-  
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-model OtherImageFieldType {
-  internal_id Int @id @default(autoincrement())
-  id Int
-  image_url String
-  copyright String?
-  
-  imageItem   ImageItem @relation(fields: [imageItemId], references: [internal_id])
-  imageItemId Int
-}
-
 model CalendarItem {
   id Int @id @default(autoincrement())
   title String
@@ -102,42 +33,42 @@ model CalendarItem {
   user User? @relation(fields: [userId], references: [id])
   userId Int?
 }
-
-model DurationItem {
-  id Int @id
-  duration String
-
-  plant_profile_id Int @unique
-  plant_profile PlantProfileItem @relation(fields: [plant_profile_id], references: [id])
-}
-
-model PlantProfileItem {
+model PerenualPlantProfileItem {
   id Int @id
   user User @relation(fields: [userId], references: [id])
   userId Int
   createdDate DateTime @default(now())
-  common_name String?
+  default_image String
+  common_name String
   scientific_name String
-  images ImageItem?
-  slug String
-  duration DurationItem[]
-  growth_habit String?
-  light Int?
-  image_url String?
+  type String
+  dimensions DimensionsItem[]
+  cycle String
+  watering String
+  description String
+  soil String
+  sunlight String
+  hardiness HardinessItem?
 }
 
-model PlantItem {
-  id Int @id 
-  common_name String?
-  scientific_name String
-  image_url String
-  slug String
+model HardinessItem {
+  id Int @id @unique
+  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
+  min Int
+  max Int
 }
 
+model DimensionsItem {
+  id Int @id @unique
+  plant_profile PerenualPlantProfileItem @relation(fields: [id], references: [id])
+  type String
+  min_value Float
+  max_value Float
+  unit String
+}
 model GardenMap {
   id Int @id @default(autoincrement())
   name String
   user User? @relation(fields: [userId], references: [id])
   userId Int?
-  // plantProfileItems PlantProfileItem[]
 }

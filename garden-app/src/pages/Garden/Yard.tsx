@@ -1,21 +1,9 @@
-import { useQuery, getAllPlants } from "wasp/client/operations";
+import { useQuery, getAllPerenualPlants } from "wasp/client/operations";
 import { Link } from "wasp/client/router";
-
-type PlantDataType = {
-    id: number;
-    userId: number;
-    createdDate: Date;
-    common_name: string | null;
-    scientific_name: string;
-    slug: string;
-    growth_habit: string | null;
-    light: number | null;
-    image_url: string | null;
-}
 
 const Yard = () => {
 
-  const {data, isLoading, error} = useQuery(getAllPlants)
+  const {data, isLoading, error} = useQuery(getAllPerenualPlants)
 
   const plants = data ? data.sort((a, b) => a.scientific_name.localeCompare(b.scientific_name)) : []
   

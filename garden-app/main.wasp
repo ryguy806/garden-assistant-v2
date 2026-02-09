@@ -24,31 +24,26 @@ app Garden_Assistant {
 
 
 //Queries
-query getPlantAPIData {
-  fn: import {fetchAllPlants} from "@src/api/api",
+query fetchAllPerenualPlants {
+  fn: import {fetchAllPerenualPlants} from "@src/api/newApi",
 }
 
-query lookForSpecificPlantScientificName {
-  fn: import {lookForSpecificPlantScientificName} from "@src/api/api",
+query lookForSpecificPerenualPlantScientificName {
+  fn: import {lookForSpecificPerenualPlantScientificName} from "@src/api/newApi"
 }
 
-query searchForPlants {
-  fn: import { searchForPlants } from "@src/api/api"
+query searchForPerenualPlants {
+  fn: import { searchForPerenualPlants } from "@src/api/newApi"
 }
 
-query getAllPlants {
-  fn: import {getAllPlants} from "@src/operations/queries/serverActions",
-  entities: [PlantProfileItem]
+query getAllPerenualPlants {
+  fn: import {getAllPerenualPlants} from "@src/operations/queries/newServerActions",
+  entities: [PerenualPlantProfileItem]
 }
 
-query getPlantById {
-  fn: import {getPlantById} from "@src/operations/queries/serverActions",
-  entities: [PlantProfileItem]
-}
-
-query getImageItemById {
-  fn: import {getImageItemById} from "@src/operations/queries/serverActions",
-  entities: [ImageItem]
+query getPerenualPlantById {
+  fn: import {getPerenualPlantById} from "@src/operations/queries/newServerActions",
+  entities: [PerenualPlantProfileItem, HardinessItem, DimensionsItem]
 }
 
 //Routes
@@ -149,25 +144,13 @@ crud CalendarItems {
   }
 }
 
-crud PlantProfileItems {
-  entity: PlantProfileItem,
+crud PerenualPlantProfileItems {
+  entity: PerenualPlantProfileItem,
   operations: {
     getAll: {},
     get: {},
     create: {
-      overrideFn: import {createPlantProfileItem} from "@src/operations/actions/gardenActions",
-    },
-    update: {}
-  }
-}
-
-crud PlantItems {
-  entity: PlantItem,
-  operations: {
-    getAll: {},
-    get: {},
-    create: {
-      overrideFn: import {createPlantItem} from "@src/operations/actions/gardenActions",
+      overrideFn: import {createPerenualPlantProfileItem} from "@src/operations/actions/gardenActions",
     },
     update: {}
   }

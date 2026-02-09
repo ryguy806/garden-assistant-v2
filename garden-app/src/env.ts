@@ -7,5 +7,8 @@ export const envValidationSchema = defineEnvValidationSchema(
         API_SECRET_KEY: z.string({
             required_error: 'API_SECRET_KEY is required.'
         }),
+        NEW_API_SECRET_KEY: z.string({
+            required_error: 'NEW_API_SECRET_KEY is required.'
+        })
     })
 )
