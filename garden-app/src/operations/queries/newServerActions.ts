@@ -39,7 +39,6 @@ export const getPerenualPlantById: GetPerenualPlantById<
             throw new HttpError(404, 'Plant not found');
         }
 
-        console.log(plant)
         return plant;
     } catch (error) {
         throw new HttpError(500, "Failed to fetch plant data.")
