@@ -24,10 +24,6 @@ app Garden_Assistant {
 
 
 //Queries
-query getPlantAPIData {
-  fn: import {fetchAllPlants} from "@src/api/api",
-}
-
 query fetchAllPerenualPlants {
   fn: import {fetchAllPerenualPlants} from "@src/api/newApi",
 }

@@ -196,6 +196,11 @@ export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]>
 
 //GET THE ID FROM THE SCIENTIFIC NAME, THEN pass along the ID to get the specific plant!
 export const searchForPerenualPlants = async (searchTerm: string) => {
+
+    if(searchTerm.length < 3) {
+        return {data: [], to: 0, per_page: 0, current_page: 0, from: 0, last_page: 0, total: 0} as PerenualRawDataType
+    }
+
     try {
         const response = await fetch(`${API_BASE_URL}species-list?q=${searchTerm}&&key=${env.NEW_API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
