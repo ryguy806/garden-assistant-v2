@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import useDebounce from "./useDebounce";
-import { PerenualRawDataType } from "../../../api/newApi";
 import { searchForPerenualPlants, useQuery } from "wasp/client/operations";
 import { Link } from "wasp/client/router";
-import { toSentenceCase } from "../../../pages/Journal/JournalView";
 
 const PlantSearch = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
     const [debouncedTerm, setDebouncedTerm] = useState("")
-    const [isSearching, setIsSearching] = useState(false)
     const shouldFetch = debouncedTerm.length >= 3
 
     const {data: results, isLoading, error} = useQuery(
@@ -37,20 +33,8 @@ const PlantSearch = () => {
         <div className="flex flex-col h-full w-full">
             <input className="flex mx-auto border-black border w-1/3 p-1 pl-2" type="text" placeholder="Search (must be at least 3 characters)..." value={searchTerm} onChange={handleSearchInput}/>
 
-            {isSearching && <div className="flex mx-auto">Searching...🔎🌱</div>}
+            {isLoading && <div className="flex mx-auto">Searching...🔎🌱</div>}
             <div className="flex flex-col space-y-3 text-black mx-auto justify-center">
-            {/* {
-                hasResults ? (
-                    results.data.map((plant) => (
-                        <div key={plant.id} className="mx-5 w-full h-auto hover:ring-2 ring-yellow-500 first:mt-5">
-                            <Link to="/search/:plant" params={{plant: plant.id}} className="flex mx-auto my-4 justify-center">
-                               <p>{plant.common_name && `${plant.common_name} | `}<i>{plant.scientific_name}</i></p>
-                            </Link>
-                        </div>
-                    ))
-                ) : (<div>No results found.</div>)
-            } */}
-
                 {searchTerm.length > 0 && searchTerm.length < 3 && (
                     <div className="flex mx-auto">Please enter at least 3 characters to search.</div>
                 )}
