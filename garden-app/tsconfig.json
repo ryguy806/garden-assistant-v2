@@ -4,10 +4,11 @@
 // your IDE checks, but none of these options will affect the TypeScript
 // compiler. Proper TS compiler configuration in Wasp is coming soon :)
 {
-  "include": ["src"],
+  "include": ["src", ".wasp/out/types/app"],
   "compilerOptions": {
-    "module": "esnext",
-    "target": "esnext",
+    "module": "commonjs",
+    "target": "es2025",
+    "types": ["react", "node"],
     // We're bundling all code in the end so this is the most appropriate option,
     // it's also important for autocomplete to work properly.
     "moduleResolution": "bundler",
@@ -16,7 +17,7 @@
     "strict": true,
     // Allow default imports.
     "esModuleInterop": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "ES2025"],
     "allowJs": true,
     "typeRoots": [
       // This is needed to properly support Vitest testing with jest-dom matchers.
@@ -38,5 +39,6 @@
     "outDir": ".wasp/out/user",
     "composite": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": ["node_modules"]
 }
