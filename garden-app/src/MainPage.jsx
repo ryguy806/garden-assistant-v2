@@ -1,29 +1,11 @@
 import { Link } from "wasp/client/router";
-import {useRef, useEffect} from "react"
+import {useRef} from "react"
 import "./Main.css";
 import bumblebotVid from './assets/vid/BumbleBot.mp4'
 
 export const MainPage = () => {
   
   const videoRef = useRef(null);
-
-  // useEffect(() => {
-  //   let intervalId = null
-
-  //   const tryToPlayVideo = () => {
-  //     if(videoRef.current) {
-  //       videoRef.current.currentTime = 0
-  //     }
-  //   }
-
-  //   intervalId = setInterval(tryToPlayVideo(), 60000)
-
-  //   return () => {
-  //     if (intervalId) {
-  //       clearInterval(intervalId)
-  //     }
-  //   }
-  // })
 
   return (
     <div className='container mx-auto -mt-20'>
@@ -48,12 +30,6 @@ export const MainPage = () => {
               <div className="flex border-2 mx-auto justify-center p-5 hover:ring-2 ring-yellow-500">
                 <Link to='/search'>Plant Look-up</Link>
               </div>
-              {/* <div>
-                <Link to='/calendar'>Calendar</Link>
-              </div>
-              <div>
-                <Link to='/journal'>Garden Journal</Link>
-              </div> */}
             </div>
           </div>
         </div>

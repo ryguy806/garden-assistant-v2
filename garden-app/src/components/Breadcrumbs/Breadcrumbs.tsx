@@ -1,4 +1,4 @@
-import { useLocation, Link as RouterLink } from "react-router-dom";
+import { useLocation, Link as RouterLink } from "react-router";
 import { Link } from "wasp/client/router";
 
 export function titleCase(name: string) {

@@ -1,0 +1,6 @@
+{
+  "include": ["src", ".wasp/out/types/app"],
+  "compilerOptions": {
+     "types": ["react", "node"]
+  }
+}

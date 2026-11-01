@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2025",
+        "lib": ["ES2025"],
+        "types": ["node"]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

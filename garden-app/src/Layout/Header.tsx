@@ -1,5 +1,5 @@
 import { logout, useAuth } from "wasp/client/auth";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Header = () => {
   const { data: user } = useAuth();

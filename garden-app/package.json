@@ -2,7 +2,7 @@
   "name": "garden-assistant",
   "type": "module",
   "workspaces": [
-    ".wasp/build/*",
+    ".wasp/out/sdk/wasp",
     ".wasp/out/*"
   ],
   "dependencies": {
@@ -10,17 +10,29 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "react-router": "^6.27.0",
-    "react-router-dom": "^6.26.2",
-    "wasp": "file:.wasp/out/sdk/wasp"
+    "react-router": "^8.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
     "prisma": "5.19.1",
-    "tailwindcss": "^3.4.14",
-    "typescript": "5.8.2",
-    "vite": "^7.0.6",
-    "wasp-config": "file:../../../../.local/share/wasp-lang/0.20.1/data/packages/wasp-config"
+    "tailwindcss": "^3.4.19",
+    "typescript": "6.0.3",
+    "vite": "^8.1.0",
+    "vitest": "^4.1.9",
+    "wasp-config": "file:../../../.nvm/versions/node/v26.13.0/lib/node_modules/@wasp.sh/wasp-cli/node_modules/@wasp.sh/wasp-cli-linux-x64-glibc/data/packages/wasp-config"
+  },
+  "allowScripts": {
+    "axios@1.13.5": true,
+    "prisma@5.19.1": true,
+    "react-hook-form@7.71.1": true,
+    "@prisma/client@5.19.1": true,
+    "@prisma/engines@5.19.1": true,
+    "esbuild@0.28.2": true,
+    "msw@2.15.0": true,
+    "file:/home/ryguy8806/documents/garden-assistant-v2/garden-app/.wasp/out/libs/auth/wasp.sh-lib-auth-0.21.1.tgz": true
   }
 }

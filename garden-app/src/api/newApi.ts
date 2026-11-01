@@ -168,7 +168,7 @@ export type PerenualIndividualRawDataType = {
 export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]> => {
     let allPlantData: PerenualPlantDataType[] = []
     try {
-        const response = await fetch(`${API_BASE_URL}species-list?key=${env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species-list?key=${process.env.NEW_API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }   
@@ -200,7 +200,7 @@ export const searchForPerenualPlants = async (searchTerm: string) => {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}species-list?q=${searchTerm}&&key=${env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species-list?q=${searchTerm}&&key=${process.env.NEW_API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData: PerenualRawDataType = await response.json()
 
@@ -215,7 +215,7 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
     let specificPlant: PerenualIndividualPlantDataType = {} as PerenualIndividualPlantDataType
 
     try {
-        const response = await fetch(`${API_BASE_URL}species/details/${plantID}?key=${env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species/details/${plantID}?key=${process.env.NEW_API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
