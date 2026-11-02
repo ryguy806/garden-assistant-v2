@@ -1,7 +1,7 @@
 import PlantProfileLeftSegment from './PlantProfileSegments/PlantProfileLeftSegment';
 import PlantProfileCenterSegment from './PlantProfileSegments/PlantProfileCenterSegment';
 import PlantProfileRightSegment from './PlantProfileSegments/PlantProfileRightSegment';
-import { PerenualIndividualPlantDataType } from 'wasp/src/api/newApi';
+import { PerenualIndividualPlantDataType } from '../../api/newApi';
 
 export type PlantProfileProps = {
     plantProfile: PerenualIndividualPlantDataType

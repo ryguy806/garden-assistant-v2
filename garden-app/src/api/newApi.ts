@@ -1,6 +1,3 @@
-import { env } from "wasp/server";
-//This file is for all API functions.
-
 export const API_BASE_URL = 'https://perenual.com/api/v2/'
 
 export type PerenualPlantDataType = {

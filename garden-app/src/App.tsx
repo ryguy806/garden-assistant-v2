@@ -1,9 +1,9 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./Layout/Header";
+import Footer from "./Layout/Footer";
 import { Outlet } from "react-router";
-import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs";
+import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs";
 
-const Layout = ({ children }: any) => {
+const App = ({ children }: any) => {
   return (
     <div className='min-h-screen bg-[#F2F5F3]'>
       <div className='sticky top-0 w-full flex-flex-col z-10'>
@@ -22,4 +22,4 @@ const Layout = ({ children }: any) => {
   );
 };
 
-export default Layout;
+export default App;

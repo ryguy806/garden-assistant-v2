@@ -1,4 +1,4 @@
-import waspLogo from "../waspLogo.png";
+import waspLogo from "../assets/wasp-logo-rounded.svg";
 
 const Footer = () => {
   return (
