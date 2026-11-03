@@ -86,6 +86,7 @@ const JournalItemForm: FC<JournalItemFormProps> = ({ setAddEntry }) => {
       target.reset();
       await createJournalItem({
         entry: newEntry,
+        plant_id: 0
       });
     } catch (err: any) {
       window.alert("Error: " + err.message);

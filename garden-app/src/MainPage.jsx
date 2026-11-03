@@ -1,6 +1,5 @@
 import { Link } from "wasp/client/router";
 import {useRef} from "react"
-import "./Main.css";
 import bumblebotVid from './assets/vid/BumbleBot.mp4'
 
 export const MainPage = () => {

@@ -8,9 +8,9 @@ type PlantProfileLeftSegmentProps = {
 const PlantProfileLeftSegment = ({description}: PlantProfileLeftSegmentProps) => {
 
     return (
-        <div className='flex w-full flex-col h-full space-y-5 mt-0'>
+        <div className='flex w-full flex-col h-full justify-between space-y-4 mt-0'>
             <LocationsModule/>
-            <div className="flex h-3/4">
+            <div className="flex h-auto">
                 <DescriptionModule plantDescription={description}/>
             </div>
         </div>

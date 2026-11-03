@@ -34,18 +34,24 @@ const PlantProfileAPI = () => {
     const handleAddPlantButton = async () => {
         try {
             createPerenualPlantItem({
-                id: individualPlantData.data.id,
+                plant_id: individualPlantData.data.id,
                 common_name: individualPlantData.data.common_name!,
                 scientific_name: individualPlantData.data.scientific_name,
                 cycle: individualPlantData.data.cycle,
                 type: individualPlantData.data.type,
                 default_image: individualPlantData.data.default_image,
-                soil: individualPlantData.data.soil ? individualPlantData.data.soil[0] : "No soil information provided.",
+                soil: individualPlantData.data.soil ? individualPlantData.data.soil : "No data.",
                 dimensions: individualPlantData.data.dimensions,
                 sunlight: individualPlantData.data.sunlight,
                 watering: individualPlantData.data.watering,
                 hardiness: individualPlantData.data.hardiness,
-                description: individualPlantData.data.description
+                description: individualPlantData.data.description,
+                pest_susceptibility: individualPlantData.data.pest_susceptibility,
+                flowering_season: individualPlantData.data.flowering_season,
+                growth_rate: individualPlantData.data.growth_rate,
+                attracts: individualPlantData.data.attracts,
+                pruning_months: individualPlantData.data.pruning_months,
+                maintenance: individualPlantData.data.maintenance
             })
         } catch(err) {
             throw err
@@ -59,7 +65,7 @@ const PlantProfileAPI = () => {
 
     return (
         <div className="flex flex-col h-full ">
-            <div className="flex m-auto size-full object-fill">
+            <div className="flex m-auto size-full object-fill p-4">
                 <PlantProfile individualPlantData={individualPlantData}/>
             </div>
             <div className="flex flex-col m-auto p-10 space-y-5 h-full">

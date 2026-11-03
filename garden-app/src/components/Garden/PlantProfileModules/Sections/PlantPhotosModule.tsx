@@ -1,6 +1,6 @@
 
-import IndividualPhotoComponent from "../Components/IndividulaPhotoComponent";
-import PhotoCarouselComponent from "../Components/PhotoCarouselComponent";
+import IndividualPhotoComponent from "../Components/ImageComponents/IndividulaPhotoComponent";
+import PhotoCarouselComponent from "../Components/ImageComponents/PhotoCarouselComponent";
 
 type PlantPhotosModuleProps = {
     image_url: string
@@ -8,7 +8,7 @@ type PlantPhotosModuleProps = {
 
 const PlantPhotosModule = ({ image_url }: PlantPhotosModuleProps) => {
     return (
-        <div className='flex text-3xl font-bold items-center border-black border-2 p-4'>
+        <div className='flex items-center justify-center'>
             {/* <PhotoCarouselComponent image_url={image_url}/> */}
             <IndividualPhotoComponent image={image_url} visible={true}/>
         </div>

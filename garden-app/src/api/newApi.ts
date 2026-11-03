@@ -1,3 +1,6 @@
+import { env } from "wasp/server";
+//This file is for all API functions.
+
 export const API_BASE_URL = 'https://perenual.com/api/v2/'
 
 export type PerenualPlantDataType = {
@@ -63,7 +66,13 @@ export type PerenualIndividualPlantDataType = {
         hardiness: {
             min: number,
             max: number
-        }
+        },
+        growth_rate: string,
+        flowering_season: string,
+        pruning_months: string[],
+        attracts: string[],
+        pest_susceptibility: string[],
+        maintenance: string
     }
 }
 
@@ -149,7 +158,7 @@ export type PerenualIndividualRawDataType = {
             medium_url: string,
             small_url: string,
             thumbnail: string
-        },
+        } | null,
         other_images: {
             license: number,
             license_name: string,
@@ -165,7 +174,7 @@ export type PerenualIndividualRawDataType = {
 export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]> => {
     let allPlantData: PerenualPlantDataType[] = []
     try {
-        const response = await fetch(`${API_BASE_URL}species-list?key=${process.env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species-list?key=${env.NEW_API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }   
@@ -174,7 +183,7 @@ export const fetchAllPerenualPlants = async (): Promise<PerenualPlantDataType[]>
             allPlantData.push({
                 data: {
                     id: plant.id,
-                    default_image: plant.default_image.original_url,
+                    default_image: plant.default_image ? plant.default_image.regular_url : "No image.",
                     common_name: plant.common_name,
                     scientific_name: plant.scientific_name[0],
                 }
@@ -197,7 +206,7 @@ export const searchForPerenualPlants = async (searchTerm: string) => {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}species-list?q=${searchTerm}&&key=${process.env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species-list?q=${searchTerm}&&key=${env.NEW_API_SECRET_KEY}`)
         if (!response.ok) throw new Error(`Response Error status: ${response.status}`)
         const rawData: PerenualRawDataType = await response.json()
 
@@ -212,7 +221,7 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
     let specificPlant: PerenualIndividualPlantDataType = {} as PerenualIndividualPlantDataType
 
     try {
-        const response = await fetch(`${API_BASE_URL}species/details/${plantID}?key=${process.env.NEW_API_SECRET_KEY}`)
+        const response = await fetch(`${API_BASE_URL}species/details/${plantID}?key=${env.NEW_API_SECRET_KEY}`)
         if(!response.ok) {
             throw new Error(`Response Error status: ${response.status}`)
         }
@@ -223,7 +232,7 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
             id: rawData.id,
             common_name: rawData.common_name,
             scientific_name: rawData.scientific_name[0],
-            default_image: rawData.default_image.original_url,
+            default_image: rawData.default_image ? rawData.default_image.regular_url : "No image.",
             hardiness: {
                 min: parseInt(rawData.hardiness.min),
                 max: parseInt(rawData.hardiness.max),
@@ -233,8 +242,14 @@ export const lookForSpecificPerenualPlantScientificName = async (plantID: number
             cycle: rawData.cycle,
             description: rawData.description,
             dimensions: rawData.dimensions,
-            soil: rawData.soil[0],
-            type: rawData.type
+            soil: rawData.soil.join(" "),
+            type: rawData.type,
+            growth_rate: rawData.growth_rate,
+            pruning_months: rawData.pruning_month,
+            attracts: rawData.attracts,
+            pest_susceptibility: rawData.pest_susceptibility,
+            flowering_season: rawData.flowering_season,
+            maintenance: rawData.maintenance
            }
         }
 

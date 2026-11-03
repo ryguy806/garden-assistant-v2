@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { useNavigate } from 'react-router'
+import { useNavigate } from "react-router";
 import { CalendarItems } from "wasp/client/crud";
 
 const CalendarNewEvent = () => {

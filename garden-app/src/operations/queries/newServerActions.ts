@@ -1,4 +1,4 @@
-import { type PerenualPlantProfileItem, type HardinessItem, type DimensionsItem } from 'wasp/entities'
+import { type PerenualPlantProfileItem } from 'wasp/entities'
 import { HttpError } from 'wasp/server';
 import { type GetPerenualPlantById, type GetAllPerenualPlants } from 'wasp/server/operations'
 
@@ -14,6 +14,18 @@ type PerenualPlantType = {
         min_value: number,
         max_value: number,
         unit: string,
+    }[],
+    attracts: {
+        id: number,
+        species: string
+    }[],
+    pest_susceptibility: {
+        id: number,
+        species: string
+    }[],
+    pruning_months: {
+        id: number,
+        month: string
     }[]
 }
 
@@ -32,6 +44,12 @@ export const getPerenualPlantById: GetPerenualPlantById<
             include: {
                 hardiness: true,
                 dimensions: true,
+                pruning_months: true,
+                attracts: true,
+                pest_susceptibility: true,
+                flowering_season: true,
+                maintenance: true,
+                growth_rate: true
             }
         });
 

@@ -5,7 +5,7 @@ export default function Signup() {
   return (
     <div className='w-full h-full bg-white'>
       <div className='min-w-full min-h-[75vh] flex items-center justify-center'>
-        <div className='w-1/3 h-1/3 max-w-sm p-5 bg-white'>
+        <div className='w-full h-full max-w-sm p-5 bg-white'>
           <div>
             <SignupForm
               appearance={{
@@ -17,14 +17,14 @@ export default function Signup() {
               }}
             />
             <div className='mt-4 text-center'>
-              If you already have an account go to{" "}
+              If you already have an account, {" "}
               <Link
                 to='/login'
                 className='text-primary-500 hover:text-primary-800 underline'
               >
                 login
               </Link>
-              .
+              {" "}here.
             </div>
           </div>
         </div>
