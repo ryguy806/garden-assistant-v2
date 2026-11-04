@@ -17,16 +17,16 @@ const Crumbs = (pathnames: string[]) =>
     const last = index === pathnames.length - 1;
     const to = `/${pathnames.slice(0, index + 1).join("/")}`;
     return last ? (
-      <>
+      <li key={index} className='flex flex-row'>
         {pathname === "login" || pathname === "signup" ? (
           <span key={index}></span>
         ) : (
-          <li key={index} className='flex flex-row'>
+          <>
             <div className='mr-3'>{">"}</div>
             {titleCase(decodeURI(pathname))}
-          </li>
-        )}
-      </>
+          </>
+          )}
+      </li>
     ) : (
       <li key={index} className='flex flex-row'>
         <div className='mr-3'>{">"}</div>
@@ -54,7 +54,7 @@ export const Breadcrumbs = () => {
     <div className='px-2 pb-1'>
       <div className='text-md breadcrumbs'>
         <ul className='flex flex-row space-x-3'>
-          <li>
+          <li key="home">
             <Link to={"/"}>Home</Link>
           </li>
           {Crumbs(pathnames)}
